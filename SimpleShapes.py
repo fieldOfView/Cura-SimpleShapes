@@ -3,6 +3,8 @@
 
 from PyQt5.QtCore import QObject
 
+import numpy
+
 from UM.Extension import Extension
 from UM.Application import Application
 
@@ -28,17 +30,77 @@ class SimpleShapes(Extension, QObject,):
 
     def addCube(self):
         mesh = MeshBuilder()
-        mesh.addCube(50,50,50)
+
+        # Can't use MeshBuilder.addCube() because that does not get per-vertex normals
+        size = 50
+        minSize = -size / 2
+        maxSize = size / 2
+
+        verts = [ #4 corners in 6 faces.
+            [minSize, minSize, maxSize],
+            [minSize, maxSize, maxSize],
+            [maxSize, maxSize, maxSize],
+            [maxSize, minSize, maxSize],
+
+            [minSize, maxSize, minSize],
+            [minSize, minSize, minSize],
+            [maxSize, minSize, minSize],
+            [maxSize, maxSize, minSize],
+
+            [maxSize, minSize, minSize],
+            [minSize, minSize, minSize],
+            [minSize, minSize, maxSize],
+            [maxSize, minSize, maxSize],
+
+            [minSize, maxSize, minSize],
+            [maxSize, maxSize, minSize],
+            [maxSize, maxSize, maxSize],
+            [minSize, maxSize, maxSize],
+
+            [minSize, minSize, maxSize],
+            [minSize, minSize, minSize],
+            [minSize, maxSize, minSize],
+            [minSize, maxSize, maxSize],
+
+            [maxSize, minSize, minSize],
+            [maxSize, minSize, maxSize],
+            [maxSize, maxSize, maxSize],
+            [maxSize, maxSize, minSize],
+        ]
+        mesh.setVertices(numpy.asarray(verts, dtype=numpy.float32))
+
+        indices = [ #All 6 quads (12 triangles).
+            [0, 2, 1],
+            [0, 3, 2],
+
+            [4, 6, 5],
+            [4, 7, 6],
+
+            [8, 10, 9],
+            [8, 11, 10],
+
+            [12, 14, 13],
+            [12, 15, 14],
+
+            [16, 18, 17],
+            [16, 19, 18],
+
+            [20, 22, 21],
+            [20, 23, 22]
+        ]
+        mesh.setIndices(numpy.asarray(indices, dtype=numpy.int32))
+
+        mesh.calculateNormals()
         self._addShape(mesh.build())
 
     def addCylinder(self):
         mesh = MeshBuilder()
-        mesh.addCube(50,50,50)
+        # TODO: construct cylinder
         self._addShape(mesh.build())
 
     def addSphere(self):
         mesh = MeshBuilder()
-        mesh.addCube(50,50,50)
+        # TODO: construct sphere
         self._addShape(mesh.build())
 
     def _addShape(self, meshData):
