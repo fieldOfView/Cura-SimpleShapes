@@ -4,6 +4,7 @@
 from PyQt5.QtCore import QObject
 
 import numpy
+import math
 
 from UM.Extension import Extension
 from UM.Application import Application
@@ -32,7 +33,7 @@ class SimpleShapes(Extension, QObject,):
         mesh = MeshBuilder()
 
         # Can't use MeshBuilder.addCube() because that does not get per-vertex normals
-        size = 50
+        size = 20
         minSize = -size / 2
         maxSize = size / 2
 
@@ -100,7 +101,44 @@ class SimpleShapes(Extension, QObject,):
 
     def addSphere(self):
         mesh = MeshBuilder()
-        # TODO: construct sphere
+
+        radius = 10
+        resolution = 24
+
+        verts = []
+
+        for z_iteration in range(0, resolution):
+            z_value = math.pi * z_iteration / (resolution-1)
+            y = radius * math.cos(z_value)
+            local_radius = radius * math.sin(z_value)
+            if local_radius < 0.0001:
+                local_radius = 0.0001 # HACK: improve normal creation
+            for xz_iteration in range(0, resolution):
+                xz_value = 2 * math.pi * xz_iteration / resolution
+                x = local_radius * math.cos(xz_value)
+                z = local_radius * math.sin(xz_value)
+                verts.append([x, y, z])
+
+        mesh.setVertices(numpy.asarray(verts, dtype=numpy.float32))
+
+        indices = []
+        start_row = 0
+
+        for z_iteration in range(0, resolution - 1):
+            for xz_iteration in range(0, resolution):
+                start_face = start_row + xz_iteration
+                if xz_iteration != resolution - 1:
+                    indices.append([start_face + 0, start_face + 1, start_face + resolution])
+                    indices.append([start_face + 1, start_face + resolution + 1, start_face + resolution])
+                else:
+                    indices.append([start_face + 0, start_row, start_face + resolution])
+                    indices.append([start_row, start_row + resolution, start_face + resolution])
+            start_row = start_row + resolution
+
+        mesh.setIndices(numpy.asarray(indices, dtype=numpy.int32))
+
+        mesh.calculateNormals()
+
         self._addShape(mesh.build())
 
     def _addShape(self, meshData):
