@@ -8,7 +8,7 @@ import math
 import trimesh
 
 from UM.Extension import Extension
-from UM.Application import Application
+from cura.CuraApplication import CuraApplication
 
 from UM.Mesh.MeshData import MeshData, calculateNormalsFromIndexedVertices
 
@@ -23,23 +23,23 @@ catalog = i18nCatalog("cura")
 class SimpleShapes(Extension, QObject,):
     __size = 20
 
-    def __init__(self, parent = None):
+    def __init__(self, parent = None) -> None:
         QObject.__init__(self, parent)
         Extension.__init__(self)
 
-        self._controller = Application.getInstance().getController()
+        self._controller = CuraApplication.getInstance().getController()
 
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cube"), self.addCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cylinder"), self.addCylinder)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
 
-    def addCube(self):
+    def addCube(self) -> None:
         self._addShape(self._toMeshData(trimesh.primitives.Box(extents = [self.__size, self.__size, self.__size])))
 
-    def addCylinder(self):
+    def addCylinder(self) -> None:
         self._addShape(self._toMeshData(trimesh.primitives.Cylinder(radius = self.__size / 2, height = self.__size)))
 
-    def addSphere(self):
+    def addSphere(self) -> None:
         self._addShape(self._toMeshData(trimesh.primitives.Sphere(radius = self.__size / 2)))
 
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
@@ -67,24 +67,29 @@ class SimpleShapes(Extension, QObject,):
         mesh_data = MeshData(vertices=vertices, indices=indices, normals=normals)
         return mesh_data
 
-    def _addShape(self, meshData):
+    def _addShape(self, mesh_data: MeshData) -> None:
+        application = CuraApplication.getInstance()
+        global_stack = application.getGlobalContainerStack()
+        if not global_stack:
+            return
+
         node = CuraSceneNode()
 
-        node.setMeshData(meshData)
+        node.setMeshData(mesh_data)
         node.setSelectable(True)
-        node.setName("SimpleShape" + str(id(meshData)))
+        node.setName("SimpleShape" + str(id(mesh_data)))
 
         scene = self._controller.getScene()
         op = AddSceneNodeOperation(node, scene.getRoot())
         op.push()
 
-        default_extruder_position = Application.getInstance().getMachineManager().defaultExtruderPosition
-        default_extruder_id = Application.getInstance().getGlobalContainerStack().extruders[default_extruder_position].getId()
+        default_extruder_position = application.getMachineManager().defaultExtruderPosition
+        default_extruder_id = global_stack.extruders[default_extruder_position].getId()
         node.callDecoration("setActiveExtruder", default_extruder_id)
 
-        active_build_plate = Application.getInstance().getMultiBuildPlateModel().activeBuildPlate
+        active_build_plate = application.getMultiBuildPlateModel().activeBuildPlate
         node.addDecorator(BuildPlateDecorator(active_build_plate))
 
         node.addDecorator(SliceableObjectDecorator())
 
-        Application.getInstance().getController().getScene().sceneChanged.emit(node)
+        application.getController().getScene().sceneChanged.emit(node)
