@@ -37,11 +37,11 @@ class SimpleShapes(Extension, QObject,):
         self._addShape(self._toMeshData(trimesh.primitives.Box(extents = [self.__size, self.__size, self.__size])))
 
     def addCylinder(self) -> None:
-        self._addShape(self._toMeshData(trimesh.primitives.Cylinder(radius = self.__size / 2, height = self.__size)))
-
+        self._addShape(self._toMeshData(trimesh.primitives.Cylinder(radius = self.__size / 2, height = self.__size, sections=90)))
+        
     def addSphere(self) -> None:
         self._addShape(self._toMeshData(trimesh.primitives.Sphere(radius = self.__size / 2)))
-
+        
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
         tri_faces = tri_node.faces
         tri_vertices = tri_node.vertices
