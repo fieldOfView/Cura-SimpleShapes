@@ -4,5 +4,5 @@
     "version": "3.5.0",
     "description": "Adds simple shapes to the build plate",
     "api": 5,
-    "supported_sdk_versions": ["5.0.0", "6.0.0"]
+    "supported_sdk_versions": ["5.0.0", "6.0.0", "7.0.0"]
 }
