@@ -55,7 +55,7 @@ class SimpleShapes(Extension, QObject,):
         self._addShape(self._toMeshData(trimesh.creation.annulus(r_min = self.__size / 4, r_max = self.__size / 2, height = self.__size, sections = 90, transform = Rx )))
         
     def addSphere(self) -> None:
-        self._addShape(self._toMeshData(trimesh.creation.sphere(radius = self.__size / 2)))
+        self._addShape(self._toMeshData(trimesh.creation.icosphere(radius = self.__size / 2)))
         
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
         tri_faces = tri_node.faces
