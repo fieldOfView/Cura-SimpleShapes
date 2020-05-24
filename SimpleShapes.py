@@ -23,7 +23,7 @@ catalog = i18nCatalog("cura")
 
 class SimpleShapes(Extension, QObject,):
     __size = 20
-    origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
+    
 
     def __init__(self, parent = None) -> None:
         QObject.__init__(self, parent)
@@ -34,30 +34,28 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cube"), self.addCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cylinder"), self.addCylinder)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Capsule"), self.addCapsule)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Annulus"), self.addAnnulus)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Icosahedron"), self.addIcosahedron)
        
 
     def addCube(self) -> None:
-        self._addShape(self._toMeshData(trimesh.primitives.box(extents = [self.__size, self.__size, self.__size])))
+        self._addShape(self._toMeshData(trimesh.creation.box(extents = [self.__size, self.__size, self.__size])))
 
     def addCylinder(self) -> None:
-        self._addShape(self._toMeshData(trimesh.primitives.cylinder(radius = self.__size / 2, height = self.__size, sections=90)))
+        Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
+        self._addShape(self._toMeshData(trimesh.creation.cylinder(radius = self.__size / 2, height = self.__size, sections=90, transform = Rx )))
         
     def addCapsule(self) -> None:
-        self._addShape(self._toMeshData(trimesh.primitives.capsule(radius = self.__size / 2, height = self.__size, sections=90)))
-
-    def addIcosahedron(self) -> None:
-        # self._addShape(self._toMeshData(trimesh.creation.cone(radius = self.__size / 4, height = self.__size)))
-        S = trimesh.transformations.scale_matrix(20, origin)
-        self._addShape(self._toMeshData(trimesh.creation.icosahedron()))        
+        self._addShape(self._toMeshData(trimesh.creation.capsule(radius = self.__size / 2, height = self.__size, sections=90)))       
 
     def addAnnulus(self) -> None:
-        self._addShape(self._toMeshData(trimesh.creation.annulus(r_min = self.__size / 4, r_max = self.__size / 2, height = self.__size)))
+        #origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
+        # S = trimesh.transformations.scale_matrix(20, origin)
+        xaxis = [1, 0, 0]
+        Rx = trimesh.transformations.rotation_matrix(math.radians(90), xaxis)
+        self._addShape(self._toMeshData(trimesh.creation.annulus(r_min = self.__size / 4, r_max = self.__size / 2, height = self.__size, sections = 90, transform = Rx )))
         
     def addSphere(self) -> None:
-        self._addShape(self._toMeshData(trimesh.primitives.sphere(radius = self.__size / 2)))
+        self._addShape(self._toMeshData(trimesh.creation.sphere(radius = self.__size / 2)))
         
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
         tri_faces = tri_node.faces
