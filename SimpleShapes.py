@@ -23,6 +23,7 @@ catalog = i18nCatalog("cura")
 
 class SimpleShapes(Extension, QObject,):
     __size = 20
+    origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
 
     def __init__(self, parent = None) -> None:
         QObject.__init__(self, parent)
@@ -35,7 +36,6 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Capsule"), self.addCapsule)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Annulus"), self.addAnnulus)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Soup"), self.addSoup)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Icosahedron"), self.addIcosahedron)
        
 
@@ -48,17 +48,10 @@ class SimpleShapes(Extension, QObject,):
     def addCapsule(self) -> None:
         self._addShape(self._toMeshData(trimesh.primitives.capsule(radius = self.__size / 2, height = self.__size, sections=90)))
 
-    def addSoup(self) -> None:
-        # self._addShape(self._toMeshData(trimesh.creation.cone(radius = self.__size / 4, height = self.__size)))
-        self._addShape(self._toMeshData(trimesh.creation.random_soup(30)))
-
     def addIcosahedron(self) -> None:
         # self._addShape(self._toMeshData(trimesh.creation.cone(radius = self.__size / 4, height = self.__size)))
-        origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
-           
         S = trimesh.transformations.scale_matrix(20, origin)
-        self._addShape(self._toMeshData(trimesh.creation.icosahedron())).scale(Vector(25.4, 25.4, 25.4))        
-
+        self._addShape(self._toMeshData(trimesh.creation.icosahedron()))        
 
     def addAnnulus(self) -> None:
         self._addShape(self._toMeshData(trimesh.creation.annulus(r_min = self.__size / 4, r_max = self.__size / 2, height = self.__size)))
@@ -89,6 +82,7 @@ class SimpleShapes(Extension, QObject,):
         normals = calculateNormalsFromIndexedVertices(vertices, indices, face_count)
 
         mesh_data = MeshData(vertices=vertices, indices=indices, normals=normals)
+
         return mesh_data
 
     def _addShape(self, mesh_data: MeshData) -> None:
