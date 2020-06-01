@@ -34,7 +34,7 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cube"), self.addCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cylinder"), self.addCylinder)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Annulus"), self.addAnnulus)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an annulus"), self.addAnnulus)
        
 
     def addCube(self) -> None:
