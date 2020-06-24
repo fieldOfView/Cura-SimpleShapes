@@ -4,4 +4,4 @@ This plugin adds a menu to create some simple shapes to the scene (cube, cylinde
 
 ![menu Extensions Simple Shapes](./images/option.jpg)
 
-Using [Trimesh](https://github.com/mikedh/trimesh) function to create simple shapes.
+Using [Trimesh](https://github.com/mikedh/trimesh) function for simple shapes [creation](https://github.com/mikedh/trimesh/blob/master/trimesh/creation.py).
