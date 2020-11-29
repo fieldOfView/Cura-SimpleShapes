@@ -1,6 +1,7 @@
 # Copyright (c) 2018 fieldOfView
 # The SimpleShapes plugin is released under the terms of the AGPLv3 or higher.
-
+# Initial project : https://github.com/fieldOfView/Cura-SimpleShapes
+#
 from PyQt5.QtCore import QObject
 
 import numpy
