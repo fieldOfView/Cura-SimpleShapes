@@ -111,7 +111,8 @@ class SimpleShapes(Extension, QObject,):
         self._addShape(self._toMeshData(trimesh.creation.annulus(r_min = self.__size / 4, r_max = self.__size / 2, height = self.__size, sections = 90, transform = Rx )))
         
     def addSphere(self) -> None:
-        self._addShape(self._toMeshData(trimesh.creation.icosphere(radius = self.__size / 2)))
+        # subdivisions (int) – How many times to subdivide the mesh. Note that the number of faces will grow as function of 4 ** subdivisions, so you probably want to keep this under ~5
+        self._addShape(self._toMeshData(trimesh.creation.icosphere(subdivisions=4,radius = self.__size / 2)))
         
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
         tri_faces = tri_node.faces
