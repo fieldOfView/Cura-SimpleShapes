@@ -3,6 +3,7 @@
 
 from PyQt5.QtCore import QObject
 
+import os
 import numpy
 import math
 import trimesh
@@ -17,6 +18,9 @@ from cura.Scene.CuraSceneNode import CuraSceneNode
 from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
 from cura.Scene.BuildPlateDecorator import BuildPlateDecorator
 from UM.Math.Vector import Vector
+
+from UM.Logger import Logger
+from UM.Message import Message
 
 from UM.i18n import i18nCatalog
 catalog = i18nCatalog("cura")
@@ -35,11 +39,17 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cylinder"), self.addCylinder)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an annulus"), self.addAnnulus)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a calibration cube"), self.addCalibrationCube)
        
 
     def addCube(self) -> None:
         self._addShape(self._toMeshData(trimesh.creation.box(extents = [self.__size, self.__size, self.__size])))
 
+    def addCalibrationCube(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models/CalibrationCube.stl")
+        Logger.log("d", "Model_definition_path = %s ",model_definition_path)
+        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        
     def addCylinder(self) -> None:
         Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
         self._addShape(self._toMeshData(trimesh.creation.cylinder(radius = self.__size / 2, height = self.__size, sections=90, transform = Rx )))
