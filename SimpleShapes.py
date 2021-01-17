@@ -1,5 +1,8 @@
-# Copyright (c) 2018 fieldOfView
+#-----------------------------------------------------------------------------------
+# Initial Copyright (c) 2018 fieldOfView
 # The SimpleShapes plugin is released under the terms of the AGPLv3 or higher.
+# Modification 5@xes 2020-2021
+#-----------------------------------------------------------------------------------
 
 from PyQt5.QtCore import QObject
 
@@ -38,8 +41,11 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cube"), self.addCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cylinder"), self.addCylinder)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an annulus"), self.addAnnulus)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a calibration cube"), self.addCalibrationCube)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a tube"), self.addAnnulus)
+        self.addMenuItem("", lambda: None)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Calibration Cube"), self.addCalibrationCube)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA TempTower"), self.addTempTower)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
        
 
     def addCube(self) -> None:
@@ -47,7 +53,14 @@ class SimpleShapes(Extension, QObject,):
 
     def addCalibrationCube(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models/CalibrationCube.stl")
-        Logger.log("d", "Model_definition_path = %s ",model_definition_path)
+        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+ 
+    def addTempTower(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models/TempTower.stl")
+        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+
+    def addRetractTest(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models/RetractTest.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
         
     def addCylinder(self) -> None:

@@ -16,7 +16,7 @@ module letter(Txt) {
   }
 }
 
-difference() {
+rotate(90,[-1, 0, 0]) translate([0, 0, 10]) difference() {
   color("gray") 
   cube(cube_size, center = true);
   translate([0, -o, 0]) rotate([90, 0, 0]) letter("X");
