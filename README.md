@@ -8,10 +8,12 @@ Calibration part
 --
 
 You can also add standard test part / calibration :
-- Calibration Cube
+- Calibration Cube XYZ
 - PLA TempTower 220 - 180°C
 - Retract Test part
 - Retract Tower
+
+All the parts have been design via OpenScad. openscad can be downloaded [here](http://www.openscad.org/downloads.html)
 
 Script part
 --
@@ -20,7 +22,7 @@ A bunch of postprocessing Script are included into the plugin
 - SpeedTower.py
 - TempFanTower.py
 
-This script can be copied into the script directory via the function Copy Scripts
+These scripts can be copied into the scripts directory via the function **Copy Scripts
 
 
 Using [Trimesh](https://github.com/mikedh/trimesh) function for simple shapes [creation](https://github.com/mikedh/trimesh/blob/master/trimesh/creation.py).
