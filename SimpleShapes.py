@@ -7,9 +7,13 @@
 from PyQt5.QtCore import QObject
 
 import os
+import re
 import numpy
 import math
 import trimesh
+import shutil
+
+from shutil import copyfile
 
 from UM.Extension import Extension
 from cura.CuraApplication import CuraApplication
@@ -37,6 +41,7 @@ class SimpleShapes(Extension, QObject,):
         Extension.__init__(self)
 
         self._controller = CuraApplication.getInstance().getController()
+        self._message = None
 
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cube"), self.addCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cylinder"), self.addCylinder)
@@ -46,21 +51,52 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Calibration Cube"), self.addCalibrationCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA TempTower"), self.addTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
+        self.addMenuItem(" ", lambda: None)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Script"), self.copyScript)
        
-
+    def copyScript(self) -> None:
+        plugPath = os.path.dirname(os.path.abspath(__file__))
+        # Logger.log("d", "plugPath= %s", plugPath)
+        
+        stringMatch = re.split("plugins", plugPath)
+        destPath = stringMatch[0]
+        
+        # Logger.log("d", "destPath= %s", destPath)
+        # RetractTower.py
+        script_definition_path = os.path.join(plugPath, "scripts\RetractTower.py")
+        dest_definition_path = os.path.join(destPath, "scripts\RetractTower.py")
+        copyfile(script_definition_path,dest_definition_path)
+        # SpeedTower.py
+        script_definition_path = os.path.join(plugPath, "scripts\SpeedTower.py")
+        dest_definition_path = os.path.join(destPath, "scripts\SpeedTower.py")
+        copyfile(script_definition_path,dest_definition_path)
+        # TempFanTower.py
+        script_definition_path = os.path.join(plugPath, "scripts\TempFanTower.py")
+        dest_definition_path = os.path.join(destPath, "scripts\TempFanTower.py")
+        copyfile(script_definition_path,dest_definition_path)
+        
+        txt_Message = "Scripts copied in " + os.path.join(destPath, "scripts")
+        self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "SimpleShape"))
+        self._message.show()
+    
     def addCube(self) -> None:
         self._addShape(self._toMeshData(trimesh.creation.box(extents = [self.__size, self.__size, self.__size])))
 
     def addCalibrationCube(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models/CalibrationCube.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\CalibrationCube.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
  
     def addTempTower(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models/TempTower.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\TempTower.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
 
     def addRetractTest(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models/RetractTest.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\RetractTest.stl")
+        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+ 
+    def addRetractTower(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\RetractTower.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
         
     def addCylinder(self) -> None:
