@@ -13,6 +13,7 @@ You can also add standard test part / calibration :
 - Retract Test part
 - Retract Tower
 - Bridge Spiral test
+- Thin Wall Test
 
 All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
 
