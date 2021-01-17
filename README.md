@@ -17,7 +17,7 @@ You can also add standard test part / calibration :
 
 All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
 
-Script part
+Postprocessing Scripts
 --
 
 Several postprocessing Scripts are included into the plugin to help the user to generate automaticaly the differents Towers.
