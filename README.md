@@ -18,12 +18,14 @@ All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here]
 
 Script part
 --
-A bunch of postprocessing Script are included into the plugin
+
+Several postprocessing Scripts are included into the plugin to help the user to generate automaticaly the differents Towers.
+
 - RetractTower.py
 - SpeedTower.py
 - TempFanTower.py
 
-These scripts can be copied into the scripts directory via the function **Copy Scripts
+These scripts can be copied into the scripts directory via the function **Copy Scripts**
 
 
 Using [Trimesh](https://github.com/mikedh/trimesh) function for simple shapes [creation](https://github.com/mikedh/trimesh/blob/master/trimesh/creation.py).
