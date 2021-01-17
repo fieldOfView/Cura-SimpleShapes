@@ -53,6 +53,7 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bridge Test"), self.addBridgeTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Thin Wall Test"), self.addThinWall)
         self.addMenuItem(" ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
        
@@ -102,6 +103,10 @@ class SimpleShapes(Extension, QObject,):
         
     def addBridgeTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\BridgeTest.stl")
+        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+
+    def addThinWall(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\ThinWall.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
         
     def addCylinder(self) -> None:
