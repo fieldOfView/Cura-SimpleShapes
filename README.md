@@ -13,7 +13,7 @@ You can also add standard test part / calibration :
 - Retract Test part
 - Retract Tower
 
-All the parts have been design via OpenScad. openscad can be downloaded [here](http://www.openscad.org/downloads.html)
+All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
 
 Script part
 --
