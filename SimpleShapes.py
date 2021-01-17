@@ -46,14 +46,14 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cube"), self.addCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cylinder"), self.addCylinder)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a tube"), self.addAnnulus)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a tube"), self.addTube)
         self.addMenuItem("", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Calibration Cube"), self.addCalibrationCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA TempTower"), self.addTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
         self.addMenuItem(" ", lambda: None)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Script"), self.copyScript)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
        
     def copyScript(self) -> None:
         plugPath = os.path.dirname(os.path.abspath(__file__))
@@ -77,7 +77,7 @@ class SimpleShapes(Extension, QObject,):
         copyfile(script_definition_path,dest_definition_path)
         
         txt_Message = "Scripts copied in " + os.path.join(destPath, "scripts")
-        self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "SimpleShape"))
+        self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "Simple Shape"))
         self._message.show()
     
     def addCube(self) -> None:
@@ -101,12 +101,9 @@ class SimpleShapes(Extension, QObject,):
         
     def addCylinder(self) -> None:
         Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
-        self._addShape(self._toMeshData(trimesh.creation.cylinder(radius = self.__size / 2, height = self.__size, sections=90, transform = Rx )))
-        
-    def addCapsule(self) -> None:
-        self._addShape(self._toMeshData(trimesh.creation.capsule(radius = self.__size / 2, height = self.__size, sections=90)))       
+        self._addShape(self._toMeshData(trimesh.creation.cylinder(radius = self.__size / 2, height = self.__size, sections=90, transform = Rx )))      
 
-    def addAnnulus(self) -> None:
+    def addTube(self) -> None:
         #origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
         # S = trimesh.transformations.scale_matrix(20, origin)
         xaxis = [1, 0, 0]

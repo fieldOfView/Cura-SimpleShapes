@@ -114,14 +114,14 @@ class RetractTower(Script):
                 "startValue":
                 {
                     "label": "Starting value",
-                    "description": "the starting value of the Tower.",
+                    "description": "the starting value of the Tower (speed/distance).",
                     "type": "float",
                     "default_value": 10
                 },
                 "valueChange":
                 {
                     "label": "Value Increment",
-                    "description": "the value change of each block, can be positive or negative.",
+                    "description": "the value change of each block, can be positive or negative (speed/distance).",
                     "type": "float",
                     "default_value": 10
                 },
