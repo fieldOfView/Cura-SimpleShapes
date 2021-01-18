@@ -1,8 +1,8 @@
-# SimpleShapes
+# Calibration Shapes
 
-This plugin adds a menu to create some simple shapes to the scene (cube, cylinder, sphere, tube). The default size for all these shapes is 20 mm.
+This plugin adds a menu to create some simple shapes to the scene (cube, cylinder, sphere, tube) used most of the time to create some fast test parts. The default size for all these shapes is 20 mm.
 
-![menu Extensions Simple Shapes](./images/option.jpg)
+![menu Extensions Calibration Shapes](./images/option.jpg)
 
 Calibration part
 --
@@ -23,9 +23,9 @@ Postprocessing Scripts
 
 Several postprocessing Scripts are included into the plugin to help the user to generate automaticaly the differents Towers.
 
-- [RetractTower.py](./scripts/RetractTower.py)
-- [SpeedTower.py](./scripts/SpeedTower.py)
-- [TempFanTower.py](./scripts/TempFanTower.py)
+- [RetractTower.py](./resources/RetractTower.py)
+- [SpeedTower.py](./resources/SpeedTower.py)
+- [TempFanTower.py](./resources/TempFanTower.py)
 
 These scripts can be copied into the scripts directory via the function **Copy Scripts**
 
