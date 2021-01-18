@@ -1,8 +1,8 @@
 {
-    "name": "Simple Shapes",
-    "author": "fieldOfView+5axes",
+    "name": "Calibration Shapes",
+    "author": "5axes",
     "version": "1.0.0",
-    "description": "Adds simple shapes to the build plate",
+    "description": "Adds test parts and simple shapes to the build plate",
     "api": 7,
     "supported_sdk_versions": ["7.0.0", "7.1.0", "7.2.0", "7.3.0", "7.4.0"],
 	"i18n-catalog": "cura"

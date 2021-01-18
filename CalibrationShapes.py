@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------------
-# Initial Copyright (c) 2018 fieldOfView
-# The SimpleShapes plugin is released under the terms of the AGPLv3 or higher.
-# Modification 5@xes 2020-2021
+# PArt of the initial source code for primitive Shape (c) 2018 fieldOfView
+# The CalibrationShapes plugin is released under the terms of the AGPLv3 or higher.
+# Modifications 5@xes 2020-2021
 #-----------------------------------------------------------------------------------
 
 from PyQt5.QtCore import QObject
@@ -9,17 +9,15 @@ from PyQt5.QtCore import QObject
 import os
 import re
 import numpy
-import math
 import trimesh
 import shutil
-
 from shutil import copyfile
 
 from UM.Extension import Extension
 from cura.CuraApplication import CuraApplication
 
 from UM.Mesh.MeshData import MeshData, calculateNormalsFromIndexedVertices
-
+from UM.Resources import Resources
 from UM.Operations.AddSceneNodeOperation import AddSceneNodeOperation
 from cura.Scene.CuraSceneNode import CuraSceneNode
 from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
@@ -32,13 +30,17 @@ from UM.Message import Message
 from UM.i18n import i18nCatalog
 catalog = i18nCatalog("cura")
 
-class SimpleShapes(Extension, QObject,):
+class CalibrationShapes(Extension, QObject,):
     __size = 20
     
-
     def __init__(self, parent = None) -> None:
         QObject.__init__(self, parent)
         Extension.__init__(self)
+        
+        # Suggested solution from fieldOfView . Unfortunatly it doesn't works 
+        # https://github.com/5axes/Calibration-Shapes/issues/1
+        # Cura should be able to find the scripts from inside the plugin folder if the scripts are into a folder named resources
+        Resources.addSearchPath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources"))
 
         self._controller = CuraApplication.getInstance().getController()
         self._message = None
@@ -57,23 +59,23 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Overhang Test"), self.addOverhangTest)
         self.addMenuItem(" ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
-       
+    
+    # Copy the scripts to the right directory ( Temporaray solution)
     def copyScript(self) -> None:
         File_List = ['RetractTower.py', 'SpeedTower.py', 'TempFanTower.py']
         
-        plugPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts")
+        plugPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources")
         # Logger.log("d", "plugPath= %s", plugPath)
         
         stringMatch = re.split("plugins", plugPath)
         destPath = stringMatch[0] + "scripts"
         nbfile=0
-        # Logger.log("d", "destPath= %s", destPath)
-        # RetractTower.py
+        # LCopy the script
         for fl in File_List:
             script_definition_path = os.path.join(plugPath, fl)
             dest_definition_path = os.path.join(destPath, fl)
-            Logger.log("d", "dest_definition_path= %s", dest_definition_path)
-            Logger.log("d", "exists= %s", os.path.isfile(dest_definition_path))
+            #Logger.log("d", "dest_definition_path= %s", dest_definition_path)
+            #Logger.log("d", "exists= %s", os.path.isfile(dest_definition_path))
             if os.path.isfile(dest_definition_path)==False:
                 copyfile(script_definition_path,dest_definition_path)
                 nbfile+=1
@@ -129,7 +131,8 @@ class SimpleShapes(Extension, QObject,):
     def addSphere(self) -> None:
         # subdivisions (int) – How many times to subdivide the mesh. Note that the number of faces will grow as function of 4 ** subdivisions, so you probably want to keep this under ~5
         self._addShape(self._toMeshData(trimesh.creation.icosphere(subdivisions=4,radius = self.__size / 2)))
-        
+    
+    # Intial Source code from  fieldOfView
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
         tri_faces = tri_node.faces
         tri_vertices = tri_node.vertices
@@ -155,7 +158,8 @@ class SimpleShapes(Extension, QObject,):
         mesh_data = MeshData(vertices=vertices, indices=indices, normals=normals)
 
         return mesh_data
-
+        
+    # Intial Source code from  fieldOfView
     def _addShape(self, mesh_data: MeshData) -> None:
         application = CuraApplication.getInstance()
         global_stack = application.getGlobalContainerStack()
@@ -166,7 +170,7 @@ class SimpleShapes(Extension, QObject,):
 
         node.setMeshData(mesh_data)
         node.setSelectable(True)
-        node.setName("SimpleShape" + str(id(mesh_data)))
+        node.setName("TestPart" + str(id(mesh_data)))
 
         scene = self._controller.getScene()
         op = AddSceneNodeOperation(node, scene.getRoot())
