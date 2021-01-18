@@ -8,7 +8,7 @@ Calibration part
 --
 
 You can also add standard test part / calibration :
-- Calibration Cube XYZ
+- [Calibration Cube XYZ](./modeles/CalibrationCube.stl)
 - PLA TempTower 220 - 180°C
 - Retract Test part
 - Retract Tower
