@@ -1,7 +1,7 @@
 // Overhang Test
 // 5@axes
 
-$fn=100;
+$fn=20;
 
 font = "Arial:style=Bold"; //  Police text
 letter_size = 5;  //  Size text

@@ -18,7 +18,7 @@
 min_bridge_length = 10; //[10:5:180]
 
 // length of the longest bridge
-max_bridge_length = 80; //[20:5:200]
+max_bridge_length = 50; //[20:5:200]
 
 // Total number
 number_of_bridges = 10; //[4:1:20]
@@ -34,7 +34,7 @@ show_XY_test = "no"; // [yes,no]
 hub_diameter = 20; //[18:1:30]
 
 // width of each bridge
-bridge_width = 3; //[1:1:8]
+bridge_width = 4; //[1:1:8]
 
 // thickness of the vertical walls
 wall_thickness = 1.2; //[1:10]
@@ -55,6 +55,9 @@ maxAngle = bridge_angle * (number_of_bridges-1);
 eps = 0.1 * 1; 
 $fn = 90 * 1;
 
+font = "Arial:style=Bold"; //  Police text
+letter_size = 3;  //  Size text
+letter_height = 1;  //  Thichness text
 
 function spiralOffset(angle) = min_bridge_length + angle/maxAngle * (max_bridge_length - min_bridge_length);
 function extensionAngle(length) = asin((bridge_width*0.5)/length);
@@ -72,11 +75,18 @@ module bridgeTest() {
 			for (i=[0:number_of_bridges-1]) {
 				length = spiralOffset(i*bridge_angle) + wall_thickness * 2;
 				start_height = i * heightStride  + bridge_z_gap;
+                txt=str(round(length-2*wall_thickness));
+                rotate([0, 0, i*bridge_angle]) {
+                   color("red");
+                   translate([hub_diameter*0.8, 0, start_height]) letter(txt);
+                                
+                }
 				hull() {
 					rotate([0, 0, i*bridge_angle]) {
 						translate([hub_diameter/2 - wall_thickness, 0, start_height]) {
-							translate([0, -bridge_width/2, 0])
-							cube([length , bridge_width, bridge_height], center=false);
+                            union (){
+                                translate([0, -bridge_width/2, 0]) cube([length , bridge_width, bridge_height], center=false);
+                            }
 							if (i < number_of_bridges-1) {
 								translate([0, bridge_width/2 - eps, 0]) {
 									cube([spiralOffset(i*bridge_angle + extensionAngle(length)) + wall_thickness, eps, bridge_height], center=false); // only an approximation
@@ -138,4 +148,10 @@ module bridgeTest() {
 
 }
 
+module letter(l) {
+  color("Red")
+  linear_extrude(height = letter_height) {
+    text(l, size = letter_size, font = font, halign = "center", valign = "center");
+  }
+}
 translate([30, 0, 30]) rotate(90,[-1, 0, 0]) bridgeTest();

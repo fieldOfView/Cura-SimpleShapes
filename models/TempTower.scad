@@ -16,7 +16,7 @@
 // Layer Change         : 48
 // Offset Layer         : 5
 //---------------------------
-$fn=100;
+$fn=40;
 font = "Arial:style=Bold";
 
 Hc=0.16; // Layer Height

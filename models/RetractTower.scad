@@ -9,7 +9,7 @@
 // Layer change         : 48
 // Offset Layer         : 4
 //---------------------------
-$fn=100;
+$fn=40;
 font = "Arial:style=Bold";
 
 Hc=0.16; // Hauteur de couche
