@@ -9,7 +9,7 @@ Calibration part
 
 You can also add standard test part / calibration :
 - [Calibration Cube XYZ](./models/CalibrationCube.stl)
-- ![PLA TempTower 220 - 180°C](./models/TempTower.stl)
+- [PLA TempTower 220 - 180°C](./models/TempTower.stl)
 - [Retract Test part](./models/RetractTest.stl)
 - [Retract Tower](./models/RetractTower.stl)
 - [Bridge Spiral test](./models/BridgeTest.stl)
