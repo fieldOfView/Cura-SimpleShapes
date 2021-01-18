@@ -23,9 +23,9 @@ Postprocessing Scripts
 
 Several postprocessing Scripts are included into the plugin to help the user to generate automaticaly the differents Towers.
 
-- RetractTower.py
-- SpeedTower.py
-- TempFanTower.py
+- [RetractTower.py](./scripts/RetractTower.py)
+- [SpeedTower.py](./scripts/SpeedTower.py)
+- [TempFanTower.py](./scripts/TempFanTower.py)
 
 These scripts can be copied into the scripts directory via the function **Copy Scripts**
 
