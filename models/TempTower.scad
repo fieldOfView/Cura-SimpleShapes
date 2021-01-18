@@ -1,15 +1,20 @@
 //---------------------------
 // Temp Tower
 //---------------------------
-// Layer de 0.16
 // Nozzle 0.4
 //---------------------------
 // TempTower Script
 //---------------------------
 // StartTempTower       : 220 
 // Incremental Temp     : -5
-// Layer Change         : 48
+//---------------------------
+// Layer = 0.2
+// Layer Change         : 38
 // Offset Layer         : 4
+//---------------------------
+// Layer = 0.16 (First layer 0.2)
+// Layer Change         : 48
+// Offset Layer         : 5
 //---------------------------
 $fn=100;
 font = "Arial:style=Bold";
