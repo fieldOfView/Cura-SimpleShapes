@@ -54,6 +54,7 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bridge Test"), self.addBridgeTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Thin Wall Test"), self.addThinWall)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Overhang Test"), self.addOverhangTest)
         self.addMenuItem(" ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
        
@@ -109,7 +110,11 @@ class SimpleShapes(Extension, QObject,):
     def addThinWall(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\ThinWall.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
-        
+ 
+    def addOverhangTest(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\Overhang.stl")
+        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+ 
     def addCylinder(self) -> None:
         Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
         self._addShape(self._toMeshData(trimesh.creation.cylinder(radius = self.__size / 2, height = self.__size, sections=90, transform = Rx )))      
