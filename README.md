@@ -8,13 +8,13 @@ Calibration part
 --
 
 You can also add standard test part / calibration :
-- [Calibration Cube XYZ](./modeles/CalibrationCube.stl)
-- PLA TempTower 220 - 180°C
-- Retract Test part
-- Retract Tower
-- Bridge Spiral test
-- Thin Wall Test
-- Overhang Test
+- [Calibration Cube XYZ](./models/CalibrationCube.stl)
+- ![PLA TempTower 220 - 180°C](./models/TempTower.stl)
+- [Retract Test part](./models/RetractTest.stl)
+- [Retract Tower](./models/RetractTower.stl)
+- [Bridge Spiral test](./models/BridgeTest.stl)
+- [Thin Wall Test](./models/ThinWall.stl)
+- [Overhang Test](./models/Overhang.stl)
 
 All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
 
