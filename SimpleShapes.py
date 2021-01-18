@@ -58,27 +58,28 @@ class SimpleShapes(Extension, QObject,):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
        
     def copyScript(self) -> None:
-        plugPath = os.path.dirname(os.path.abspath(__file__))
+        File_List = ['RetractTower.py', 'SpeedTower.py', 'TempFanTower.py']
+        
+        plugPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts")
         # Logger.log("d", "plugPath= %s", plugPath)
         
         stringMatch = re.split("plugins", plugPath)
-        destPath = stringMatch[0]
-        
+        destPath = stringMatch[0] + "scripts"
+        nbfile=0
         # Logger.log("d", "destPath= %s", destPath)
         # RetractTower.py
-        script_definition_path = os.path.join(plugPath, "scripts\RetractTower.py")
-        dest_definition_path = os.path.join(destPath, "scripts\RetractTower.py")
-        copyfile(script_definition_path,dest_definition_path)
-        # SpeedTower.py
-        script_definition_path = os.path.join(plugPath, "scripts\SpeedTower.py")
-        dest_definition_path = os.path.join(destPath, "scripts\SpeedTower.py")
-        copyfile(script_definition_path,dest_definition_path)
-        # TempFanTower.py
-        script_definition_path = os.path.join(plugPath, "scripts\TempFanTower.py")
-        dest_definition_path = os.path.join(destPath, "scripts\TempFanTower.py")
-        copyfile(script_definition_path,dest_definition_path)
+        for fl in File_List:
+            script_definition_path = os.path.join(plugPath, fl)
+            dest_definition_path = os.path.join(destPath, fl)
+            Logger.log("d", "dest_definition_path= %s", dest_definition_path)
+            Logger.log("d", "exists= %s", os.path.isfile(dest_definition_path))
+            if os.path.isfile(dest_definition_path)==False:
+                copyfile(script_definition_path,dest_definition_path)
+                nbfile+=1
         
-        txt_Message = "Scripts copied in " + os.path.join(destPath, "scripts")
+        txt_Message =  str(nbfile) + " scripts copied in "
+        txt_Message = txt_Message + os.path.join(destPath, "scripts")
+          
         self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "Simple Shape"))
         self._message.show()
     
