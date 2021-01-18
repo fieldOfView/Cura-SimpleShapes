@@ -22,7 +22,7 @@ from UM.Operations.AddSceneNodeOperation import AddSceneNodeOperation
 from cura.Scene.CuraSceneNode import CuraSceneNode
 from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
 from cura.Scene.BuildPlateDecorator import BuildPlateDecorator
-from UM.Math.Vector import Vector
+
 
 from UM.Logger import Logger
 from UM.Message import Message
