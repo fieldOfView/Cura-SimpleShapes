@@ -48,7 +48,6 @@ Window
         radius: 5
     }
 
-
     // Connecting our variable to the computed property of the manager
     property string userInfoText: manager.userInfoText
 
@@ -80,16 +79,14 @@ Window
         {
             base.close();
         }
-
     }
-
 
     //Text "Size: "
     Text
     {
         id: test_size
         text: "Size:"
-        font.family: "Helvetica"
+        font.family: "Arial"
         font.pointSize: 14
         color: "#131151"
 
@@ -180,12 +177,9 @@ Window
     }
 
 
-
-
     //Textfield for User Messages
     Text
     {
-
         id: user_text
 
         width: 280
@@ -203,8 +197,6 @@ Window
         color: "black"
 
         wrapMode: Text.Wrap
-
-
     }
 
 }

@@ -12,6 +12,7 @@ import re
 import numpy
 import trimesh
 import shutil
+import math
 from shutil import copyfile
 import platform
 import sys
@@ -37,13 +38,6 @@ from UM.Message import Message
 from UM.i18n import i18nCatalog
 catalog = i18nCatalog("cura")
 
-#global variables
-#On some windows systems cura has no permission to use the plugin directory for files
-#us appdata on windows instead
-if platform.system() == "Windows":
-    dir_path = os.path.join(os.getenv('APPDATA'),"cura")
-else:
-    dir_path = os.path.dirname(os.path.realpath(__file__))
 
 #This class is the extension and doubles as QObject to manage the qml    
 class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
@@ -95,18 +89,13 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Define default size"), self.defaultSize)
   
-        #Inizialise debug-log
-        self.createLog()
-        self.writeToLog("created log!")
-        self.writeToLog("OS: "+platform.system())
-
         #Inzialize varables
         self.userText = ""
         self._continueDialog = None
         # here the height from which should be continued is saved
         self._printFromHeight = None
         
-    # Copy the scripts to the right directory ( Temporaray solution)
+    # Define the default value pour the standard element
     def defaultSize(self) -> None:
     
         if self._continueDialog is None:
@@ -147,7 +136,6 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
             float(text)
         except ValueError:
             self.userMessage("Entered size invalid: " + text,"bad")
-            self.handleCommand(text)
             return
         self._size = float(text)
 
@@ -157,7 +145,7 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
             self._size = 20
             return
 
-        self.writeToLog("Set calibrationshapes/size printFromHeight to: " + text)
+        self.writeToLog("Set calibrationshapes/size printFromHeight to : " + text)
         self._preferences.setValue("calibrationshapes/size", self._size)
         
         #clear the message Field
@@ -172,38 +160,10 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
  
     #=====Text Output===================================================================================================
 
-    #creates a new log file, and deletes the old one.
-    def createLog(self):
-        file = open(os.path.join(dir_path, "CalibrationShapes.txt"), "w")
-        self.writeToLog("Creating Log in: " + str(dir_path))
 
     #writes the message to the log, includes timestamp, length is fixed
     def writeToLog(self, str):
-        file = open(os.path.join(dir_path, "CalibrationShapes.txt"), "a")
-        now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-        file.write("["+current_time+"] ")
-        #clip length
-        if len(str) > 200:
-            str = "+++To Long+++ "+ str[0:50]+"..."
-        file.write(str)
-        file.write("\n")
-
-    #handles commands entered into the size textfield
-    def handleCommand(self,text):
-        #the command log opens the log file and shows its directory-path
-        if text == "log":
-            os.system("start " + os.path.join(dir_path, "CalibrationShapes.txt"))
-            self.userMessage(str(dir_path),"ok")
-            self.writeToLog("Command: log")
-        #the command os shows the os name
-        if text == "os":
-            self.writeToLog("Command: os")
-            self.userMessage(platform.system(), "ok")
-        #the command dir lists all commands (yes, all three of them)
-        if text == "dir":
-            self.writeToLog("Command: dir")
-            self.userMessage("Commands: log, os, dir", "ok")
+        Logger.log("d", "Source Calibration shapes = %s", str)
 
     #Sends a user message to the Info Textfield, color depends on status (prioritized feedback)
     #Bad for Errors and Warnings
