@@ -31,3 +31,10 @@ These scripts can be copied into the scripts directory via the function **Copy S
 
 
 Using [Trimesh](https://github.com/mikedh/trimesh) function for simple shapes [creation](https://github.com/mikedh/trimesh/blob/master/trimesh/creation.py).
+
+Define default size
+--
+
+Withe the function **Define default size** gives you the possibility to change the default size for the standard primitives (cube/cylinder/sphere/tube).
+
+![define default size](./images/size.jpg)
