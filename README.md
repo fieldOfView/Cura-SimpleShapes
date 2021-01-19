@@ -7,7 +7,7 @@ This plugin adds a menu to create some simple shapes to the scene (cube, cylinde
 Calibration part
 --
 
-You can also add standard test part / calibration :
+You can also load standard test  / calibration  part :
 - [Calibration Cube XYZ](./models/CalibrationCube.stl)
 - [PLA TempTower 220 - 180°C](./models/TempTower.stl)
 - [Retract Test part](./models/RetractTest.stl)
