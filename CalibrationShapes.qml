@@ -26,9 +26,9 @@ Window
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.WindowCloseButtonHint
 
     // Setting the dimensions of the dialog window
-    width: 300
+    width: 250
     height: 50
-    minimumWidth: 350
+    minimumWidth: 250
     minimumHeight: 50
 
     // Position of the window
@@ -38,16 +38,18 @@ Window
     // Define a Window a border (Red for) and a background color
     Rectangle {
         id: bg_rect
-        width: 300
+        width: 250
         height: 50
         color: "#fff"
         border.color: "#D22"
         border.width: 3
-        radius: 2
+        radius: 4
     }
 
     // Connecting our variable to the computed property of the manager
     property string userInfoText: manager.userInfoText
+	
+	property string sizeInput: manager.sizeInput
 
     // Button for closing the dialogbox
     Button
@@ -99,11 +101,11 @@ Window
     {
         id: size_input
         width: 80
-        text: ""
-        placeholderText: "ie. 20.0"
+        text: sizeInput
+		// "ie. 20.0"
 
-        anchors.bottom: text_size.bottom
-        anchors.bottomMargin: 0
+        anchors.top: text_size.top
+        anchors.topMargin: -2
         anchors.left: text_size.right
         anchors.leftMargin: 10
 
@@ -138,42 +140,6 @@ Window
         anchors.leftMargin: 5
     }
 
-    //This Button only exists to hold the help Tooltip
-    Button
-    {
-        id: help_button
-        text: "<font color='#888'>" + "?" + "</font>"
-        //text: "?"
-        width: 21
-        height: 21
-
-        anchors.bottom: close_button.bottom
-        anchors.bottomMargin: 2
-        anchors.right: close_button.left
-        anchors.rightMargin: 5
-
-        tooltip:
-        "This plugin offer you the possibility to define a standard sized element.
-        Define in the Size field the default size for the element"
-
-        onClicked:
-        {
-            //do button action
-            manager.buttonHelpPressed()
-        }
-
-        style: ButtonStyle{
-            background: Rectangle {
-                implicitWidth: 15
-                implicitHeight: 15
-                radius: 10
-                color: "#fafafa"
-                border.width: 1
-                border.color: "#888"
-            }
-        }
-    }
-
 
     //Textfield for User Messages
     Text
@@ -181,16 +147,15 @@ Window
         id: user_text
 
         width: 280
-        anchors.top: button_continue.bottom
-        anchors.topMargin: 10
+        anchors.top: parent.top
+        anchors.topMargin: 2
         anchors.left: parent.left
         anchors.leftMargin: 10
 
-        //text: "Info"
         text: userInfoText
 
         font.family: "Arial"
-        font.pointSize: 11
+        font.pointSize: 10
         //The color gets overwritten by the html tags added to the text
         color: "black"
 

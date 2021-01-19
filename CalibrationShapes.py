@@ -38,15 +38,15 @@ from UM.Message import Message
 from UM.i18n import i18nCatalog
 catalog = i18nCatalog("cura")
 
-
 #This class is the extension and doubles as QObject to manage the qml    
 class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
     #Create an api
     from cura.CuraApplication import CuraApplication
     api = CuraApplication.getInstance().getCuraAPI()
-
+    
     # The QT signal, which signals an update for user information text
     userInfoTextChanged = pyqtSignal()
+    userSizeChanged = pyqtSignal()
     
     def __init__(self, parent = None) -> None:
         QObject.__init__(self, parent)
@@ -68,7 +68,7 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         # https://github.com/5axes/Calibration-Shapes/issues/1
         # Cura should be able to find the scripts from inside the plugin folder if the scripts are into a folder named resources
         Resources.addSearchPath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources"))
-
+        
         self._controller = CuraApplication.getInstance().getController()
         self._message = None
         
@@ -99,10 +99,14 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         if self._continueDialog is None:
             self._continueDialog = self._createDialogue()
         self._continueDialog.show()
+        #self.userSizeChanged.emit()
         
  
     #====User Input=====================================================================================================
-
+    @pyqtProperty(str, notify= userSizeChanged)
+    def sizeInput(self):
+        return str(self._size)
+        
     #The QT property, which is computed on demand from our userInfoText when the appropriate signal is emitted
     @pyqtProperty(str, notify= userInfoTextChanged)
     def userInfoText(self):
@@ -115,6 +119,10 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         component_with_context = Application.getInstance().createQmlComponent(qml_file_path, {"manager": self})
         return component_with_context
 
+    def getSize(self) -> float:
+    
+        return self._size
+        
     #is called when a key gets released in the size inputField (twice for some reason)
     @pyqtSlot(str)
     def sizeEntered(self, text):
@@ -133,13 +141,13 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         try:
             float(text)
         except ValueError:
-            self.userMessage("Entered size invalid: " + text,"bad")
+            self.userMessage("Entered size invalid: " + text,"wrong")
             return
         self._size = float(text)
 
         #Check if positive
         if self._size <= 0:
-            self.userMessage("Size value must be positive !","bad")
+            self.userMessage("Size value must be positive !","wrong")
             self._size = 20
             return
 
@@ -148,38 +156,30 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         
         #clear the message Field
         self.userMessage("", "ok")
-
-
-    #Gets called when the circular <?>-Button is clicked
-    #Some users we tested with, tried clicking the ? which would prevent the tooltip from showing So we tell them
-    @pyqtSlot()
-    def buttonHelpPressed(self):
-        self.writeToLog("---ButtonHelp pressed")
  
     #=====Text Output===================================================================================================
 
 
     #writes the message to the log, includes timestamp, length is fixed
     def writeToLog(self, str):
-        Logger.log("d", "Source Calibration shapes = %s", str)
+        Logger.log("d", "Source calibration shapes = %s", str)
 
-    #Sends a user message to the Info Textfield, color depends on status (prioritized feedback)
-    #Bad for Errors and Warnings
-    #Grey for details and messages that aren't interesting for advanced users
-    #Cura-Blue for successfully completing a task
+    #Sends an user message to the Info Textfield, color depends on status (prioritized feedback)
+    # Red wrong for Errors and Warnings
+    # Grey for details and messages that aren't interesting for advanced users
+
     def userMessage(self, message, status):
-        if status is "good":
-            self.userText = "<font color='#151354'>" + message + "</font>"
+        if status is "wrong":
+            #Red
+            self.userText = "<font color='#a00000'>" + message + "</font>"
         else:
-            if status is "bad":
-                self.userText = "<font color='#a00000'>" + message + "</font>"
+            # Grey
+            if status is "ok":
+                self.userText = "<font color='#9fa4b0'>" + message + "</font>"
             else:
-                if status is "ok":
-                    self.userText = "<font color='#9fa4b0'>" + message + "</font>"
-                else:
-                    self.writeToLog("Error: Invalid status: "+status)
-                    return
-        self.writeToLog("User Message: "+message)
+                self.writeToLog("Error: Invalid status: "+status)
+                return
+        #self.writeToLog("User Message: "+message)
         self.userInfoTextChanged.emit()
  
     # Copy the scripts to the right directory ( Temporaray solution)
@@ -253,7 +253,7 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         # subdivisions (int) – How many times to subdivide the mesh. Note that the number of faces will grow as function of 4 ** subdivisions, so you probably want to keep this under ~5
         self._addShape(self._toMeshData(trimesh.creation.icosphere(subdivisions=4,radius = self._size / 2)))
     
-    # Intial Source code from  fieldOfView
+    # Initial Source code from  fieldOfView
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
         tri_faces = tri_node.faces
         tri_vertices = tri_node.vertices
@@ -280,7 +280,7 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
 
         return mesh_data
         
-    # Intial Source code from  fieldOfView
+    # Initial Source code from  fieldOfView
     def _addShape(self, mesh_data: MeshData) -> None:
         application = CuraApplication.getInstance()
         global_stack = application.getGlobalContainerStack()
@@ -307,3 +307,4 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         node.addDecorator(SliceableObjectDecorator())
 
         application.getController().getScene().sceneChanged.emit(node)
+
