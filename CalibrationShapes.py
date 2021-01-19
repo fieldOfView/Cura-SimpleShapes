@@ -92,8 +92,6 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         #Inzialize varables
         self.userText = ""
         self._continueDialog = None
-        # here the height from which should be continued is saved
-        self._printFromHeight = None
         
     # Define the default value pour the standard element
     def defaultSize(self) -> None:
@@ -117,12 +115,12 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         component_with_context = Application.getInstance().createQmlComponent(qml_file_path, {"manager": self})
         return component_with_context
 
-    #is called when a key gets released in the height inputField (twice for some reason)
+    #is called when a key gets released in the size inputField (twice for some reason)
     @pyqtSlot(str)
-    def heightEntered(self, text):
+    def sizeEntered(self, text):
         #Is the textfield empty? Don't show a message then
         if text =="":
-            #self.writeToLog("Height-Textfield: Empty")
+            #self.writeToLog("size-Textfield: Empty")
             self.userMessage("", "ok")
             return
 

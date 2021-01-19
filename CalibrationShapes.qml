@@ -107,13 +107,14 @@ Window
         anchors.left: text_size.right
         anchors.leftMargin: 10
 
+		font.family: "Arial"
         font.pointSize: 12
 
-        // The window musn't close when enter is pressed
-        // Keys.onReturnPressed:
-        // {
-        //    event.accepted = true
-        // }
+        // Validate entered value
+        Keys.onReturnPressed:
+        {
+			event.accepted = true
+        }
 
         // Return the new entered value
         Keys.onReleased:
@@ -122,7 +123,7 @@ Window
         }
     }
 
-    //Text: "mm"
+    // Text: "mm"
     Text
     {
         id: text_unit
@@ -171,7 +172,6 @@ Window
                 border.color: "#888"
             }
         }
-
     }
 
 
