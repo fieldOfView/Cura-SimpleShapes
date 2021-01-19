@@ -126,10 +126,10 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
             self.userMessage("", "ok")
             return
 
-        #Convert commas to points [+1 User Experience!]
+        #Convert commas to points [+1 User Experience !]
         text = text.replace(",",".")
 
-        #self.writeToLog("Height-Textfield: read value "+text)
+        #self.writeToLog("Size-Textfield: read value "+text)
 
         #is the entered Text a number?
         try:
@@ -198,8 +198,7 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         for fl in File_List:
             script_definition_path = os.path.join(plugPath, fl)
             dest_definition_path = os.path.join(destPath, fl)
-            #Logger.log("d", "dest_definition_path= %s", dest_definition_path)
-            #Logger.log("d", "exists= %s", os.path.isfile(dest_definition_path))
+            # self.writeToLog("Dest_definition_path= "+dest_definition_path)
             if os.path.isfile(dest_definition_path)==False:
                 copyfile(script_definition_path,dest_definition_path)
                 nbfile+=1

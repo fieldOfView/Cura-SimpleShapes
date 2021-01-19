@@ -19,39 +19,37 @@ Window
 
     color: "#fafafa" //Background color of cura: #fafafa
 
-    // We don't want the dialog to block input in the main window
+    // NonModal like that the dialog to block input in the main window
     modality: Qt.NonModal
 
-    //We want the window to stay on top
+    // WindowStaysOnTopHint to stay on top
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.WindowCloseButtonHint
 
-    // Setting the dimensions of the dialog window and prohibiting resizing
+    // Setting the dimensions of the dialog window
     width: 300
     height: 50
     minimumWidth: 350
     minimumHeight: 50
 
-    //Position the window
+    // Position of the window
     x: Screen.width*0.5 - width - 50
-	// 400
     y: 400 
 
-    //This is for giving the Window a boarder and a background color
+    // Define a Window a border (Red for) and a background color
     Rectangle {
         id: bg_rect
         width: 300
         height: 50
         color: "#fff"
-		// "#ededed"
         border.color: "#D22"
         border.width: 3
-        radius: 5
+        radius: 2
     }
 
     // Connecting our variable to the computed property of the manager
     property string userInfoText: manager.userInfoText
 
-    //This Button is for closing the dialog
+    // Button for closing the dialogbox
     Button
     {
         id: close_button
@@ -64,7 +62,7 @@ Window
         anchors.right: parent.right
         anchors.rightMargin: 10
 
-        tooltip: "close this dialog"
+        tooltip: "Close this dialog box"
 
         style: ButtonStyle{
             background: Rectangle {
@@ -84,10 +82,10 @@ Window
     //Text "Size: "
     Text
     {
-        id: test_size
+        id: text_size
         text: "Size:"
         font.family: "Arial"
-        font.pointSize: 14
+        font.pointSize: 12
         color: "#131151"
 
         anchors.top: close_button.top
@@ -99,28 +97,28 @@ Window
     //User input of height
     TextField
     {
-        id: height_input
+        id: size_input
         width: 80
         text: ""
         placeholderText: "ie. 20.0"
 
-        anchors.bottom: test_size.bottom
+        anchors.bottom: text_size.bottom
         anchors.bottomMargin: 0
-        anchors.left: test_size.right
+        anchors.left: text_size.right
         anchors.leftMargin: 10
 
-        font.pointSize: 11
+        font.pointSize: 12
 
-        //The window musn't close when enter is pressed
-        Keys.onReturnPressed:
-        {
-            event.accepted = true
-        }
+        // The window musn't close when enter is pressed
+        // Keys.onReturnPressed:
+        // {
+        //    event.accepted = true
+        // }
 
-        //Return the new entered value
+        // Return the new entered value
         Keys.onReleased:
         {
-            manager.heightEntered(height_input.text)
+            manager.sizeEntered(size_input.text)
         }
     }
 
@@ -130,12 +128,12 @@ Window
         id: text_unit
         text: "mm"
         font.family: "Arial"
-        font.pointSize: 14
+        font.pointSize: 12
         color: "#131151"
 
-        anchors.bottom: test_size.bottom
+        anchors.bottom: text_size.bottom
         anchors.bottomMargin: 0
-        anchors.left: height_input.right
+        anchors.left: size_input.right
         anchors.leftMargin: 5
     }
 
