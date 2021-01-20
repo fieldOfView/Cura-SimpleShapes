@@ -6,18 +6,15 @@
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 
 # Imports from the python standard library to build the plugin functionality
-from code import InteractiveInterpreter
 import os
 import re
+import math
 import numpy
 import trimesh
 import shutil
-import math
-from shutil import copyfile
 import platform
 import sys
-from datetime import datetime
-
+from shutil import copyfile
 
 from UM.Extension import Extension
 from UM.PluginRegistry import PluginRegistry
@@ -31,7 +28,6 @@ from cura.Scene.CuraSceneNode import CuraSceneNode
 from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
 from cura.Scene.BuildPlateDecorator import BuildPlateDecorator
 
-
 from UM.Logger import Logger
 from UM.Message import Message
 
@@ -39,7 +35,7 @@ from UM.i18n import i18nCatalog
 catalog = i18nCatalog("cura")
 
 #This class is the extension and doubles as QObject to manage the qml    
-class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
+class CalibrationShapes(QObject, Extension):
     #Create an api
     from cura.CuraApplication import CuraApplication
     api = CuraApplication.getInstance().getCuraAPI()
@@ -51,8 +47,7 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
     def __init__(self, parent = None) -> None:
         QObject.__init__(self, parent)
         Extension.__init__(self)
-        InteractiveInterpreter.__init__(self, globals())
-
+        
         #Inzialize varables
         self.userText = ""
         self._continueDialog = None
@@ -123,21 +118,21 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
     
         return self._size
         
-    #is called when a key gets released in the size inputField (twice for some reason)
+    # is called when a key gets released in the size inputField (twice for some reason)
     @pyqtSlot(str)
     def sizeEntered(self, text):
-        #Is the textfield empty? Don't show a message then
+        # Is the textfield empty ? Don't show a message then
         if text =="":
             #self.writeToLog("size-Textfield: Empty")
             self.userMessage("", "ok")
             return
 
-        #Convert commas to points [+1 User Experience !]
+        #Convert commas to points
         text = text.replace(",",".")
 
         #self.writeToLog("Size-Textfield: read value "+text)
 
-        #is the entered Text a number?
+        #Is the entered Text a number?
         try:
             float(text)
         except ValueError:
@@ -157,8 +152,7 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         #clear the message Field
         self.userMessage("", "ok")
  
-    #=====Text Output===================================================================================================
-
+    #===== Text Output ===================================================================================================
 
     #writes the message to the log, includes timestamp, length is fixed
     def writeToLog(self, str):
@@ -167,7 +161,6 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
     #Sends an user message to the Info Textfield, color depends on status (prioritized feedback)
     # Red wrong for Errors and Warnings
     # Grey for details and messages that aren't interesting for advanced users
-
     def userMessage(self, message, status):
         if status is "wrong":
             #Red
@@ -182,7 +175,7 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         #self.writeToLog("User Message: "+message)
         self.userInfoTextChanged.emit()
  
-    # Copy the scripts to the right directory ( Temporaray solution)
+    # Copy the scripts to the right directory ( Temporary solution)
     def copyScript(self) -> None:
         File_List = ['RetractTower.py', 'SpeedTower.py', 'TempFanTower.py']
         
@@ -204,7 +197,7 @@ class CalibrationShapes(QObject, Extension, InteractiveInterpreter):
         txt_Message =  str(nbfile) + " scripts copied in "
         txt_Message = txt_Message + os.path.join(destPath, "scripts")
           
-        self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "Simple Shape"))
+        self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "Calibration Shapes"))
         self._message.show()
     
     def addCube(self) -> None:
