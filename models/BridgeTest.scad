@@ -40,10 +40,10 @@ bridge_width = 4; //[1:1:8]
 wall_thickness = 1.2; //[1:10]
 
 // layer height of each bridge
-bridge_height = 0.8; //[0.1:0.1:2]
+bridge_height = 1.0; //[0.1:0.1:2]
 
 // height of each bridge above the previous bridge
-bridge_z_gap = 0.6; //[0.2:0.1:1]
+bridge_z_gap = 1.0; //[0.2:0.1:1]
 
 /* [Hidden] */
 // angle between each bridge
@@ -57,7 +57,7 @@ $fn = 90 * 1;
 
 font = "Arial:style=Bold"; //  Police text
 letter_size = 3;  //  Size text
-letter_height = 1;  //  Thichness text
+letter_height = 1.2;  //  Thichness text
 
 function spiralOffset(angle) = min_bridge_length + angle/maxAngle * (max_bridge_length - min_bridge_length);
 function extensionAngle(length) = asin((bridge_width*0.5)/length);

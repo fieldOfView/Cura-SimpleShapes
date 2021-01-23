@@ -130,7 +130,7 @@ class RetractTower(Script):
                     "label": "Change Layer",
                     "description": "how many layers needs to be printed before the value should be changed.",
                     "type": "float",
-                    "default_value": 48,
+                    "default_value": 38,
                     "minimum_value": 1
                 },
                 "changelayeroffset":
