@@ -80,6 +80,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bridge Test"), self.addBridgeTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Thin Wall Test"), self.addThinWall)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Overhang Test"), self.addOverhangTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Flow Test"), self.addFlowTest)
         self.addMenuItem(" ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Define default size"), self.defaultSize)
@@ -231,6 +232,10 @@ class CalibrationShapes(QObject, Extension):
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\Overhang.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
  
+    def addFlowTest(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\FlowTest.stl")
+        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        
     def addCylinder(self) -> None:
         Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
         self._addShape(self._toMeshData(trimesh.creation.cylinder(radius = self._size / 2, height = self._size, sections=90, transform = Rx )))      
