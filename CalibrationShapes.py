@@ -74,7 +74,8 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a tube"), self.addTube)
         self.addMenuItem("", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Calibration Cube"), self.addCalibrationCube)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA TempTower"), self.addTempTower)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA TempTower"), self.addPLATempTower)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an ABS TempTower"), self.addABSTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bridge Test"), self.addBridgeTest)
@@ -208,10 +209,14 @@ class CalibrationShapes(QObject, Extension):
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\CalibrationCube.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
  
-    def addTempTower(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\TempTower.stl")
+    def addPLATempTower(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\TempTowerPLA.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
 
+    def addABSTempTower(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\TempTowerABS.stl")
+        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        
     def addRetractTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\RetractTest.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
