@@ -3,6 +3,9 @@
 # The CalibrationShapes plugin is released under the terms of the AGPLv3 or higher.
 # Modifications 5@xes 2020-2021
 #-----------------------------------------------------------------------------------
+# V1.04  : https://github.com/5axes/Calibration-Shapes/issues/4
+# V1.05  : https://github.com/5axes/Calibration-Shapes/issues/3
+#-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 
 # Imports from the python standard library to build the plugin functionality
@@ -202,59 +205,66 @@ class CalibrationShapes(QObject, Extension):
         self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "Calibration Shapes"))
         self._message.show()
     
-    def addCube(self) -> None:
-        self._addShape(self._toMeshData(trimesh.creation.box(extents = [self._size, self._size, self._size])))
-
     def addCalibrationCube(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\CalibrationCube.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationCube.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
  
     def addPLATempTower(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\TempTowerPLA.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPLA.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
 
     def addABSTempTower(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\TempTowerABS.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerABS.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
         
     def addRetractTest(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\RetractTest.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTest.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
  
     def addRetractTower(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\RetractTower.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTower.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
         
     def addBridgeTest(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\BridgeTest.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "BridgeTest.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
 
     def addThinWall(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\ThinWall.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "ThinWall.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
  
     def addOverhangTest(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\Overhang.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "Overhang.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
  
     def addFlowTest(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models\FlowTest.stl")
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "FlowTest.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+
+    def addCube(self) -> None:
+        Tz = trimesh.transformations.translation_matrix([0, self._size*0.5, 0])
+        self._addShape(self._toMeshData(trimesh.creation.box(extents = [self._size, self._size, self._size], transform = Tz )))
         
     def addCylinder(self) -> None:
         Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
-        self._addShape(self._toMeshData(trimesh.creation.cylinder(radius = self._size / 2, height = self._size, sections=90, transform = Rx )))      
+        mesh = trimesh.creation.cylinder(radius = self._size / 2, height = self._size, sections=90, transform = Rx )
+        mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
+        self._addShape(self._toMeshData(mesh))      
 
     def addTube(self) -> None:
         #origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
         # S = trimesh.transformations.scale_matrix(20, origin)
         xaxis = [1, 0, 0]
         Rx = trimesh.transformations.rotation_matrix(math.radians(90), xaxis)
-        self._addShape(self._toMeshData(trimesh.creation.annulus(r_min = self._size / 4, r_max = self._size / 2, height = self._size, sections = 90, transform = Rx )))
+        mesh = trimesh.creation.annulus(r_min = self._size / 4, r_max = self._size / 2, height = self._size, sections = 90, transform = Rx )
+        mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
+        self._addShape(self._toMeshData(mesh))
         
     def addSphere(self) -> None:
         # subdivisions (int) – How many times to subdivide the mesh. Note that the number of faces will grow as function of 4 ** subdivisions, so you probably want to keep this under ~5
-        self._addShape(self._toMeshData(trimesh.creation.icosphere(subdivisions=4,radius = self._size / 2)))
+        mesh = trimesh.creation.icosphere(subdivisions=4,radius = self._size / 2,)
+        mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
+        self._addShape(self._toMeshData(mesh))
     
     # Initial Source code from  fieldOfView
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
