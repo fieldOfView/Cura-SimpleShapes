@@ -4,7 +4,7 @@
 # Modifications 5@xes 2020-2021
 #-----------------------------------------------------------------------------------
 # V1.04  : https://github.com/5axes/Calibration-Shapes/issues/4
-# V1.05  : https://github.com/5axes/Calibration-Shapes/issues/3
+#     : https://github.com/5axes/Calibration-Shapes/issues/3
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 
@@ -201,6 +201,8 @@ class CalibrationShapes(QObject, Extension):
         
         txt_Message =  str(nbfile) + " scripts copied in "
         txt_Message = txt_Message + os.path.join(destPath, "scripts")
+        if nbfile > 0 :
+            txt_Message = txt_Message + "\nYou must now restart Cura to see the scripts in the postprocessing script list"
           
         self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "Calibration Shapes"))
         self._message.show()
