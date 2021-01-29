@@ -1,4 +1,7 @@
-// Calibration cube 20x20
+// XYZ 20mm Calibration Cube
+// Based on the design proposed by iDig3Dprinting https://www.thingiverse.com/thing:1278865
+// Freely adapted by 5@xes
+
 font = "Arial:style=Bold";
 
 $fn=100;
