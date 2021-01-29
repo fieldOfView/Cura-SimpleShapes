@@ -39,7 +39,8 @@ Several postprocessing Scripts are included into the plugin to help the user to 
 - [TempFanTower.py](./resources/TempFanTower.py)
 
 These scripts can be copied into the scripts directory via the function **Copy Scripts**
-After the next start of Cura the script can be added via Extension / Post-Processing / Modify G-Code Add a script.
+
+After the next start the scripts must be visible in the Postprocessing scripts.
 
 ![Adding script](./images/plugins.jpg)
 
