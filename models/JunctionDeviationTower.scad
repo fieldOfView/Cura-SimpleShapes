@@ -27,7 +27,7 @@ letter_height = 0.05*letter_size;
 
 o = cube_size / 2;
 
-rotate(90,[-1, 0, 0]) translate([-15, 0, 0]) difference() {
+rotate(90,[-1, 0, 0]) translate([-19.75, -19.75, 0.2986]) difference() {
   nz=3*Hc;
   step=27*Hc;
     union() {
