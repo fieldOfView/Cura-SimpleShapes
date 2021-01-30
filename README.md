@@ -12,7 +12,7 @@ You can also load standard test  / calibration  part :
 - [PLA TempTower 220 - 180°C](./models/TempTowerPLA.stl)
 - [ABS TempTower 250 - 210°C](./models/TempTowerABS.stl)
 - [Retract Tower](./models/RetractTower.stl)
-- [Deviation junction Tower](./models/DeviationJunctionTower.stl)
+- [Junction Deviation Tower](./models/JunctionDeviationTower.stl)
 - [Retract Test part](./models/RetractTest.stl)
 - [Bridge Spiral test](./models/BridgeTest.stl)
 - [Thin Wall Test](./models/ThinWall.stl)
