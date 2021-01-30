@@ -53,7 +53,7 @@ spiralResolution = 12*1;
 spiralIncrement = 1/spiralResolution;
 maxAngle = bridge_angle * (number_of_bridges-1);
 eps = 0.1 * 1; 
-$fn = 90 * 1;
+$fn = 50;
 
 font = "Arial:style=Bold"; //  Police text
 letter_size = 3;  //  Size text

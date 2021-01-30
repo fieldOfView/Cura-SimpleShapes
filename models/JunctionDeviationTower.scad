@@ -11,8 +11,8 @@
 // valueChange     : 0.01
 //---------------------------
 // Layer = 0.16 (First layer 0.2)
-// Layer Change         : 28
-// Offset Layer         : 5
+// Layer Change         : 27
+// Offset Layer         : 4
 //-------------------------------------------------------------------------------------------
 
 $fn=30;
@@ -27,7 +27,7 @@ letter_height = 0.05*letter_size;
 
 o = cube_size / 2;
 
-rotate(90,[-1, 0, 0]) translate([-19.75, -19.75, 0.2986]) difference() {
+rotate(90,[-1, 0, 0]) translate([-19.75, -19.75, Hc]) difference() {
   nz=3*Hc;
   step=27*Hc;
     union() {
@@ -48,11 +48,7 @@ rotate(90,[-1, 0, 0]) translate([-19.75, -19.75, 0.2986]) difference() {
 
 
 module Base() {
-    minkowski() {
-    translate([0, 0, -Hc]) cube([245*Hc,245*Hc,3*Hc], center = false);
-    //cylinder(r=1,h=Hc, center = false);
-        sphere(Hc,$fn=5);
-    }
+    translate([0, 0, -Hc]) cube([245*Hc,245*Hc,4*Hc], center = false);
 }
 
 module Center() {
@@ -82,9 +78,9 @@ module Etage() {
             translate([0, 0, 0]) cube([100*Hc,100*Hc,25*Hc], center = false);
             translate([2*Hc, 2*Hc, 0]) cube([96*Hc,96*Hc,27*Hc], center = false);
             translate([120*Hc, 0, 0]) cube([100*Hc,100*Hc,25*Hc], center = false);
-            translate([122*Hc, 0, 0]) cube([96*Hc,96*Hc,27*Hc], center = false);
+            translate([122*Hc, 2*Hc, 0]) cube([96*Hc,96*Hc,27*Hc], center = false);
             translate([0, 120*Hc, 0]) cube([100*Hc,100*Hc,25*Hc], center = false);
-            translate([0, 122*Hc, 0]) cube([96*Hc,96*Hc,27*Hc], center = false);
+            translate([2*Hc, 122*Hc, 0]) cube([96*Hc,96*Hc,27*Hc], center = false);
             translate([120*Hc, 120*Hc, 0]) cube([100*Hc,100*Hc,25*Hc], center = false);
             translate([122*Hc, 122*Hc, 0]) cube([96*Hc,96*Hc,27*Hc], center = false);
 }
