@@ -50,6 +50,14 @@ SpeedTower.py
 -----
 Description:  postprocessing-script to easily define a Speed Tower.
 
+Three options :
+
+    - Jerk   :  Speed variation (M204 S) 
+	
+    - Acceleration :  Acceleration variation (M205 X Y) 
+    
+    - Junction Deviation :  Junction Deviation variation (M205 J) 
+
 ![SpeedTower.py](./images/speedtower.jpg)
 
 
