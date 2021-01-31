@@ -86,6 +86,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Thin Wall Test"), self.addThinWall)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Overhang Test"), self.addOverhangTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Flow Test"), self.addFlowTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Tolerance Test"), self.addTolerance)
         self.addMenuItem(" ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Define default size"), self.defaultSize)
@@ -248,6 +249,10 @@ class CalibrationShapes(QObject, Extension):
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "FlowTest.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
 
+    def addTolerance(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "Tolerance.stl")
+        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        
     def addCube(self) -> None:
         Tz = trimesh.transformations.translation_matrix([0, self._size*0.5, 0])
         self._addShape(self._toMeshData(trimesh.creation.box(extents = [self._size, self._size, self._size], transform = Tz )))
@@ -256,7 +261,7 @@ class CalibrationShapes(QObject, Extension):
         Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
         mesh = trimesh.creation.cylinder(radius = self._size / 2, height = self._size, sections=90, transform = Rx )
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
-        self._addShape(self._toMeshData(mesh))      
+        self._addShape(self._toMeshData(mesh))
 
     def addTube(self) -> None:
         #origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
