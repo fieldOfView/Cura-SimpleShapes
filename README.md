@@ -18,6 +18,8 @@ You can also load standard test  / calibration  part :
 - [Thin Wall Test](./models/ThinWall.stl)
 - [Overhang Test](./models/Overhang.stl)
 - [Flow Test](./models/FlowTest.stl)
+- [Tolerance Test](./models/Tolerance.stl)
+
 
 All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
 
