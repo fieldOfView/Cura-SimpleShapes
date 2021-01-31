@@ -5,11 +5,12 @@
 //---------------------------
 // RetractTower Script
 //---------------------------
-// Nb Step              : 10 
-// Layer change         : 48
-// Offset Layer         : 4
+// Value Change Speed    : 10 
+// Value Change Distance : 1 mm 
+// Layer change          : 48
+// Offset Layer          : 4
 //---------------------------
-$fn=40;
+$fn=30;
 font = "Arial:style=Bold";
 
 Hc=0.16; // Hauteur de couche
@@ -21,7 +22,7 @@ letter_height = 0.05*letter_size;
 
 o = cube_size / 2;
 
-rotate(90,[-1, 0, 0]) translate([-10, 0, 0]) difference() {
+rotate(90,[-1, 0, 0]) translate([-10, 0, 0.2986]) difference() {
   nz=3*Hc;
   step=48*Hc;
 union() {
