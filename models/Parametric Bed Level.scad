@@ -34,7 +34,7 @@ linear_extrude(height = t_thickness) {
         // intervals between printed shapes
         t_increment_x = t_print_width / (t_shape_xcount-1);
         t_increment_y = t_print_depth / (t_shape_ycount-1);
-    
+
         // draw grid
         // draw horizontal lines along X axis
         for(t_curr_x = [0:t_shape_xcount-1]){
