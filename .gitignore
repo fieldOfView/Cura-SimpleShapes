@@ -4,65 +4,6 @@ __pycache__/
 *$py.class
 *.qmlc
 
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*,cover
-.hypothesis/
-
 # Translations
 *.mo
 *.pot
-
-# Django stuff:
-*.log
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-#Ipython Notebook
-.ipynb_checkpoints
-images/menu.jpg
-models/images/f91ff537a671d71320273c02595a1337_preview_featured.jpg
-models/images/2b91cbca174c3712ceb962292d128d9b_preview_featured.jpg
-models/images/ca9f97c12700fabcc2d9b103670461c7_preview_featured.jpg
-models/Overhang2.stl
