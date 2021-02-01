@@ -4,11 +4,11 @@
 // Nozzle 0.4
 //---------------------------
 // SpeedTower Script
-// The value for junction deviation of 0.02 is the Marlin default value (range 0.01 - 0.10, default 0.02)
-// The increment with which junction deviation will be increased every 20 layers (range 0.005 - 0.100, default 0.010)
+// 
+// The increment with which junction deviation will be increased every 27 layers (range 0.025 - 0.25)
 //---------------------------
-// startValue      : 0.01 
-// valueChange     : 0.01
+// startValue      : 0.025 
+// valueChange     : 0.025
 //---------------------------
 // Layer = 0.16 (First layer 0.2)
 // Layer Change         : 27
@@ -33,16 +33,16 @@ rotate(90,[-1, 0, 0]) translate([-19.75, -19.75, Hc]) difference() {
     union() {
         Base();
         Center();
-        translate([2, 2, nz]) OneStep("0.01");
-        translate([2, 2, nz+step*1]) OneStep("0.02");
-        translate([2, 2, nz+step*2]) OneStep("0.03");
-        translate([2, 2, nz+step*3]) OneStep("0.04");
-        translate([2, 2, nz+step*4]) OneStep("0.05");
-        translate([2, 2, nz+step*5]) OneStep("0.06");
-        translate([2, 2, nz+step*6]) OneStep("0.07");
-        translate([2, 2, nz+step*7]) OneStep("0.08");
-        translate([2, 2, nz+step*8]) OneStep("0.09");
-        translate([2, 2, nz+step*9]) OneStep("0.10");
+        translate([2, 2, nz]) OneStep("0.025");
+        translate([2, 2, nz+step*1]) OneStep("0.05");
+        translate([2, 2, nz+step*2]) OneStep("0.075");
+        translate([2, 2, nz+step*3]) OneStep("0.1");
+        translate([2, 2, nz+step*4]) OneStep("0.125");
+        translate([2, 2, nz+step*5]) OneStep("0.15");
+        translate([2, 2, nz+step*6]) OneStep("0.175");
+        translate([2, 2, nz+step*7]) OneStep("0.2");
+        translate([2, 2, nz+step*8]) OneStep("0.225");
+        translate([2, 2, nz+step*9]) OneStep("0.25");
     }
 }
 
