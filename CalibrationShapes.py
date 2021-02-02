@@ -5,6 +5,7 @@
 #-----------------------------------------------------------------------------------
 # V1.04  : https://github.com/5axes/Calibration-Shapes/issues/4
 #     : https://github.com/5axes/Calibration-Shapes/issues/3
+# V1.0.8 
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 
@@ -73,7 +74,7 @@ class CalibrationShapes(QObject, Extension):
         self.setMenuName(catalog.i18nc("@item:inmenu", "Part for calibration"))
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cube"), self.addCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cylinder"), self.addCylinder)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
+        # self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a tube"), self.addTube)
         self.addMenuItem("", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Calibration Cube"), self.addCalibrationCube)
@@ -160,7 +161,6 @@ class CalibrationShapes(QObject, Extension):
         self.userMessage("", "ok")
  
     #===== Text Output ===================================================================================================
-
     #writes the message to the log, includes timestamp, length is fixed
     def writeToLog(self, str):
         Logger.log("d", "Source calibration shapes = %s", str)
@@ -272,6 +272,7 @@ class CalibrationShapes(QObject, Extension):
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
         self._addShape(self._toMeshData(mesh))
         
+    # Sphere are not very usefull but I leave the code for the moment    
     def addSphere(self) -> None:
         # subdivisions (int) – How many times to subdivide the mesh. Note that the number of faces will grow as function of 4 ** subdivisions, so you probably want to keep this under ~5
         mesh = trimesh.creation.icosphere(subdivisions=4,radius = self._size / 2,)
