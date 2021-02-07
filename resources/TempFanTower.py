@@ -35,7 +35,7 @@ class TempFanTower(Script):
                     "minimum_value": 100,
                     "maximum_value": 300,
                     "minimum_value_warning": 150,
-                    "maximum_value_warning": 250
+                    "maximum_value_warning": 260
                 },
                 "temperaturechange":
                 {
