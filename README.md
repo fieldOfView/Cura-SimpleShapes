@@ -11,6 +11,7 @@ You can also load standard test  / calibration  part :
 - [Calibration Cube XYZ](./models/CalibrationCube.stl)
 - [PLA TempTower 220 - 180°C](./models/TempTowerPLA.stl)
 - [ABS TempTower 250 - 210°C](./models/TempTowerABS.stl)
+- [PETG TempTower 260 - 230°C](./models/TempTowerPETG.stl)
 - [Retract Tower](./models/RetractTower.stl)
 - [Junction Deviation Tower](./models/JunctionDeviationTower.stl)
 - [Retract Test part](./models/RetractTest.stl)
@@ -19,6 +20,7 @@ You can also load standard test  / calibration  part :
 - [Overhang Test](./models/Overhang.stl)
 - [Flow Test](./models/FlowTest.stl)
 - [Tolerance Test](./models/Tolerance.stl)
+- [MultiCube Test](./models/MultiCube.stl)
 
 
 All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
