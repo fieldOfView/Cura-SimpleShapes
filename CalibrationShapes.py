@@ -5,9 +5,10 @@
 #-----------------------------------------------------------------------------------
 # V1.04  : https://github.com/5axes/Calibration-Shapes/issues/4
 #     : https://github.com/5axes/Calibration-Shapes/issues/3
-# V1.0.8 
+# V1.0.8  : Add the Help function 2 test part (MultiCube and PETG Tower) 
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
+from PyQt5.QtGui import QDesktopServices
 
 # Imports from the python standard library to build the plugin functionality
 import os
@@ -18,6 +19,7 @@ import trimesh
 import shutil
 import platform
 import sys
+import html
 from shutil import copyfile
 
 from UM.Extension import Extension
@@ -93,6 +95,8 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(" ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Define default size"), self.defaultSize)
+        self.addMenuItem("  ", lambda: None)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Help"), self.gotoHelp)
   
         #Inzialize varables
         self.userText = ""
@@ -210,7 +214,10 @@ class CalibrationShapes(QObject, Extension):
           
         self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "Calibration Shapes"))
         self._message.show()
-    
+     
+    def gotoHelp(self) -> None:
+        QDesktopServices.openUrl(QUrl("https://github.com/5axes/Calibration-Shapes/wiki"))
+        
     def addCalibrationCube(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationCube.stl")
         self._addShape(self._toMeshData(trimesh.load(model_definition_path)))

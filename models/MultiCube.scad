@@ -1,10 +1,11 @@
 //---------------------------
-// Multi Cube Test  by 5@axes
+// Multi Cube Test by 5@axes
+// Size of each cube = 10 mm
 //---------------------------
 
 $fn=100;
 
-Cube_S = 5;
+Cube_S = 10;
 
 
 rotate(90,[-1, 0, 0]) translate([-Cube_S*2, Cube_S*2, 0]) rotate(-90,[0, 0, 1]) Model();
