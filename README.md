@@ -70,7 +70,7 @@ TempFanTower.py
 
 Description:  postprocessing-script to easily use an temptower and not use 10 changeAtZ-scripts
 
- The default values are for this temptower PLA model [PLA TempTower 220 - 180°C](./models/TempTowerPLA.stl)
+ The default values are for this temptower PLA model : [PLA TempTower 220 - 180°C](./models/TempTowerPLA.stl)
 - Temp Tower PLA de 220 à 180
 - Possibility to define also a Fan Tower , Fan percentage speed indicate with semi-colon as seprator
 
@@ -82,6 +82,8 @@ RetractTower.py
 
 Description:  postprocessing-script to easily create a Retract Tower
 
+The default values are for this Retract Tower model : [Retract Tower](./models/RetractTower.stl)
+ 
 Two options :
 
     - Speed   :  Speed variation
