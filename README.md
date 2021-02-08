@@ -23,6 +23,10 @@ You can also load standard test  / calibration  part :
 - [MultiCube Test](./models/MultiCube.stl)
 
 
+Bed Level : For this part the initial design is scaled to the bed size
+
+- [Bed Level Calibration](./models/PArametricBedLevel.stl)
+
 All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
 
 Define default size
