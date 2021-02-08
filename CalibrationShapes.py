@@ -220,7 +220,7 @@ class CalibrationShapes(QObject, Extension):
         QDesktopServices.openUrl(QUrl("https://github.com/5axes/Calibration-Shapes/wiki"))
 
     def addBedLevelCalibration(self) -> None:
-
+        # Get the build plate Size
         machine_manager = CuraApplication.getInstance().getMachineManager()        
         stack = CuraApplication.getInstance().getGlobalContainerStack()
 
