@@ -2,7 +2,7 @@
 // 5@axes
 // Size must be set to 100/100 final shape will be scaled by the plugin 
 
-$fn = 20;
+$fn = 40;
 
 bed_width = 100;
 bed_depth = 100;
@@ -40,12 +40,12 @@ rotate(90,[-1, 0, 0]) translate([-bed_width*0.5, -bed_depth*0.5, 0]) linear_extr
             }
             center_y = curr_y * incremeny;
         }
-        
         // draw square shapes
         for(curr_x = [0:square_xcount-1]){
             for(curr_y = [0:square_ycount-1]){
                 translate([center_x,center_y]){
                     square([square_size,square_size],true);
+                    //circle(d=square_size);
                 }
                 center_y = curr_y * incremeny;
             }
