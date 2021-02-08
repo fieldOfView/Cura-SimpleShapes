@@ -90,4 +90,7 @@ Two options :
 
 ![RetractTower.py](./images/retract-tower.jpg)
 
+Help
+--
 
+This function will redirect you on the Wiki of this repositery.
