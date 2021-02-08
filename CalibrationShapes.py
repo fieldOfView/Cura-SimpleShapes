@@ -92,6 +92,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Flow Test"), self.addFlowTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Tolerance Test"), self.addTolerance)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a MultiCube Calibration"), self.addMultiCube)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bed Level Calibration"), self.addBedLevelCalibration)
         self.addMenuItem(" ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Define default size"), self.defaultSize)
@@ -217,6 +218,30 @@ class CalibrationShapes(QObject, Extension):
      
     def gotoHelp(self) -> None:
         QDesktopServices.openUrl(QUrl("https://github.com/5axes/Calibration-Shapes/wiki"))
+
+    def addBedLevelCalibration(self) -> None:
+
+        machine_manager = CuraApplication.getInstance().getMachineManager()        
+        stack = CuraApplication.getInstance().getGlobalContainerStack()
+
+        global_stack = machine_manager.activeMachine
+        m_w=global_stack.getProperty("machine_width", "value") 
+        m_d=global_stack.getProperty("machine_depth", "value")
+        factor_w=int(m_w/100)
+        factor_d=int(m_d/100)
+        
+        #Logger.log("d", "factor_w= %d", factor_w)
+        #Logger.log("d", "factor_d= %d", factor_d)
+        
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "ParametricBedLevel.stl")
+        mesh = trimesh.load(model_definition_path)
+        origin = [0, 0, 0]
+        DirX = [1, 0, 0]
+        DirY = [0, 1, 0]
+        DirZ = [0, 0, 1]
+        mesh.apply_transform(trimesh.transformations.scale_matrix(factor_w, origin, DirX))
+        mesh.apply_transform(trimesh.transformations.scale_matrix(factor_d, origin, DirZ))
+        self._addShape(self._toMeshData(mesh))
         
     def addCalibrationCube(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationCube.stl")

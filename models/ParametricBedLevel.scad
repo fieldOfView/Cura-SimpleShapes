@@ -3,14 +3,14 @@
 
 $fn = 20;
 
-t_bed_width = 220;
-t_bed_depth = 220;
-t_bed_border = 8;
+t_bed_width = 100;
+t_bed_depth = 100;
+t_bed_border = 2;
 t_shape_xcount = 3;
 t_shape_ycount = 3;
-t_shape_xsize = 25;
-t_shape_ysize = 25;
-t_line_width = 1.6;
+t_shape_xsize = 10;
+t_shape_ysize = 10;
+t_line_width = 0.8;
 t_thickness = 0.2;
 
 
@@ -18,17 +18,8 @@ t_thickness = 0.2;
 t_print_width = t_bed_width - t_shape_xsize - (2*t_bed_border);
 t_print_depth = t_bed_depth - t_shape_ysize - (2*t_bed_border);
 
-// Grid area
-translate([t_bed_width/2,t_bed_depth/2]){
-    %square([t_print_width,t_print_depth], true);
-}
 
-// Print area
-translate([t_bed_width/2,t_bed_depth/2]){
-    %square([t_bed_width-(2*t_bed_border),t_bed_depth-(2*t_bed_border)], true);
-}
-
-linear_extrude(height = t_thickness) { 
+rotate(90,[-1, 0, 0]) translate([-t_bed_width*0.5, -t_bed_depth*0.5, 0]) linear_extrude(height = t_thickness) { 
     // shift everything to center in print area
     translate([(t_shape_xsize/2)+t_bed_border,(t_shape_ysize/2)+t_bed_border,0]){
         // intervals between printed shapes
