@@ -1,56 +1,55 @@
 // Bed Level
 // 5@axes
+// Size must be set to 100/100 final shape will be scaled by the plugin 
 
 $fn = 20;
 
-t_bed_width = 100;
-t_bed_depth = 100;
-t_bed_border = 4;
-t_shape_xcount = 3;
-t_shape_ycount = 3;
-t_shape_xsize = 10;
-t_shape_ysize = 10;
-t_line_width = 0.8;
-t_thickness = 0.21;
+bed_width = 100;
+bed_depth = 100;
+bed_border = 4;
+square_xcount = 3;
+square_ycount = 3;
+square_size = 10;
+line_width = 0.8;
+thickness = 0.21;
 
 
-// Bed size
-t_print_width = t_bed_width - t_shape_xsize - (2*t_bed_border);
-t_print_depth = t_bed_depth - t_shape_ysize - (2*t_bed_border);
+// Build plate size
+print_width = bed_width - square_size - (2*bed_border);
+print_depth = bed_depth - square_size - (2*bed_border);
 
 
-rotate(90,[-1, 0, 0]) translate([-t_bed_width*0.5, -t_bed_depth*0.5, 0]) linear_extrude(height = t_thickness) { 
-    // shift everything to center in print area
-    translate([(t_shape_xsize/2)+t_bed_border,(t_shape_ysize/2)+t_bed_border,0]){
+rotate(90,[-1, 0, 0]) translate([-bed_width*0.5, -bed_depth*0.5, 0]) linear_extrude(height = thickness) { 
+    // translate everything to center in print area
+    translate([(square_size/2)+bed_border,(square_size/2)+bed_border,0]){
         // intervals between printed shapes
-        t_increment_x = t_print_width / (t_shape_xcount-1);
-        t_increment_y = t_print_depth / (t_shape_ycount-1);
+        incremenx = print_width / (square_xcount-1);
+        incremeny = print_depth / (square_ycount-1);
 
-        // draw grid
-        // draw horizontal lines along X axis
-        for(t_curr_x = [0:t_shape_xcount-1]){
-            translate([t_center_x, t_print_depth/2, 0]){
-                square([t_line_width,t_print_depth], true);
+        // draw connection lines along X axis
+        for(curr_x = [0:square_xcount-1]){
+            translate([center_x, print_depth/2, 0]){
+                square([line_width,print_depth], true);
             }
-            t_center_x = t_curr_x * t_increment_x;
+            center_x = curr_x * incremenx;
         }
-        // draw vertical lines along Y axis
-        for(t_curr_y = [0:t_shape_ycount-1]){
-            translate([t_print_width/2, t_center_y, 0]){
-                square([t_print_width, t_line_width], true);
+        // draw connection lines along Y axis
+        for(curr_y = [0:square_ycount-1]){
+            translate([print_width/2, center_y, 0]){
+                square([print_width, line_width], true);
             }
-            t_center_y = t_curr_y * t_increment_y;
+            center_y = curr_y * incremeny;
         }
         
-        // draw shapes
-        for(t_curr_x = [0:t_shape_xcount-1]){
-            for(t_curr_y = [0:t_shape_ycount-1]){
-                translate([t_center_x,t_center_y]){
-                    square([t_shape_xsize,t_shape_ysize],true);
+        // draw square shapes
+        for(curr_x = [0:square_xcount-1]){
+            for(curr_y = [0:square_ycount-1]){
+                translate([center_x,center_y]){
+                    square([square_size,square_size],true);
                 }
-                t_center_y = t_curr_y * t_increment_y;
+                center_y = curr_y * incremeny;
             }
-            t_center_x = t_curr_x * t_increment_x;
+            center_x = curr_x * incremenx;
         }
     }
 }
