@@ -5,13 +5,13 @@ $fn = 20;
 
 t_bed_width = 100;
 t_bed_depth = 100;
-t_bed_border = 2;
+t_bed_border = 4;
 t_shape_xcount = 3;
 t_shape_ycount = 3;
 t_shape_xsize = 10;
 t_shape_ysize = 10;
 t_line_width = 0.8;
-t_thickness = 0.2;
+t_thickness = 0.21;
 
 
 // Bed size

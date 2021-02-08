@@ -227,17 +227,21 @@ class CalibrationShapes(QObject, Extension):
         global_stack = machine_manager.activeMachine
         m_w=global_stack.getProperty("machine_width", "value") 
         m_d=global_stack.getProperty("machine_depth", "value")
-        factor_w=int(m_w/100)
-        factor_d=int(m_d/100)
+        if (m_w/m_d)>1.15 or (m_d/m_w)>1.15:
+            factor_w=round((m_w/100), 1)
+            factor_d=round((m_d/100), 1) 
+        else:
+            factor_w=int(m_w/100)
+            factor_d=int(m_d/100)          
         
-        #Logger.log("d", "factor_w= %d", factor_w)
-        #Logger.log("d", "factor_d= %d", factor_d)
+        Logger.log("d", "factor_w= %.1f", factor_w)
+        Logger.log("d", "factor_d= %.1f", factor_d)
         
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "ParametricBedLevel.stl")
         mesh = trimesh.load(model_definition_path)
         origin = [0, 0, 0]
         DirX = [1, 0, 0]
-        DirY = [0, 1, 0]
+        # DirY = [0, 1, 0]
         DirZ = [0, 0, 1]
         mesh.apply_transform(trimesh.transformations.scale_matrix(factor_w, origin, DirX))
         mesh.apply_transform(trimesh.transformations.scale_matrix(factor_d, origin, DirZ))
