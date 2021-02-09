@@ -12,6 +12,8 @@
 
 // Author : Neon22
 
+// The initial design has been slightly modified to add the distance from the bridge on each branch.
+
 
 /*[Bridges]*/
 // length of the shortest bridge
