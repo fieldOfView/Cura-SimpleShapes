@@ -39,17 +39,22 @@ The function **Define default size** gives you the possibility to change the def
 Using [Trimesh](https://github.com/mikedh/trimesh) function for simple shapes [creation](https://github.com/mikedh/trimesh/blob/master/trimesh/creation.py).
 
 
-Cura-Postprocessing-Scripts
---
+## Cura-Postprocessing-Scripts
+
 Several postprocessing Scripts are included into the plugin to help the user to generate automaticaly the differents Towers.
 
 - [RetractTower.py](./resources/RetractTower.py)
 - [SpeedTower.py](./resources/SpeedTower.py)
 - [TempFanTower.py](./resources/TempFanTower.py)
 
+### Copy Scripts
 These scripts can be copied into the scripts directory via the function **Copy Scripts**
 
-After the next start the scripts must be visible in the Postprocessing scripts.
+These scripts can be copied into the scripts directory via the function **Copy Scripts**. 
+**After you have copied these scripts, you must restart Cura to see the scripts in the postprocessing scripts list.**
+
+### Tower generation scripts
+After the restart the scripts must be visible in the Postprocessing scripts list.
 
 ![Adding script](./images/plugins.jpg)
 
