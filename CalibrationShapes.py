@@ -6,6 +6,7 @@
 # V1.04  : https://github.com/5axes/Calibration-Shapes/issues/4
 #     : https://github.com/5axes/Calibration-Shapes/issues/3
 # V1.0.8  : Add the Help function 2 test part (MultiCube and PETG Tower) 
+# V1.0.9  : Bed Level
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
