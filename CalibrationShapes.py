@@ -3,10 +3,11 @@
 # The CalibrationShapes plugin is released under the terms of the AGPLv3 or higher.
 # Modifications 5@xes 2020-2021
 #-----------------------------------------------------------------------------------
-# V1.04  : https://github.com/5axes/Calibration-Shapes/issues/4
-#     : https://github.com/5axes/Calibration-Shapes/issues/3
-# V1.0.8  : Add the Help function 2 test part (MultiCube and PETG Tower) 
-# V1.0.9  : Bed Level
+# V1.04    : https://github.com/5axes/Calibration-Shapes/issues/4
+#          : https://github.com/5axes/Calibration-Shapes/issues/3
+# V1.0.8   : Add the Help function 2 test part (MultiCube and PETG Tower) 
+# V1.0.9   : Bed Level
+# V1.0.10  : Change default Name
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -246,69 +247,69 @@ class CalibrationShapes(QObject, Extension):
         DirZ = [0, 0, 1]
         mesh.apply_transform(trimesh.transformations.scale_matrix(factor_w, origin, DirX))
         mesh.apply_transform(trimesh.transformations.scale_matrix(factor_d, origin, DirZ))
-        self._addShape(self._toMeshData(mesh))
+        self._addShape("BedLevelCalibration",self._toMeshData(mesh))
         
     def addCalibrationCube(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationCube.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("CalibrationCube",self._toMeshData(trimesh.load(model_definition_path)))
 
     def addMultiCube(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "MultiCube.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("MultiCube",self._toMeshData(trimesh.load(model_definition_path)))
 
     def addJunctionDeviationTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "JunctionDeviationTower.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("JunctionDeviationTower",self._toMeshData(trimesh.load(model_definition_path)))
         
     def addPLATempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPLA.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("PLATempTower",self._toMeshData(trimesh.load(model_definition_path)))
 
     def addPETGTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPETG.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("PETGTempTower",self._toMeshData(trimesh.load(model_definition_path)))
         
     def addABSTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerABS.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("ABSTempTower",self._toMeshData(trimesh.load(model_definition_path)))
         
     def addRetractTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTest.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("RetractTest",self._toMeshData(trimesh.load(model_definition_path)))
  
     def addRetractTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTower.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("RetractTower",self._toMeshData(trimesh.load(model_definition_path)))
         
     def addBridgeTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "BridgeTest.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("BridgeTest",self._toMeshData(trimesh.load(model_definition_path)))
 
     def addThinWall(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "ThinWall.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("ThinWall",self._toMeshData(trimesh.load(model_definition_path)))
  
     def addOverhangTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "Overhang.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("OverhangTest",self._toMeshData(trimesh.load(model_definition_path)))
  
     def addFlowTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "FlowTest.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("FlowTest",self._toMeshData(trimesh.load(model_definition_path)))
 
     def addTolerance(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "Tolerance.stl")
-        self._addShape(self._toMeshData(trimesh.load(model_definition_path)))
+        self._addShape("Tolerance",self._toMeshData(trimesh.load(model_definition_path)))
         
     def addCube(self) -> None:
         Tz = trimesh.transformations.translation_matrix([0, self._size*0.5, 0])
-        self._addShape(self._toMeshData(trimesh.creation.box(extents = [self._size, self._size, self._size], transform = Tz )))
+        self._addShape("Cube",self._toMeshData(trimesh.creation.box(extents = [self._size, self._size, self._size], transform = Tz )))
         
     def addCylinder(self) -> None:
         Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
         mesh = trimesh.creation.cylinder(radius = self._size / 2, height = self._size, sections=90, transform = Rx )
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
-        self._addShape(self._toMeshData(mesh))
+        self._addShape("Cylinder",self._toMeshData(mesh))
 
     def addTube(self) -> None:
         #origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
@@ -317,14 +318,14 @@ class CalibrationShapes(QObject, Extension):
         Rx = trimesh.transformations.rotation_matrix(math.radians(90), xaxis)
         mesh = trimesh.creation.annulus(r_min = self._size / 4, r_max = self._size / 2, height = self._size, sections = 90, transform = Rx )
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
-        self._addShape(self._toMeshData(mesh))
+        self._addShape("Tube",self._toMeshData(mesh))
         
     # Sphere are not very usefull but I leave the code for the moment    
     def addSphere(self) -> None:
         # subdivisions (int) – How many times to subdivide the mesh. Note that the number of faces will grow as function of 4 ** subdivisions, so you probably want to keep this under ~5
         mesh = trimesh.creation.icosphere(subdivisions=4,radius = self._size / 2,)
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
-        self._addShape(self._toMeshData(mesh))
+        self._addShape("Sphere",self._toMeshData(mesh))
     
     # Initial Source code from  fieldOfView
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
@@ -354,7 +355,7 @@ class CalibrationShapes(QObject, Extension):
         return mesh_data
         
     # Initial Source code from  fieldOfView
-    def _addShape(self, mesh_data: MeshData) -> None:
+    def _addShape(self, name, mesh_data: MeshData) -> None:
         application = CuraApplication.getInstance()
         global_stack = application.getGlobalContainerStack()
         if not global_stack:
@@ -364,7 +365,10 @@ class CalibrationShapes(QObject, Extension):
 
         node.setMeshData(mesh_data)
         node.setSelectable(True)
-        node.setName("TestPart" + str(id(mesh_data)))
+        if len(name)==0:
+            node.setName("TestPart" + str(id(mesh_data)))
+        else:
+            node.setName(str(name))
 
         scene = self._controller.getScene()
         op = AddSceneNodeOperation(node, scene.getRoot())
