@@ -180,13 +180,13 @@ class RetractTower(Script):
         CurrentValue = 0
         save_e = 0
         Command=""
- 
+
+        # Logger.log('d', 'Instruction : {:s}'.format(Instruction))
+        lcd_gcode = "M117 {:s} ({:.1f}/{:.1f})".format(Instruction,StartValue,ValueChange)
+        
         if  (Instruction=='speed'):
             StartValue = StartValue*60
             ValueChange = ValueChange*60
-                                
-        # Logger.log('d', 'Instruction : {:s}'.format(Instruction))
-        lcd_gcode = "M117 Instruction : {:s}".format(Instruction)
 
         idl=0
         
