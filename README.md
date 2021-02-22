@@ -104,4 +104,4 @@ Two options :
 Help
 --
 
-This function will redirect you on the Wiki of this repositery.
+This function will redirect you on the [Wiki](https://github.com/5axes/Calibration-Shapes/wiki) of this repositery.
