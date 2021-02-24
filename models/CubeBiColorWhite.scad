@@ -1,17 +1,17 @@
 //-------------------------------------------------------------------------------------------
 // CubeBicolorRed
 //-------------------------------------------------------------------------------------------
-
-$fn=30;
-
-
+$fn=10;
 
 //rotate(90,[-1, 0, 0]) translate([0, 0, 0]) 
+difference(){
 union() {
   color("White") translate([0, 0, 0]) cube([10,10,10], center = true);
-  color("red") translate([10, 0, 0]) cube([10,10,10], center = true);
-  color("red") translate([0, 10, 0]) cube([10,10,10], center = true);
+  // color("red") translate([10, 0, 0]) cube([10,10,10], center = true);
+  // color("red") translate([0, 10, 0]) cube([10,10,10], center = true);
   color("White") translate([10, 10, 0]) cube([10,10,10], center = true);
+}
+translate([5, 5, 0]) cylinder(r=0.001,h=20, center = true);
 }
 
 
