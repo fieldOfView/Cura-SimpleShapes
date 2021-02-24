@@ -7,3 +7,4 @@ __pycache__/
 # Translations
 *.mo
 *.pot
+models/Calibration-Extruder-Offset-6parts-export.stl
