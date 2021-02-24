@@ -8,6 +8,7 @@
 # V1.0.8   : Add the Help function 2 test part (MultiCube and PETG Tower) 
 # V1.0.9   : Bed Level
 # V1.0.10  : Change default Name
+# V1.1.0   : Add MultiExtruder Part https://github.com/5axes/Calibration-Shapes/issues/15
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -95,10 +96,13 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Tolerance Test"), self.addTolerance)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a MultiCube Calibration"), self.addMultiCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bed Level Calibration"), self.addBedLevelCalibration)
-        self.addMenuItem(" ", lambda: None)
+        self.addMenuItem("  ", lambda: None)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Cube bi-color"), self.addCubeBiColor)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Extruder Offset Calibration"), self.addExtruderOffsetCalibration)        
+        self.addMenuItem("   ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Define default size"), self.defaultSize)
-        self.addMenuItem("  ", lambda: None)
+        self.addMenuItem("    ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Help"), self.gotoHelp)
   
         #Inzialize varables
@@ -300,6 +304,19 @@ class CalibrationShapes(QObject, Extension):
     def addTolerance(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "Tolerance.stl")
         self._addShape("Tolerance",self._toMeshData(trimesh.load(model_definition_path)))
+
+    def addCubeBiColor(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CubeBiColorWhite.stl")
+        self._addShape("CubeBiColorWhite",self._toMeshData(trimesh.load(model_definition_path)))
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CubeBiColorRed.stl")
+        self._addShape("CubeBiColorRed",self._toMeshData(trimesh.load(model_definition_path)))
+        
+    def addExtruderOffsetCalibration(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationMultiExtruderWhite.stl")
+        self._addShape("CalibrationMultiExtruderWhite",self._toMeshData(trimesh.load(model_definition_path)))
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationMultiExtruderRed.stl")
+        self._addShape("CalibrationMultiExtruderRed",self._toMeshData(trimesh.load(model_definition_path)))
+
         
     def addCube(self) -> None:
         Tz = trimesh.transformations.translation_matrix([0, self._size*0.5, 0])
