@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------------------------
-// MultiExtruderWhite
+// MultiExtruderRed
 //-------------------------------------------------------------------------------------------
 
 $fn=50;
@@ -14,17 +14,19 @@ rotate(90,[-1, 0, 0]) translate([0, 0, 2.5])
   difference(){
   
   union() {
-  //color("white")
+  color("white")
   //difference() {
   //    cube([15,15,5], center = true);
-  //    color("white") translate([0, -8+1.5*letter_height, 0]) rotate([90, 0, 0]) letter("Y");
-  //    color("white") rotate([0, 0, 90]) translate([0, -8+1.5*letter_height, 0]) rotate([90, 0, 0]) letter("X");
+  //    color("white") translate([0, -8+1.5*letter_height, 0]) rotate([90, 0, 0]) letter("Y+");
+  //    color("white") rotate([0, 0, 90]) translate([0, -8+1.5*letter_height, 0]) rotate([90, 0, 0]) letter("X+");
+  //    color("white") rotate([0, 0, -90]) translate([0, -8+1.5*letter_height, 0]) rotate([90, 0, 0]) letter("X-");
+  //    color("white") rotate([0, 0, 180]) translate([0, -8+1.5*letter_height, 0]) rotate([90, 0, 0]) letter("Y-");
   //    }
-  color("red") translate([0, 0, 5]) OneStep(0.1,"-0.1");
-  //color("white") translate([0, 0, 10]) OneStep(0.3,"+0.2");    
-  color("red") translate([0, 0, 15]) OneStep(0.6,"-0.3");
-  //color("white") translate([0, 0, 20]) OneStep(1,"+0.4");
-  color("red") translate([0, 0, 25]) OneStep(1.5,"-0.5");
+  color("red") translate([0, 0, 5]) OneStep(0.1,-0.1);
+  //color("white") translate([0, 0, 10]) OneStep(0.3,0.2);    
+  color("red") translate([0, 0, 15]) OneStep(0.6,-0.3);
+  //color("white") translate([0, 0, 20]) OneStep(1,0.4);
+  color("red") translate([0, 0, 25]) OneStep(1.5,-0.5);
 
     }
   cylinder(r=3,h=60, center = true);  
@@ -38,11 +40,25 @@ module letter(Txt) {
   }
 }
 
-module OneStep(Offs,Text){
+module OneStep(Offs,Valoff){
 difference() {
       Etage(Offs);
-      color("white") translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(Text);
-      color("white") rotate([0, 0, 90]) translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(Text);
+
+      
+
+    if(Valoff>0) {
+      color("white") translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(str("+",Valoff));
+      color("white") rotate([0, 0, -90]) translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(str("+",Valoff));
+      color("white") rotate([0, 0, 90]) translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(str(-Valoff));
+      color("white") rotate([0, 0, 180]) translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(str(-Valoff));
+    }
+    else
+    {
+      color("white") translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(str(Valoff));
+      color("white") rotate([0, 0, -90]) translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(str(Valoff));
+      color("white") rotate([0, 0, 90]) translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(str("+",-Valoff));
+      color("white") rotate([0, 0, 180]) translate([0, -8+Offs+letter_height, 0]) rotate([90, 0, 0]) letter(str("+",-Valoff));
+    }
 }
 }
 
