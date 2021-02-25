@@ -9,7 +9,7 @@ letter_size = 3;
 letter_height = 0.8;
 
 
-//rotate(90,[-1, 0, 0]) translate([0, 0, 0])
+rotate(90,[-1, 0, 0]) translate([0, 0, 2.5])
 
   difference(){
   
