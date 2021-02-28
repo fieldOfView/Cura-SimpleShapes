@@ -19,7 +19,7 @@ print_width = bed_width - square_size - (2*bed_border);
 print_depth = bed_depth - square_size - (2*bed_border);
 
 
-rotate(90,[-1, 0, 0]) translate([-bed_width*0.5, -bed_depth*0.5, 0]) linear_extrude(height = thickness) { 
+translate([-bed_width*0.5, -bed_depth*0.5, 0]) linear_extrude(height = thickness) { 
     // translate everything to center in print area
     translate([(square_size/2)+bed_border,(square_size/2)+bed_border,0]){
         // intervals between printed shapes

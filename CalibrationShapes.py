@@ -247,139 +247,142 @@ class CalibrationShapes(QObject, Extension):
         mesh = trimesh.load(model_definition_path)
         origin = [0, 0, 0]
         DirX = [1, 0, 0]
-        # DirY = [0, 1, 0]
-        DirZ = [0, 0, 1]
+        DirY = [0, 1, 0]
+        # DirZ = [0, 0, 1]
         mesh.apply_transform(trimesh.transformations.scale_matrix(factor_w, origin, DirX))
-        mesh.apply_transform(trimesh.transformations.scale_matrix(factor_d, origin, DirZ))
+        mesh.apply_transform(trimesh.transformations.scale_matrix(factor_d, origin, DirY))
+        # addShape
         self._addShape("BedLevelCalibration",self._toMeshData(mesh))
         
     def addCalibrationCube(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationCube.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("CalibrationCube",self._toMeshData(mesh))
 
     def addMultiCube(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "MultiCube.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("MultiCube",self._toMeshData(mesh))
 
     def addJunctionDeviationTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "JunctionDeviationTower.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("JunctionDeviationTower",self._toMeshData(mesh))
         
     def addPLATempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPLA.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("PLATempTower",self._toMeshData(mesh))
 
     def addPETGTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPETG.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("PETGTempTower",self._toMeshData(mesh))
         
     def addABSTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerABS.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("ABSTempTower",self._toMeshData(mesh))
         
     def addRetractTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTest.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("RetractTest",self._toMeshData(mesh))
  
     def addRetractTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTower.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("RetractTower",self._toMeshData(mesh))
         
     def addBridgeTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "BridgeTest.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("BridgeTest",self._toMeshData(mesh))
 
     def addThinWall(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "ThinWall.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("ThinWall",self._toMeshData(mesh))
  
     def addOverhangTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "Overhang.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("OverhangTest",self._toMeshData(mesh))
  
     def addFlowTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "FlowTest.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("FlowTest",self._toMeshData(mesh))
 
     def addTolerance(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "Tolerance.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("Tolerance",self._toMeshData(mesh))
 
     def addCubeBiColor(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CubeBiColorWhite.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("CubeBiColorExt1",self._toMeshData(mesh))
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CubeBiColorRed.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("CubeBiColorExt2",self._toMeshData(mesh))
         
     def addExtruderOffsetCalibration(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "nozzle-to-nozzle-xy-offset-calibration-pattern-a.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("CalibrationMultiExtruder1",self._toMeshData(mesh))
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "nozzle-to-nozzle-xy-offset-calibration-pattern-b.stl")
         mesh =  trimesh.load(model_definition_path)
-        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        # addShape
         self._addShape("CalibrationMultiExtruder1",self._toMeshData(mesh))
 
         
     def addCube(self) -> None:
-        Tz = trimesh.transformations.translation_matrix([0, self._size*0.5, 0])
+        Tz = trimesh.transformations.translation_matrix([0, 0, self._size*0.5])
         self._addShape("Cube",self._toMeshData(trimesh.creation.box(extents = [self._size, self._size, self._size], transform = Tz )))
         
     def addCylinder(self) -> None:
-        Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
-        mesh = trimesh.creation.cylinder(radius = self._size / 2, height = self._size, sections=90, transform = Rx )
-        mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
+        # Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
+        mesh = trimesh.creation.cylinder(radius = self._size / 2, height = self._size, sections=90)
+        mesh.apply_transform(trimesh.transformations.translation_matrix([0, 0, self._size*0.5]))
         self._addShape("Cylinder",self._toMeshData(mesh))
 
     def addTube(self) -> None:
         #origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
         # S = trimesh.transformations.scale_matrix(20, origin)
-        xaxis = [1, 0, 0]
-        Rx = trimesh.transformations.rotation_matrix(math.radians(90), xaxis)
-        mesh = trimesh.creation.annulus(r_min = self._size / 4, r_max = self._size / 2, height = self._size, sections = 90, transform = Rx )
-        mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
+        # xaxis = [1, 0, 0]
+        # Rx = trimesh.transformations.rotation_matrix(math.radians(90), xaxis)
+        mesh = trimesh.creation.annulus(r_min = self._size / 4, r_max = self._size / 2, height = self._size, sections = 90)
+        mesh.apply_transform(trimesh.transformations.translation_matrix([0, 0, self._size*0.5]))
         self._addShape("Tube",self._toMeshData(mesh))
         
     # Sphere are not very usefull but I leave the code for the moment    
     def addSphere(self) -> None:
         # subdivisions (int) – How many times to subdivide the mesh. Note that the number of faces will grow as function of 4 ** subdivisions, so you probably want to keep this under ~5
         mesh = trimesh.creation.icosphere(subdivisions=4,radius = self._size / 2,)
-        mesh.apply_transform(trimesh.transformations.translation_matrix([0, self._size*0.5, 0]))
+        mesh.apply_transform(trimesh.transformations.translation_matrix([0, 0, self._size*0.5]))
         self._addShape("Sphere",self._toMeshData(mesh))
     
     # Initial Source code from  fieldOfView
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
+        # Rotate the part to laydown on the build plate
+        tri_node.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
         tri_faces = tri_node.faces
         tri_vertices = tri_node.vertices
 
