@@ -9,6 +9,8 @@
 # V1.0.9   : Bed Level
 # V1.0.10  : Change default Name
 # V1.1.0   : Add MultiExtruder Part https://github.com/5axes/Calibration-Shapes/issues/15
+#          : Part Rotation added to the _toMeshData subroutine
+#          : Stl File can no be also Drag & Drop on the Build Plate
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
