@@ -156,4 +156,4 @@ module letter(l) {
     text(l, size = letter_size, font = font, halign = "center", valign = "center");
   }
 }
-translate([30, 0, 30]) rotate(90,[-1, 0, 0]) bridgeTest();
+translate([30, -20, 0]) bridgeTest();

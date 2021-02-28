@@ -7,8 +7,7 @@ $fn=100;
 
 Cube_S = 10;
 
-
-rotate(90,[-1, 0, 0]) translate([-Cube_S*2, Cube_S*2, 0]) rotate(-90,[0, 0, 1]) Model();
+translate([-Cube_S*2, Cube_S*2, 0]) rotate(-90,[0, 0, 1]) Model();
 
 module Model() {
     union() {

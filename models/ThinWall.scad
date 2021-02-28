@@ -7,7 +7,7 @@
 
 $fn=200;
 
-rotate(90,[-1, 0, 0]) union () {
+union () {
     translate([11,0,0]) cube([14,0.35,5], center = false);
     translate([0,11,0]) rotate(90, [0,0,1]) cube([14,0.5,5], center = false);
     translate([-11,0,0]) rotate(180, [0,0,1]) cube([14,0.8,5], center = false);

@@ -10,7 +10,7 @@ Line_Width = 0.4; // line Width
 cylinder_size = 4*Line_Width;
 cylinder_height = 100*Hc;
 
-rotate(90,[-1, 0, 0]) translate([0, 0, 3*Hc-0.0214]) Model();
+translate([0, 0, 3*Hc-0.0214]) Model();
 
 module Model() {
     union() {

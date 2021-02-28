@@ -98,7 +98,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bed Level Calibration"), self.addBedLevelCalibration)
         self.addMenuItem("  ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Cube bi-color"), self.addCubeBiColor)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Extruder Offset Calibration"), self.addExtruderOffsetCalibration)        
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Extruder Offset Calibration Part"), self.addExtruderOffsetCalibration)        
         self.addMenuItem("   ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Define default size"), self.defaultSize)
@@ -255,67 +255,101 @@ class CalibrationShapes(QObject, Extension):
         
     def addCalibrationCube(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationCube.stl")
-        self._addShape("CalibrationCube",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("CalibrationCube",self._toMeshData(mesh))
 
     def addMultiCube(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "MultiCube.stl")
-        self._addShape("MultiCube",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("MultiCube",self._toMeshData(mesh))
 
     def addJunctionDeviationTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "JunctionDeviationTower.stl")
-        self._addShape("JunctionDeviationTower",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("JunctionDeviationTower",self._toMeshData(mesh))
         
     def addPLATempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPLA.stl")
-        self._addShape("PLATempTower",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("PLATempTower",self._toMeshData(mesh))
 
     def addPETGTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPETG.stl")
-        self._addShape("PETGTempTower",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("PETGTempTower",self._toMeshData(mesh))
         
     def addABSTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerABS.stl")
-        self._addShape("ABSTempTower",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("ABSTempTower",self._toMeshData(mesh))
         
     def addRetractTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTest.stl")
-        self._addShape("RetractTest",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("RetractTest",self._toMeshData(mesh))
  
     def addRetractTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTower.stl")
-        self._addShape("RetractTower",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("RetractTower",self._toMeshData(mesh))
         
     def addBridgeTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "BridgeTest.stl")
-        self._addShape("BridgeTest",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("BridgeTest",self._toMeshData(mesh))
 
     def addThinWall(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "ThinWall.stl")
-        self._addShape("ThinWall",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("ThinWall",self._toMeshData(mesh))
  
     def addOverhangTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "Overhang.stl")
-        self._addShape("OverhangTest",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("OverhangTest",self._toMeshData(mesh))
  
     def addFlowTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "FlowTest.stl")
-        self._addShape("FlowTest",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("FlowTest",self._toMeshData(mesh))
 
     def addTolerance(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "Tolerance.stl")
-        self._addShape("Tolerance",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("Tolerance",self._toMeshData(mesh))
 
     def addCubeBiColor(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CubeBiColorWhite.stl")
-        self._addShape("CubeBiColorWhite",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("CubeBiColorExt1",self._toMeshData(mesh))
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CubeBiColorRed.stl")
-        self._addShape("CubeBiColorRed",self._toMeshData(trimesh.load(model_definition_path)))
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("CubeBiColorExt2",self._toMeshData(mesh))
         
     def addExtruderOffsetCalibration(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationMultiExtruderWhite.stl")
-        self._addShape("CalibrationMultiExtruderWhite",self._toMeshData(trimesh.load(model_definition_path)))
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CalibrationMultiExtruderRed.stl")
-        self._addShape("CalibrationMultiExtruderRed",self._toMeshData(trimesh.load(model_definition_path)))
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "nozzle-to-nozzle-xy-offset-calibration-pattern-a.stl")
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("CalibrationMultiExtruder1",self._toMeshData(mesh))
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "nozzle-to-nozzle-xy-offset-calibration-pattern-b.stl")
+        mesh =  trimesh.load(model_definition_path)
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
+        self._addShape("CalibrationMultiExtruder1",self._toMeshData(mesh))
 
         
     def addCube(self) -> None:

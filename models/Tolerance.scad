@@ -12,7 +12,7 @@ letter_height = 0.05*letter_size;
 
 o = cube_size / 2;
 
-rotate(90,[-1, 0, 0]) translate([5*o, o, 0]) rotate(180,[0, 0, 1]) difference() {
+translate([5*o, o, 0]) rotate(180,[0, 0, 1]) difference() {
     union() {
       translate([o, o, 0]) Pin(4,1);
       translate([3*o, o, 0]) Pin(4,1);

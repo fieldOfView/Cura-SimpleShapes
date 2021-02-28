@@ -11,7 +11,7 @@ letter_size = cylinder_size*1.3;
 letter_height = 0.3*cylinder_height;
 
 
-rotate(90,[-1, 0, 0]) translate([0, 0, 0]) Model();
+translate([0, 0, 0]) Model();
 
 module Model() {
     difference() {
