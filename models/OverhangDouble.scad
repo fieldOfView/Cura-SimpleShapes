@@ -7,7 +7,7 @@ font = "Arial:style=Bold"; //  Police text
 letter_size = 5;  //  Size text
 letter_height = 1;  //  Thichness text
 
-translate([-30,-16.449,0]) rotate(90,[-1,0,0]) union(){
+translate([-30,-16.449,0]) union(){
         translate([33.84,0,17.449]) cube([70,12,2],center=true);
         for (a =[10:10:70]){
          translate([70*sin(a),0,70*cos(a)]) rotate(a,[0,1,0]) union(){
