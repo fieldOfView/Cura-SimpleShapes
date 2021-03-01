@@ -144,7 +144,7 @@ module draw()
   teeth_gap      = is_undef(teeth_gap)      ?   2 : teeth_gap;       // space in between teeth of the unscaled comb
   comb_clearance = is_undef(comb_clearance) ?   1 : comb_clearance;  // comb to comb distance, should not be > (2 * tooth_width)
   base_height    = is_undef(base_height)    ?   0 : base_height;     // comb base (optional), set to 0 to disable
-  render_mode    = is_undef(render_mode)    ?   0 : render_mode;     // 0 ... all, 1 ... verification comb + base, 2 ... alignment comb; (>= 3 ... reserved for internal usage)
+  render_mode    = is_undef(render_mode)    ?   1 : render_mode;     // 0 ... all, 1 ... verification comb + base, 2 ... alignment comb; (>= 3 ... reserved for internal usage)
   
   // TODO rr - remove the need of the extra_clearance parameter: swap draw order (draw verification comb first, then align the default one)
   extra_clearance = is_undef(extra_clearance) ? 0 : extra_clearance; // extra clearance in case the comb pairs overlap (usually on small twidth and/or tgap)
@@ -155,4 +155,4 @@ module draw()
 
 // ------------------------------------------------------------------------------------------------------------------------
 // Translate to center the part
-translate([-49.5,-29.5,0]) draw();
+translate([-44,-30.5,0]) draw();
