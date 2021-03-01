@@ -142,7 +142,7 @@ module draw()
   tooth_height   = is_undef(tooth_height)   ? 0.2 : tooth_height;    // height of teeth / comb, should be n * layer_height
   tooth_length   = is_undef(tooth_length)   ?  10 : tooth_length;    // length of one single tooth
   teeth_gap      = is_undef(teeth_gap)      ?   2 : teeth_gap;       // space in between teeth of the unscaled comb
-  comb_clearance = is_undef(comb_clearance) ?   2 : comb_clearance;  // comb to comb distance, should not be > (2 * tooth_width)
+  comb_clearance = is_undef(comb_clearance) ?   1 : comb_clearance;  // comb to comb distance, should not be > (2 * tooth_width)
   base_height    = is_undef(base_height)    ?   0 : base_height;     // comb base (optional), set to 0 to disable
   render_mode    = is_undef(render_mode)    ?   0 : render_mode;     // 0 ... all, 1 ... verification comb + base, 2 ... alignment comb; (>= 3 ... reserved for internal usage)
   
