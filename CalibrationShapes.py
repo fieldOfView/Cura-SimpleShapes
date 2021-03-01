@@ -11,6 +11,8 @@
 # V1.1.0   : Add MultiExtruder Part https://github.com/5axes/Calibration-Shapes/issues/15
 #          : Part Rotation added to the _toMeshData subroutine
 #          : Stl File can no be also Drag & Drop on the Build Plate
+# V1.1.1   : Stl File converted into binary STL format
+#          : Try to set directly a different Extruder in case of MultiExtruder part
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -334,27 +336,32 @@ class CalibrationShapes(QObject, Extension):
         # addShape
         self._addShape("Tolerance",self._toMeshData(mesh))
 
+    #-----------------------------
+    #   Dual Extruder 
+    #----------------------------- 
     def addCubeBiColor(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CubeBiColorWhite.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
-        self._addShape("CubeBiColorExt1",self._toMeshData(mesh))
+        self._addShape("CubeBiColorExt1",self._toMeshData(mesh),1)
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CubeBiColorRed.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
-        self._addShape("CubeBiColorExt2",self._toMeshData(mesh))
+        self._addShape("CubeBiColorExt2",self._toMeshData(mesh),2)
         
     def addExtruderOffsetCalibration(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "nozzle-to-nozzle-xy-offset-calibration-pattern-a.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
-        self._addShape("CalibrationMultiExtruder1",self._toMeshData(mesh))
+        self._addShape("CalibrationMultiExtruder1",self._toMeshData(mesh),1)
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "nozzle-to-nozzle-xy-offset-calibration-pattern-b.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
-        self._addShape("CalibrationMultiExtruder1",self._toMeshData(mesh))
+        self._addShape("CalibrationMultiExtruder1",self._toMeshData(mesh),2)
 
-        
+    #-----------------------------
+    #   Standard PART  
+    #-----------------------------    
     def addCube(self) -> None:
         Tz = trimesh.transformations.translation_matrix([0, 0, self._size*0.5])
         self._addShape("Cube",self._toMeshData(trimesh.creation.box(extents = [self._size, self._size, self._size], transform = Tz )))
@@ -411,7 +418,7 @@ class CalibrationShapes(QObject, Extension):
         return mesh_data
         
     # Initial Source code from  fieldOfView
-    def _addShape(self, name, mesh_data: MeshData) -> None:
+    def _addShape(self, name, mesh_data: MeshData, ext_pos = 0 ) -> None:
         application = CuraApplication.getInstance()
         global_stack = application.getGlobalContainerStack()
         if not global_stack:
@@ -430,8 +437,17 @@ class CalibrationShapes(QObject, Extension):
         op = AddSceneNodeOperation(node, scene.getRoot())
         op.push()
 
-        default_extruder_position = application.getMachineManager().defaultExtruderPosition
+        extruder_nr=len(global_stack.extruders)
+        # Logger.log("d", "extruder_nr= %d", extruder_nr)
+        # default_extruder_position  : <class 'str'>
+        if ext_pos>0 and ext_pos<=extruder_nr :
+            default_extruder_position = str(ext_pos-1)
+        else :
+            default_extruder_position = application.getMachineManager().defaultExtruderPosition
+        # Logger.log("d", "default_extruder_position= %s", type(default_extruder_position))
+        # default_extruder_id = global_stack.extruders[default_extruder_position].getId()
         default_extruder_id = global_stack.extruders[default_extruder_position].getId()
+        # Logger.log("d", "default_extruder_id= %s", default_extruder_id)
         node.callDecoration("setActiveExtruder", default_extruder_id)
 
         active_build_plate = application.getMultiBuildPlateModel().activeBuildPlate
