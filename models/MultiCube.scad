@@ -4,7 +4,6 @@
 //---------------------------
 
 $fn=100;
-
 Cube_S = 10;
 
 translate([-Cube_S*2, Cube_S*2, 0]) rotate(-90,[0, 0, 1]) Model();
