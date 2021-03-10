@@ -180,7 +180,7 @@ class CalibrationShapes(QObject, Extension):
     #===== Text Output ===================================================================================================
     #writes the message to the log, includes timestamp, length is fixed
     def writeToLog(self, str):
-        Logger.log("d", "Source calibration shapes = %s", str)
+        Logger.log("d", "Debug calibration shapes = %s", str)
 
     #Sends an user message to the Info Textfield, color depends on status (prioritized feedback)
     # Red wrong for Errors and Warnings
@@ -244,8 +244,8 @@ class CalibrationShapes(QObject, Extension):
             factor_w=int(m_w/100)
             factor_d=int(m_d/100)          
         
-        Logger.log("d", "factor_w= %.1f", factor_w)
-        Logger.log("d", "factor_d= %.1f", factor_d)
+        # Logger.log("d", "factor_w= %.1f", factor_w)
+        # Logger.log("d", "factor_d= %.1f", factor_d)
         
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "ParametricBedLevel.stl")
         mesh = trimesh.load(model_definition_path)
@@ -373,7 +373,7 @@ class CalibrationShapes(QObject, Extension):
         self._addShape("Cylinder",self._toMeshData(mesh))
 
     def addTube(self) -> None:
-        #origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
+        # Origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
         # S = trimesh.transformations.scale_matrix(20, origin)
         # xaxis = [1, 0, 0]
         # Rx = trimesh.transformations.rotation_matrix(math.radians(90), xaxis)
@@ -381,20 +381,25 @@ class CalibrationShapes(QObject, Extension):
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, 0, self._size*0.5]))
         self._addShape("Tube",self._toMeshData(mesh))
         
-    # Sphere are not very usefull but I leave the code for the moment    
+    # Sphere are not very usefull but I leave it for the moment    
     def addSphere(self) -> None:
         # subdivisions (int) – How many times to subdivide the mesh. Note that the number of faces will grow as function of 4 ** subdivisions, so you probably want to keep this under ~5
         mesh = trimesh.creation.icosphere(subdivisions=4,radius = self._size / 2,)
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, 0, self._size*0.5]))
         self._addShape("Sphere",self._toMeshData(mesh))
-    
+ 
+    #----------------------------------------
     # Initial Source code from  fieldOfView
+    #----------------------------------------  
     def _toMeshData(self, tri_node: trimesh.base.Trimesh) -> MeshData:
         # Rotate the part to laydown on the build plate
+        # Modification from 5@xes
         tri_node.apply_transform(trimesh.transformations.rotation_matrix(math.radians(90), [-1, 0, 0]))
         tri_faces = tri_node.faces
         tri_vertices = tri_node.vertices
 
+        # Following Source code from  fieldOfView
+        # https://github.com/fieldOfView/Cura-SimpleShapes/blob/bac9133a2ddfbf1ca6a3c27aca1cfdd26e847221/SimpleShapes.py#L45
         indices = []
         vertices = []
 
@@ -418,6 +423,7 @@ class CalibrationShapes(QObject, Extension):
         return mesh_data
         
     # Initial Source code from  fieldOfView
+    # https://github.com/fieldOfView/Cura-SimpleShapes/blob/bac9133a2ddfbf1ca6a3c27aca1cfdd26e847221/SimpleShapes.py#L70
     def _addShape(self, name, mesh_data: MeshData, ext_pos = 0 ) -> None:
         application = CuraApplication.getInstance()
         global_stack = application.getGlobalContainerStack()
