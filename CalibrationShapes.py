@@ -13,6 +13,7 @@
 #          : Stl File can no be also Drag & Drop on the Build Plate
 # V1.1.1   : Stl File converted into binary STL format
 #          : Try to set directly a different Extruder in case of MultiExtruder part
+# V1.1.2   : Add a Hole Test
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -97,6 +98,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Thin Wall Test"), self.addThinWall)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Overhang Test"), self.addOverhangTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Flow Test"), self.addFlowTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Hole Test"), self.addHoleTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Tolerance Test"), self.addTolerance)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a MultiCube Calibration"), self.addMultiCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bed Level Calibration"), self.addBedLevelCalibration)
@@ -326,6 +328,12 @@ class CalibrationShapes(QObject, Extension):
  
     def addFlowTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "FlowTest.stl")
+        mesh =  trimesh.load(model_definition_path)
+        # addShape
+        self._addShape("FlowTest",self._toMeshData(mesh))
+
+    def addHoleTest(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "HoleTest.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
         self._addShape("FlowTest",self._toMeshData(mesh))
