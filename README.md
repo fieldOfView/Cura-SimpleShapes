@@ -19,6 +19,7 @@ You can also load standard test  / calibration  part :
 - [Thin Wall Test](./models/ThinWall.stl)
 - [Overhang Test](./models/Overhang.stl)
 - [Flow Test](./models/FlowTest.stl)
+- [Hole Test](./models/HoleTest.stl)
 - [Tolerance Test](./models/Tolerance.stl)
 - [MultiCube Test](./models/MultiCube.stl)
 
