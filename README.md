@@ -1,6 +1,6 @@
 # Calibration Shapes
 
-This plugin adds a menu to create some simple shapes to the scene (cube, cylinder, tube) used most of the time to create some fast test parts. The default size for all these shapes is 20 mm.
+This plugin adds a menu to create some simple shapes to the scene (cube, cylinder, tube) used most of the time to create some fast test parts and common calibration/test parts. The default size for all the simple shapes is 20 mm, but can be modified.
 
 ![menu Extensions Calibration Shapes](./images/menu.jpg)
 
@@ -39,7 +39,7 @@ All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here]
 Define default size
 --
 
-The function **Define default size** gives you the possibility to change the default size for the standard primitives (cube/cylinder/sphere/tube).
+The function **Define default size** gives you the possibility to change the default size for the standard primitives (cube/cylinder/tube).
 
 ![define default size](./images/size.jpg)
 
@@ -55,9 +55,9 @@ Several postprocessing Scripts are included into the plugin to help the user to 
 - [TempFanTower.py](./resources/TempFanTower.py)
 
 ### Copy Scripts
-These scripts can be copied into the scripts directory via the function **Copy Scripts**
 
 These scripts can be copied into the scripts directory via the function **Copy Scripts**. 
+
 **After you have copied these scripts, you must restart Cura to see the scripts in the postprocessing scripts list.**
 
 ### Tower generation scripts
@@ -84,7 +84,7 @@ Three options :
 TempFanTower.py
 -----
 
-Description:  postprocessing-script to easily use an temptower and not use 10 changeAtZ-scripts
+Description:  postprocessing-script to easily to create a temptower and not use 10 changeAtZ-scripts
 
  The default values are for this temptower PLA model : [PLA TempTower 220 - 180°C](./models/TempTowerPLA.stl)
 - Temp Tower PLA de 220 à 180
