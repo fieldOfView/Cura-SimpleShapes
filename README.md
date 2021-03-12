@@ -43,7 +43,7 @@ The function **Define default size** gives you the possibility to change the def
 
 ![define default size](./images/size.jpg)
 
-Using [Trimesh](https://github.com/mikedh/trimesh) function for simple shapes [creation](https://github.com/mikedh/trimesh/blob/master/trimesh/creation.py).
+This plugin is using the [Trimesh](https://github.com/mikedh/trimesh) library to creat simple shapes [creation](https://github.com/mikedh/trimesh/blob/master/trimesh/creation.py) and to load STL files.
 
 
 ## Cura-Postprocessing-Scripts
