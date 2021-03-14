@@ -1,6 +1,6 @@
 # Calibration Shapes
 
-This plugin adds a menu to create some simple shapes to the scene (cube, cylinder, tube) used most of the time to create some fast test parts and common calibration/test parts. The default size for all the simple shapes is 20 mm, but can be modified.
+This plugin adds a menu to create some simple shapes to the scene (cube, cylinder, tube) used most of the time to create some fast test parts and common calibration/test parts. The default size for all the simple shapes is 20 mm, but can be modified via the **Define default size** menu.
 
 ![menu Extensions Calibration Shapes](./images/menu.jpg)
 
@@ -43,7 +43,7 @@ The function **Define default size** gives you the possibility to change the def
 
 ![define default size](./images/size.jpg)
 
-This plugin is using the [Trimesh](https://github.com/mikedh/trimesh) library to creat simple shapes [creation](https://github.com/mikedh/trimesh/blob/master/trimesh/creation.py) and to load STL files.
+This plugin is using the [Trimesh](https://github.com/mikedh/trimesh) library to create [simple shapes](https://github.com/mikedh/trimesh/blob/master/trimesh/creation.py) and to load STL files.
 
 
 ## Cura-Postprocessing-Scripts
