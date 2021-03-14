@@ -14,6 +14,7 @@
 # V1.1.1   : Stl File converted into binary STL format
 #          : Try to set directly a different Extruder in case of MultiExtruder part
 # V1.1.2   : Add a Hole Test
+# V1.1.3   : Remove for the moment Junction deviation tower... waiting for User feedback
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -28,6 +29,7 @@ import shutil
 import platform
 import sys
 import html
+
 from shutil import copyfile
 
 from UM.Extension import Extension
@@ -93,7 +95,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an ABS TempTower"), self.addABSTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Junction Deviation Tower"), self.addJunctionDeviationTower)
+        # self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Junction Deviation Tower"), self.addJunctionDeviationTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bridge Test"), self.addBridgeTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Thin Wall Test"), self.addThinWall)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Overhang Test"), self.addOverhangTest)
@@ -368,23 +370,22 @@ class CalibrationShapes(QObject, Extension):
         self._addShape("CalibrationMultiExtruder1",self._toMeshData(mesh),2)
 
     #-----------------------------
-    #   Standard PART  
+    #   Standard Geometry  
     #-----------------------------    
+    # Origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
+    # S = trimesh.transformations.scale_matrix(20, origin)
+    # xaxis = [1, 0, 0]
+    # Rx = trimesh.transformations.rotation_matrix(math.radians(90), xaxis)    
     def addCube(self) -> None:
         Tz = trimesh.transformations.translation_matrix([0, 0, self._size*0.5])
         self._addShape("Cube",self._toMeshData(trimesh.creation.box(extents = [self._size, self._size, self._size], transform = Tz )))
         
     def addCylinder(self) -> None:
-        # Rx = trimesh.transformations.rotation_matrix(math.radians(90), [1, 0, 0])
         mesh = trimesh.creation.cylinder(radius = self._size / 2, height = self._size, sections=90)
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, 0, self._size*0.5]))
         self._addShape("Cylinder",self._toMeshData(mesh))
 
     def addTube(self) -> None:
-        # Origin, xaxis, yaxis, zaxis = [0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]
-        # S = trimesh.transformations.scale_matrix(20, origin)
-        # xaxis = [1, 0, 0]
-        # Rx = trimesh.transformations.rotation_matrix(math.radians(90), xaxis)
         mesh = trimesh.creation.annulus(r_min = self._size / 4, r_max = self._size / 2, height = self._size, sections = 90)
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, 0, self._size*0.5]))
         self._addShape("Tube",self._toMeshData(mesh))
