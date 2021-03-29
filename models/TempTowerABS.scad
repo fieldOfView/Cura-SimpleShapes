@@ -33,17 +33,17 @@ translate([Hc*(-136-cos(60)), -30*Hc, Hc*(1+cos(30))]) difference() {
   step=cube_size;
 union() {
   Base();
-  translate([1.75, 0.5, nz]) OneStep("250");
-  translate([1.75, 0.5, nz+step*1]) OneStep("245");
-  translate([1.75, 0.5, nz+step*2]) OneStep("240");
-  translate([1.75, 0.5, nz+step*3]) OneStep("235");
-  translate([1.75, 0.5, nz+step*4]) OneStep("230");
-  translate([1.75, 0.5, nz+step*5]) OneStep("225");
-  translate([1.75, 0.5, nz+step*6]) OneStep("220");
-  translate([1.75, 0.5, nz+step*7]) OneStep("215");
-  translate([1.75, 0.5, nz+step*8]) OneStep("210");
+  translate([1.5, 0.5, nz]) OneStep("250");
+  translate([1.5, 0.5, nz+step*1]) OneStep("245");
+  translate([1.5, 0.5, nz+step*2]) OneStep("240");
+  translate([1.5, 0.5, nz+step*3]) OneStep("235");
+  translate([1.5, 0.5, nz+step*4]) OneStep("230");
+  translate([1.5, 0.5, nz+step*5]) OneStep("225");
+  translate([1.5, 0.5, nz+step*6]) OneStep("220");
+  translate([1.5, 0.5, nz+step*7]) OneStep("215");
+  translate([1.5, 0.5, nz+step*8]) OneStep("210");
 }
-translate([1.75, 0.5, nz]) Mat("ABS");
+translate([1.5, 0.5, nz]) Mat("ABS");
 }
 
 

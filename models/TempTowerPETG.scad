@@ -33,15 +33,15 @@ translate([Hc*(-136-cos(60)), -30*Hc, Hc*(1+cos(30))]) difference() {
   step=cube_size;
 union() {
   Base();
-  translate([1.75, 0.5, nz]) OneStep("260");
-  translate([1.75, 0.5, nz+step*1]) OneStep("255");
-  translate([1.75, 0.5, nz+step*2]) OneStep("250");
-  translate([1.75, 0.5, nz+step*3]) OneStep("245");
-  translate([1.75, 0.5, nz+step*4]) OneStep("240");
-  translate([1.75, 0.5, nz+step*5]) OneStep("235");
-  translate([1.75, 0.5, nz+step*6]) OneStep("230");
+  translate([1.5, 0.5, nz]) OneStep("260");
+  translate([1.5, 0.5, nz+step*1]) OneStep("255");
+  translate([1.5, 0.5, nz+step*2]) OneStep("250");
+  translate([1.5, 0.5, nz+step*3]) OneStep("245");
+  translate([1.5, 0.5, nz+step*4]) OneStep("240");
+  translate([1.5, 0.5, nz+step*5]) OneStep("235");
+  translate([1.5, 0.5, nz+step*6]) OneStep("230");
 }
-translate([1.75, 0.5, nz]) Mat("PETG");
+translate([1.5, 0.5, nz]) Mat("PETG");
 }
 
 
