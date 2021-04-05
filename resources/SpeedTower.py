@@ -39,7 +39,9 @@ class SpeedTower(Script):
                     "options": {
                         "acceleration": "Acceleration",
                         "jerk": "Jerk",
-                        "junction": "Junction Deviation"
+                        "junction": "Junction Deviation",
+                        "marlinadv": "Marlin Linear Advance",
+                        "rrfpresure": "RepRap Pressure Adance"
                     },
                     "default_value": "acceleration"
                 },
@@ -122,7 +124,13 @@ class SpeedTower(Script):
                             lcd_gcode = "M117 Jerk X{:d} Y{:d}".format(int(CurrentValue), int(CurrentValue))
                         if  (Instruction=='junction'):
                             Command = "M205 J{:.3f}".format(float(CurrentValue))
-                            lcd_gcode = "M117 Junction J{:.3f}".format(float(CurrentValue))         
+                            lcd_gcode = "M117 Junction J{:.3f}".format(float(CurrentValue))     
+                        if  (Instruction=='marlinadv'):
+                            Command = "M900 K{:.3f}".format(float(CurrentValue))
+                            lcd_gcode = "M117 Linear Advance K{:.3f}".format(float(CurrentValue))  
+                        if  (Instruction=='rrfpresure'):
+                            Command = "M572 D0 S{:.3f}".format(float(CurrentValue))
+                            lcd_gcode = "M117 Pressure Advance S{:.3f}".format(float(CurrentValue))   
                             
                         lines.insert(line_index + 1, ";TYPE:CUSTOM LAYER")
                         lines.insert(line_index + 2, Command)
@@ -140,6 +148,12 @@ class SpeedTower(Script):
                             if  (Instruction=='junction'):
                                 Command = "M205 J{:.3f}".format(float(CurrentValue))
                                 lcd_gcode = "M117 Junction J{:.3f}".format(float(CurrentValue))
+                            if (Instruction=='marlinadv'):
+                                Command = "M900 K{:.3f}".format(float(CurrentValue))
+                                lcd_gcode = "M117 Linear Advance K{:.3f}".format(float(CurrentValue))
+                            if  (Instruction=='rrfpresure'):
+                                Command = "M572 D0 S{:.3f}".format(float(CurrentValue))
+                                lcd_gcode = "M117 Pressure Advance S{:.3f}".format(float(CurrentValue)) 
                                 
                             lines.insert(line_index + 1, ";TYPE:CUSTOM VALUE")
                             lines.insert(line_index + 2, Command)

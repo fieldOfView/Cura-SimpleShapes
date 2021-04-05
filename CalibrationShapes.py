@@ -104,6 +104,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Tolerance Test"), self.addTolerance)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a MultiCube Calibration"), self.addMultiCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bed Level Calibration"), self.addBedLevelCalibration)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Linear/Pressure Adv Tower"), self.addPressureAdvTower)
         self.addMenuItem("  ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Cube bi-color"), self.addCubeBiColor)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Extruder Offset Calibration Part"), self.addExtruderOffsetCalibration)        
@@ -345,6 +346,13 @@ class CalibrationShapes(QObject, Extension):
         mesh =  trimesh.load(model_definition_path)
         # addShape
         self._addShape("Tolerance",self._toMeshData(mesh))
+
+    # Dotdash addition - for Linear/Pressure advance
+    def addPressureAdvTower(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "PressureAdvTower.stl")
+        mesh =  trimesh.load(model_definition_path)
+        # addShape
+        self._addShape("PressureAdv",self._toMeshData(mesh))
 
     #-----------------------------
     #   Dual Extruder 
