@@ -2,9 +2,10 @@
 //
 // Generate STL using OpenSCAD:
 //   openscad square_tower.scad -o square_tower.stl
-
+//
 // Pulled from Klipper documentation
 // https://github.com/KevinOConnor/klipper/tree/master/docs/prints
+//
 
 square_width = 5;
 square_size = 60;
