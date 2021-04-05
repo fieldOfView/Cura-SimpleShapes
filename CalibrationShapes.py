@@ -15,6 +15,7 @@
 #          : Try to set directly a different Extruder in case of MultiExtruder part
 # V1.1.2   : Add a Hole Test
 # V1.1.3   : Remove for the moment Junction deviation tower... waiting for User feedback
+# V1.2.0   : Linear/Pressure Adv Tower by dotdash32 https://github.com/dotdash32
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
