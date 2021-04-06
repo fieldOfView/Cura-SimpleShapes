@@ -16,6 +16,7 @@
 # V1.1.2   : Add a Hole Test
 # V1.1.3   : Remove for the moment Junction deviation tower... waiting for User feedback
 # V1.2.0   : Linear/Pressure Adv Tower by dotdash32 https://github.com/dotdash32
+# V1.2.1   : Change CopyScript condition to fileSize
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -215,19 +216,33 @@ class CalibrationShapes(QObject, Extension):
         stringMatch = re.split("plugins", plugPath)
         destPath = stringMatch[0] + "scripts"
         nbfile=0
-        # LCopy the script
+        # Copy the script
         for fl in File_List:
             script_definition_path = os.path.join(plugPath, fl)
             dest_definition_path = os.path.join(destPath, fl)
-            # self.writeToLog("Dest_definition_path= "+dest_definition_path)
+            self.writeToLog("Dest_definition_path = " + dest_definition_path)
+            if os.path.isfile(dest_definition_path)==True:
+                self.writeToLog("Script_definition_path st_size= " + str(os.stat(script_definition_path).st_size))
+                self.writeToLog("Dest_definition_path st_size= " + str(os.stat(dest_definition_path).st_size))
+            
             if os.path.isfile(dest_definition_path)==False:
+                self.writeToLog("Copy Script_definition_path = " + script_definition_path)
+                copyfile(script_definition_path,dest_definition_path)
+                nbfile+=1
+            # Change condition to File Size definition
+            elif os.stat(script_definition_path).st_size > os.stat(dest_definition_path).st_size :
+                self.writeToLog("Copy Script_definition_path = " + script_definition_path)
                 copyfile(script_definition_path,dest_definition_path)
                 nbfile+=1
         
-        txt_Message =  str(nbfile) + " scripts copied in "
-        txt_Message = txt_Message + os.path.join(destPath, "scripts")
+        txt_Message = ""
         if nbfile > 0 :
+            txt_Message =  str(nbfile) + " script(s) copied in :\n"
+            txt_Message = txt_Message + os.path.join(destPath, "scripts")
             txt_Message = txt_Message + "\nYou must now restart Cura to see the scripts in the postprocessing script list"
+        else:
+            txt_Message = "Every script are up to date in :\n"
+            txt_Message = txt_Message + os.path.join(destPath, "scripts")
           
         self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "Calibration Shapes"))
         self._message.show()
