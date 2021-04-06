@@ -20,6 +20,7 @@ You can also load standard test  / calibration  part :
 - [Overhang Test](./models/Overhang.stl)
 - [Flow Test](./models/FlowTest.stl)
 - [Hole Test](./models/HoleTest.stl)
+- [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl)
 - [Tolerance Test](./models/Tolerance.stl)
 - [MultiCube Test](./models/MultiCube.stl)
 
@@ -77,6 +78,10 @@ Three options :
     - Acceleration :  Acceleration variation (M205 X Y) 
     
     - Junction Deviation :  Junction Deviation variation (M205 J) 
+    
+    - Marlin Linear Advance (M900 K)
+
+    - RepRap Pressure Adance (M572 D0 S)
 
 ![SpeedTower.py](./images/speedtower.jpg)
 
