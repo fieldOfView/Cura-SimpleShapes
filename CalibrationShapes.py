@@ -17,6 +17,7 @@
 # V1.1.3   : Remove for the moment Junction deviation tower... waiting for User feedback
 # V1.2.0   : Linear/Pressure Adv Tower by dotdash32 https://github.com/dotdash32
 # V1.2.1   : Change CopyScript condition to fileSize
+# V1.2.2   : Error correction
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -214,7 +215,7 @@ class CalibrationShapes(QObject, Extension):
         # Logger.log("d", "plugPath= %s", plugPath)
         
         stringMatch = re.split("plugins", plugPath)
-        destPath = stringMatch[0] + "scripts"
+        destPath = os.path.join(stringMatch[0], "scripts")
         nbfile=0
         # Copy the script
         for fl in File_List:
@@ -238,11 +239,11 @@ class CalibrationShapes(QObject, Extension):
         txt_Message = ""
         if nbfile > 0 :
             txt_Message =  str(nbfile) + " script(s) copied in :\n"
-            txt_Message = txt_Message + os.path.join(destPath, "scripts")
+            txt_Message = txt_Message + destPath
             txt_Message = txt_Message + "\nYou must now restart Cura to see the scripts in the postprocessing script list"
         else:
             txt_Message = "Every script are up to date in :\n"
-            txt_Message = txt_Message + os.path.join(destPath, "scripts")
+            txt_Message = txt_Message + destPath
           
         self._message = Message(catalog.i18nc("@info:status", txt_Message), title = catalog.i18nc("@title", "Calibration Shapes"))
         self._message.show()
