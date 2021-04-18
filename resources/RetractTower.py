@@ -138,7 +138,7 @@ class RetractTower(Script):
                     "label": "Change Layer Offset",
                     "description": "if the Tower has a base, put the layer high off it here",
                     "type": "float",
-                    "default_value": 4,
+                    "default_value": 5,
                     "minimum_value": 0
                 },
                 "lcdfeedback":
