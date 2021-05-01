@@ -71,7 +71,7 @@ SpeedTower.py
 -----
 Description:  postprocessing-script to easily define a Speed Tower.
 
-Three options :
+Five options :
 
     - Jerk   :  Speed variation (M204 S) 
 	
@@ -79,9 +79,9 @@ Three options :
     
     - Junction Deviation :  Junction Deviation variation (M205 J) 
     
-    - Marlin Linear Advance (M900 K)
+    - Marlin Linear  :  Marlin Linear Advance (M900 K)
 
-    - RepRap Pressure Adance (M572 D0 S)
+    - RepRap Pressure  : RepRap Pressure Advance (M572 D0 S)
 
 ![SpeedTower.py](./images/speedtower.jpg)
 
