@@ -45,8 +45,8 @@ class SpeedTower(Script):
                         "acceleration": "Acceleration",
                         "jerk": "Jerk",
                         "junction": "Junction Deviation",
-                        "marlinadv": "Marlin Linear Advance",
-                        "rrfpresure": "RepRap Pressure Adance"
+                        "marlinadv": "Marlin Linear",
+                        "rrfpresure": "RepRap Pressure"
                     },
                     "default_value": "acceleration"
                 },
