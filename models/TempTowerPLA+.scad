@@ -5,7 +5,7 @@
 //---------------------------
 // TempTower Script
 //---------------------------
-// StartTempTower       : 220 
+// StartTempTower       : 230 
 // Incremental Temp     : -5
 //---------------------------
 // Layer = 0.16 (First layer 0.2)
@@ -33,17 +33,15 @@ translate([Hc*(-136-cos(60)), -30*Hc, Hc*(1+cos(30))]) difference() {
   step=cube_size;
 union() {
   Base();
-  translate([1.5, 0.5, nz]) OneStep("220");
-  translate([1.5, 0.5, nz+step*1]) OneStep("215");
-  translate([1.5, 0.5, nz+step*2]) OneStep("210");
-  translate([1.5, 0.5, nz+step*3]) OneStep("205");
-  translate([1.5, 0.5, nz+step*4]) OneStep("200");
-  translate([1.5, 0.5, nz+step*5]) OneStep("195");
-  translate([1.5, 0.5, nz+step*6]) OneStep("190");
-  translate([1.5, 0.5, nz+step*7]) OneStep("185");
-  translate([1.5, 0.5, nz+step*8]) OneStep("180");
+  translate([1.5, 0.5, nz]) OneStep("230");
+  translate([1.5, 0.5, nz+step*1]) OneStep("225");
+  translate([1.5, 0.5, nz+step*2]) OneStep("220");
+  translate([1.5, 0.5, nz+step*3]) OneStep("215");
+  translate([1.5, 0.5, nz+step*4]) OneStep("210");
+  translate([1.5, 0.5, nz+step*5]) OneStep("205");
+  translate([1.5, 0.5, nz+step*6]) OneStep("200");
 }
-translate([1.5, 0.5, nz]) Mat("PLA");
+translate([1.5, 0.5, nz]) Mat("PLA+");
 }
 
 
@@ -65,9 +63,10 @@ module letter(Txt) {
 module letterMat(Txt) {
   color("Yellow")
   linear_extrude(height = letter_height) {
-    text(Txt, size = letter_size*0.7, font = font, halign = "center", valign = "center");
+    text(Txt, size = letter_size*0.9, font = font, halign = "center", valign = "center");
   }
 }
+
 
 module OneStep(Txt){
 difference() {
@@ -82,7 +81,7 @@ difference() {
 
 module Mat(Txt){
       color("Red")
-      translate([4*cube_size+o, letter_height-0.01, o]) rotate([90, 0, 0]) letter(Txt);
+      translate([4*cube_size+o, letter_height-0.01, o]) rotate([90, 0, 0]) letterMat(Txt);
 }
 
 module Chanfrein(Chf) {
