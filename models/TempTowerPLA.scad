@@ -65,7 +65,7 @@ module letter(Txt) {
 module letterMat(Txt) {
   color("Yellow")
   linear_extrude(height = letter_height) {
-    text(Txt, size = letter_size*0.7, font = font, halign = "center", valign = "center");
+    text(Txt, size = letter_size*1.1, font = font, halign = "center", valign = "center");
   }
 }
 
@@ -82,7 +82,7 @@ difference() {
 
 module Mat(Txt){
       color("Red")
-      translate([4*cube_size+o, letter_height-0.01, o]) rotate([90, 0, 0]) letter(Txt);
+      translate([4*cube_size+o, letter_height-0.01, o]) rotate([90, 0, 0]) letterMat(Txt);
 }
 
 module Chanfrein(Chf) {
