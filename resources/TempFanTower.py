@@ -99,7 +99,7 @@ class TempFanTower(Script):
         startTemperature = self.getSettingValueByKey("startTemperature")
         temperaturechange = self.getSettingValueByKey("temperaturechange")
         changelayer = self.getSettingValueByKey("changelayer")
-        changelayeroffset = self.getSettingValueByKey("changelayeroffset")
+        ChangeLayerOffset = self.getSettingValueByKey("changelayeroffset")
         ChangeLayerOffset += 2  # Modification to take into account the numbering offset in Gcode
                                 # layer_index = 0 for initial Block 1= Start Gcode normaly first layer = 0
         
@@ -125,20 +125,20 @@ class TempFanTower(Script):
             
             lines = layer.split("\n")
             for line in lines:
-                if line.startswith("M106 S") and ((layer_index-changelayeroffset)>0) and (usefan) and (afterbridge):
+                if line.startswith("M106 S") and ((layer_index-ChangeLayerOffset)>0) and (usefan) and (afterbridge):
                     line_index = lines.index(line)
                     currentfan = int((int(fanvalues[idl])/100)*255)  #  100% = 255 pour ventilateur
                     lines[line_index] = "M106 S"+str(int(currentfan))+ " ; FAN MODI"
                     afterbridge == False                    
 
-                if line.startswith("M107") and ((layer_index-changelayeroffset)>0) and (usefan):
+                if line.startswith("M107") and ((layer_index-ChangeLayerOffset)>0) and (usefan):
                     afterbridge == True
                     line_index = lines.index(line)
                 
                 if line.startswith(";LAYER:"):
                     line_index = lines.index(line)
                     
-                    if (layer_index==changelayeroffset):
+                    if (layer_index==ChangeLayerOffset):
                         lines.insert(line_index + 1, ";TYPE:CUSTOM LAYER")
                         lines.insert(line_index + 2, "M104 S"+str(currentTemperature))
                         idl=0
@@ -146,7 +146,7 @@ class TempFanTower(Script):
                             currentfan = int((int(fanvalues[idl])/100)*255)  #  100% = 255 pour ventilateur
                             lines.insert(line_index + 3, "M106 S"+str(currentfan))
                         
-                    if ((layer_index-changelayeroffset) % changelayer == 0) and ((layer_index-changelayeroffset)>0):
+                    if ((layer_index-ChangeLayerOffset) % changelayer == 0) and ((layer_index-ChangeLayerOffset)>0):
                         if (usefan) and (idl < nbval):
                             idl += 1
                             currentfan = int((int(fanvalues[idl])/100)*255)  #  100% = 255 pour ventilateur
