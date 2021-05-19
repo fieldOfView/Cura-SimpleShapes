@@ -15,6 +15,7 @@
 #   Version 1.1 29/01/2021
 #   Version 1.2 05/04/2021 by dotdash32(https://github.com/dotdash32) for Marlin Linear Advance & RepRap Pressure Advance
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
+#   Version 1.4 18/05/2021  : int
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ from UM.Application import Application
 from UM.Logger import Logger
 import re #To perform the search
 
-__version__ = '1.3'
+__version__ = '1.4'
 
 class SpeedTower(Script):
     def __init__(self):
