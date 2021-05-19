@@ -12,7 +12,6 @@
 #   Version 1.1 9/01/2020
 #   Version 1.2 11/01/2020  Fan modification after Bridge
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
-#   Version 1.4 18/05/2021  : Change Int
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -20,7 +19,7 @@ from ..Script import Script
 from UM.Application import Application
 from UM.Logger import Logger
 
-__version__ = '1.4'
+__version__ = '1.3'
 
 class TempFanTower(Script):
     def __init__(self):
@@ -60,7 +59,7 @@ class TempFanTower(Script):
                 {
                     "label": "Change Layer",
                     "description": "how many layers needs to be printed before the temperature should be changed.",
-                    "type": "int",
+                    "type": "float",
                     "default_value": 52,
                     "minimum_value": 1,
                     "maximum_value": 1000,
@@ -71,7 +70,7 @@ class TempFanTower(Script):
                 {
                     "label": "Change Layer Offset",
                     "description": "if the Temptower has a base, put the layer high off it here",
-                    "type": "int",
+                    "type": "float",
                     "default_value": 5,
                     "minimum_value": 0,
                     "maximum_value": 1000,

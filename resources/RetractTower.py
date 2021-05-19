@@ -11,8 +11,7 @@
 #   Version 1.1 29/01/2021
 #   Version 1.2 19/02/2021  : First instruction output
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
-#   Version 1.4 18/05/2021  : Int
-#   
+#
 #------------------------------------------------------------------------------------------------------------------------------------
 
 from ..Script import Script
@@ -21,7 +20,7 @@ from UM.Application import Application
 import re #To perform the search
 from enum import Enum
 
-__version__ = '1.4'
+__version__ = '1.3'
 
 class Section(Enum):
     """Enum for section type."""
@@ -130,7 +129,7 @@ class RetractTower(Script):
                 {
                     "label": "Change Layer",
                     "description": "how many layers needs to be printed before the value should be changed.",
-                    "type": "int",
+                    "type": "float",
                     "default_value": 38,
                     "minimum_value": 1
                 },
@@ -138,7 +137,7 @@ class RetractTower(Script):
                 {
                     "label": "Change Layer Offset",
                     "description": "if the Tower has a base, put the layer high off it here",
-                    "type": "int",
+                    "type": "float",
                     "default_value": 5,
                     "minimum_value": 0
                 },

@@ -15,7 +15,7 @@
 #   Version 1.1 29/01/2021
 #   Version 1.2 05/04/2021 by dotdash32(https://github.com/dotdash32) for Marlin Linear Advance & RepRap Pressure Advance
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
-#   Version 1.4 18/05/2021  : int
+#   Version 1.4 18/05/2021  : float
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -69,7 +69,7 @@ class SpeedTower(Script):
                 {
                     "label": "Change Layer",
                     "description": "how many layers needs to be printed before the value should be changed.",
-                    "type": "int",
+                    "type": "float",
                     "default_value": 30,
                     "minimum_value": 1,
                     "maximum_value": 1000,
@@ -79,7 +79,7 @@ class SpeedTower(Script):
                 {
                     "label": "Change Layer Offset",
                     "description": "if the Tower has a base, put the layer high off it here",
-                    "type": "int",
+                    "type": "float",
                     "default_value": 4,
                     "minimum_value": 0,
                     "maximum_value": 1000,
