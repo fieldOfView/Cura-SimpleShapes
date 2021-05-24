@@ -96,6 +96,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem("", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Calibration Cube"), self.addCalibrationCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA TempTower"), self.addPLATempTower)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA TempTower 190°C"), self.addPLATempTowerSimple)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA+ TempTower"), self.addPLAPlusTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PETG TempTower"), self.addPETGTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an ABS TempTower"), self.addABSTempTower)
@@ -309,6 +310,12 @@ class CalibrationShapes(QObject, Extension):
         self._addShape("PLATempTower",self._toMeshData(mesh))
         self._checkAdaptativ(False)
 
+    def addPLATempTowerSimple(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPLA190°C.stl")
+        mesh =  trimesh.load(model_definition_path)
+        # addShape
+        self._addShape("PLATempTower",self._toMeshData(mesh))
+        self._checkAdaptativ(False)
 
     def addPLAPlusTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPLA+.stl")
