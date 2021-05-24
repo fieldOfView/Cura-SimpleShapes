@@ -18,6 +18,8 @@
 # V1.2.0   : Linear/Pressure Adv Tower by dotdash32 https://github.com/dotdash32
 # V1.2.1   : Change CopyScript condition to fileSize
 # V1.2.2   : Error correction
+# V1.2.3   : Change error message
+# V1.2.4   : Check Adaptative Layers options for TempTower
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -97,8 +99,9 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA+ TempTower"), self.addPLAPlusTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PETG TempTower"), self.addPETGTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an ABS TempTower"), self.addABSTempTower)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
+        
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
         # self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Junction Deviation Tower"), self.addJunctionDeviationTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bridge Test"), self.addBridgeTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Thin Wall Test"), self.addThinWall)
@@ -297,43 +300,49 @@ class CalibrationShapes(QObject, Extension):
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "JunctionDeviationTower.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
-        self._addShape("JunctionDeviationTower",self._toMeshData(mesh))
-        
+        self._addShape("JunctionDeviationTower",self._toMeshData(mesh)) 
+    
     def addPLATempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPLA.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
         self._addShape("PLATempTower",self._toMeshData(mesh))
+        self._checkAdaptativ(False)
+
 
     def addPLAPlusTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPLA+.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
         self._addShape("PLA+TempTower",self._toMeshData(mesh))
+        self._checkAdaptativ(False)
         
     def addPETGTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerPETG.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
         self._addShape("PETGTempTower",self._toMeshData(mesh))
+        self._checkAdaptativ(False)
         
     def addABSTempTower(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "TempTowerABS.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
         self._addShape("ABSTempTower",self._toMeshData(mesh))
+        self._checkAdaptativ(False)
+
+    def addRetractTower(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTower.stl")
+        mesh =  trimesh.load(model_definition_path)
+        # addShape
+        self._addShape("RetractTower",self._toMeshData(mesh))
+        self._checkAdaptativ(False)
         
     def addRetractTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTest.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
         self._addShape("RetractTest",self._toMeshData(mesh))
- 
-    def addRetractTower(self) -> None:
-        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "RetractTower.stl")
-        mesh =  trimesh.load(model_definition_path)
-        # addShape
-        self._addShape("RetractTower",self._toMeshData(mesh))
         
     def addBridgeTest(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "BridgeTest.stl")
@@ -428,7 +437,21 @@ class CalibrationShapes(QObject, Extension):
         mesh = trimesh.creation.icosphere(subdivisions=4,radius = self._size / 2,)
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, 0, self._size*0.5]))
         self._addShape("Sphere",self._toMeshData(mesh))
- 
+
+    #----------------------------------------------------------
+    # Check adaptive_layer_height_enabled must be False
+    #----------------------------------------------------------   
+    def _checkAdaptativ(self, val):
+        # Logger.log("d", "In checkAdaptativ = %s", str(val))
+        # Fix some settings in Cura to get a better result
+        global_container_stack = CuraApplication.getInstance().getGlobalContainerStack() 
+        adaptive_layer = global_container_stack.getProperty("adaptive_layer_height_enabled", "value")
+        
+        if adaptive_layer !=  val :
+            Message(text = "Info modification current profil adaptive_layer_height_enabled\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            # Define adaptive_layer
+            global_container_stack.setProperty("adaptive_layer_height_enabled", "value", False)
+            
     #----------------------------------------
     # Initial Source code from  fieldOfView
     #----------------------------------------  
