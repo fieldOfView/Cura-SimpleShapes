@@ -10,11 +10,11 @@ Calibration part
 You can also load standard test  / calibration  part :
 - [Calibration Cube XYZ](./models/CalibrationCube.stl)
 - [PLA  TempTower 220 - 180°C](./models/TempTowerPLA.stl)
+- [PLA  TempTower 220 - 190°C](./models/TempTowerPLA190°C.stl)
 - [PLA+ TempTower 230 - 200°C](./models/TempTowerPLA+.stl)
 - [ABS  TempTower 250 - 210°C](./models/TempTowerABS.stl)
 - [PETG TempTower 260 - 230°C](./models/TempTowerPETG.stl)
 - [Retract Tower](./models/RetractTower.stl)
-- [Junction Deviation Tower](./models/JunctionDeviationTower.stl)
 - [Retract Test part](./models/RetractTest.stl)
 - [Bridge Spiral test](./models/BridgeTest.stl)
 - [Thin Wall Test](./models/ThinWall.stl)
@@ -22,6 +22,7 @@ You can also load standard test  / calibration  part :
 - [Flow Test](./models/FlowTest.stl)
 - [Hole Test](./models/HoleTest.stl)
 - [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl)
+- [Junction Deviation Tower](./models/JunctionDeviationTower.stl)
 - [Tolerance Test](./models/Tolerance.stl)
 - [MultiCube Test](./models/MultiCube.stl)
 
@@ -92,8 +93,8 @@ TempFanTower.py
 
 Description:  postprocessing-script to easily to create a temptower and not use 10 changeAtZ-scripts
 
- The default values are for this temptower PLA model : [PLA TempTower 220 - 180°C](./models/TempTowerPLA.stl)
-- Temp Tower PLA de 220 à 180
+ The default values are for this temptower PLA model : [PLA TempTower 220°C - 180°C](./models/TempTowerPLA.stl)
+- Temp Tower PLA from 220°C to 180°C  (Other design possible to test PLA from 220°C to 190°C)
 - Possibility to define also a Fan Tower , Fan percentage speed indicate with semi-colon as seprator
 
 ![TempFanTower.py](./images/tempfan.jpg)
