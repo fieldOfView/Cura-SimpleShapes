@@ -115,6 +115,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Linear/Pressure Adv Tower"), self.addPressureAdvTower)
         self.addMenuItem("  ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Cube bi-color"), self.addCubeBiColor)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Bi-Color Calibration Cube"), self.addHollowCalibrationCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Extruder Offset Calibration Part"), self.addExtruderOffsetCalibration)        
         self.addMenuItem("   ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
@@ -403,6 +404,16 @@ class CalibrationShapes(QObject, Extension):
         # addShape
         self._addShape("CubeBiColorExt1",self._toMeshData(mesh),1)
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "CubeBiColorRed.stl")
+        mesh =  trimesh.load(model_definition_path)
+        # addShape
+        self._addShape("CubeBiColorExt2",self._toMeshData(mesh),2)
+
+    def addHollowCalibrationCube(self) -> None:
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "HollowCalibrationCube.stl")
+        mesh =  trimesh.load(model_definition_path)
+        # addShape
+        self._addShape("CubeBiColorExt1",self._toMeshData(mesh),1)
+        model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "HollowCenterCube.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
         self._addShape("CubeBiColorExt2",self._toMeshData(mesh),2)
