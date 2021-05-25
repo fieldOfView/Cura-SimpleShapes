@@ -474,14 +474,14 @@ class CalibrationShapes(QObject, Extension):
             global_container_stack.setProperty("adaptive_layer_height_enabled", "value", False)
         
         nozzle_size = float(extruder.getProperty("machine_nozzle_size", "value"))
-        remove_holes = global_container_stack.getProperty("meshfix_union_all_remove_holes", "value")
+        remove_holes = extruder.getProperty("meshfix_union_all_remove_holes", "value")
         # Logger.log("d", "In checkAdaptativ nozzle_size = %s", str(nozzle_size))
         # Logger.log("d", "In checkAdaptativ remove_holes = %s", str(remove_holes))
         
         if (nozzle_size >  0.4) and (remove_holes == False) :
             Message(text = "Info modification current profil meshfix_union_all_remove_holes (machine_nozzle_size>0.4)\nNew value : %s" % (str(True)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
             # Define adaptive_layer
-            global_container_stack.setProperty("meshfix_union_all_remove_holes", "value", True) 
+            extruder.setProperty("meshfix_union_all_remove_holes", "value", True) 
             
     #----------------------------------------
     # Initial Source code from  fieldOfView
