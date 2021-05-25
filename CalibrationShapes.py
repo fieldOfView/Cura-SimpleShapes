@@ -19,7 +19,9 @@
 # V1.2.1   : Change CopyScript condition to fileSize
 # V1.2.2   : Error correction
 # V1.2.3   : Change error message
-# V1.2.4   : Check Adaptative Layers options for TempTower
+# V1.2.4   : Check Adaptative Layers options for Tower
+# V1.2.5   : Set meshfix_union_all_remove_holes for Tower if Nozzle_Size > 0.4
+#
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -464,11 +466,22 @@ class CalibrationShapes(QObject, Extension):
         # Fix some settings in Cura to get a better result
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack() 
         adaptive_layer = global_container_stack.getProperty("adaptive_layer_height_enabled", "value")
+        extruder = global_container_stack.extruderList[0]
         
         if adaptive_layer !=  val :
             Message(text = "Info modification current profil adaptive_layer_height_enabled\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
             # Define adaptive_layer
             global_container_stack.setProperty("adaptive_layer_height_enabled", "value", False)
+        
+        nozzle_size = float(extruder.getProperty("machine_nozzle_size", "value"))
+        remove_holes = global_container_stack.getProperty("meshfix_union_all_remove_holes", "value")
+        # Logger.log("d", "In checkAdaptativ nozzle_size = %s", str(nozzle_size))
+        # Logger.log("d", "In checkAdaptativ remove_holes = %s", str(remove_holes))
+        
+        if (nozzle_size >  0.4) and (remove_holes == False) :
+            Message(text = "Info modification current profil meshfix_union_all_remove_holes (machine_nozzle_size>0.4)\nNew value : %s" % (str(True)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            # Define adaptive_layer
+            global_container_stack.setProperty("meshfix_union_all_remove_holes", "value", True) 
             
     #----------------------------------------
     # Initial Source code from  fieldOfView
