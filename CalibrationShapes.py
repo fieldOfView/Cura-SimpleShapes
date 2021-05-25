@@ -412,11 +412,11 @@ class CalibrationShapes(QObject, Extension):
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "HollowCalibrationCube.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
-        self._addShape("CubeBiColorExt1",self._toMeshData(mesh),1)
+        self._addShape("CubeBiColorExt",self._toMeshData(mesh),1)
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "HollowCenterCube.stl")
         mesh =  trimesh.load(model_definition_path)
         # addShape
-        self._addShape("CubeBiColorExt2",self._toMeshData(mesh),2)
+        self._addShape("CubeBiColorInt",self._toMeshData(mesh),2)
         
     def addExtruderOffsetCalibration(self) -> None:
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "nozzle-to-nozzle-xy-offset-calibration-pattern-a.stl")
@@ -506,7 +506,7 @@ class CalibrationShapes(QObject, Extension):
         
     # Initial Source code from  fieldOfView
     # https://github.com/fieldOfView/Cura-SimpleShapes/blob/bac9133a2ddfbf1ca6a3c27aca1cfdd26e847221/SimpleShapes.py#L70
-    def _addShape(self, name, mesh_data: MeshData, ext_pos = 0 ) -> None:
+    def _addShape(self, mesh_name, mesh_data: MeshData, ext_pos = 0 ) -> None:
         application = CuraApplication.getInstance()
         global_stack = application.getGlobalContainerStack()
         if not global_stack:
@@ -516,10 +516,10 @@ class CalibrationShapes(QObject, Extension):
 
         node.setMeshData(mesh_data)
         node.setSelectable(True)
-        if len(name)==0:
+        if len(mesh_name)==0:
             node.setName("TestPart" + str(id(mesh_data)))
         else:
-            node.setName(str(name))
+            node.setName(str(mesh_name))
 
         scene = self._controller.getScene()
         op = AddSceneNodeOperation(node, scene.getRoot())
@@ -544,4 +544,5 @@ class CalibrationShapes(QObject, Extension):
         node.addDecorator(SliceableObjectDecorator())
 
         application.getController().getScene().sceneChanged.emit(node)
+        
 
