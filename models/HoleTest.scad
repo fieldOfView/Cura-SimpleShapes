@@ -5,7 +5,7 @@
 //------------------------------------------------------------
 DIAMETER = 24; //
 
-$fn=100;
+$fn=150;
 
 union(){ 
     for (i=[3:17])
@@ -15,7 +15,7 @@ union(){
         translate([DIAMETER,0,0])
         difference(){
             cylinder( h=5,r=(i*0.5+0.3), center=false);
-            cylinder( h=8,r=(i*0.5-1) , center=false, $fn=200);
+            cylinder( h=8,r=(i*0.5-1) , center=false);
         }
     }
 }
