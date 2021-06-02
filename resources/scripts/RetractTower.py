@@ -13,9 +13,8 @@
 #   Version 1.2 19/02/2021  : First instruction output
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
 #   Version 1.4 01/06/2021  : Detect G91/G90 M82/M83 in G-Code
-#   Version 1.5 02/06/2021  : Detect G92 E0 in G-Code . 
-#                             Supress and not "Z" in line for is_retract_line we can have in some configuration 
-#                             Ie : G1 E-2 Z0.2 F2400 ;Retract and raise Z
+#                               https://github.com/5axes/Calibration-Shapes/issues/28
+#   Version 1.5 02/06/2021  : Detect G92 E0 in G-Code
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -58,7 +57,7 @@ def is_retract_line(line: str) -> bool:
     Returns:
         bool: True if the line is a retract segment
     """
-    return "G1" in line and "F" in line and "E" in line and not "X" in line and not "Y" in line
+    return "G1" in line and "F" in line and "E" in line and not "X" in line and not "Y" in line and not "Z" in line
     
 def is_extrusion_line(line: str) -> bool:
     """Check if current line is a standard printing segment.
@@ -94,13 +93,13 @@ def is_relative_instruction_line(line: str) -> bool:
     return "G91" in line or "M83" in line
 
 def is_not_relative_instruction_line(line: str) -> bool:
-    """Check if current line contain a M82 / G91 instruction
+    """Check if current line contain a M82 / G90 instruction
 
     Args:
         line (str): Gcode line
 
     Returns:
-        bool: True contain a M82 / G91 instruction
+        bool: True contain a M82 / G90 instruction
     """
     return "G90" in line or "M82" in line
 

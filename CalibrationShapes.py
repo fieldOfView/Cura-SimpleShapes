@@ -23,6 +23,8 @@
 # V1.2.5   : Set meshfix_union_all_remove_holes for Tower if Nozzle_Size > 0.4
 # V1.2.6   : Retract tower script modification (Version 1.4)
 #          : https://github.com/5axes/Calibration-Shapes/issues/28
+# V1.3.0   : Test the version: since 4.9 the followin bug is solved .. Don't need to use the function CopyScript
+#          : https://github.com/5axes/Calibration-Shapes/issues/1
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -52,6 +54,9 @@ from UM.Operations.AddSceneNodeOperation import AddSceneNodeOperation
 from cura.Scene.CuraSceneNode import CuraSceneNode
 from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
 from cura.Scene.BuildPlateDecorator import BuildPlateDecorator
+
+from cura.CuraVersion import CuraVersion  # type: ignore
+from UM.Version import Version
 
 from UM.Logger import Logger
 from UM.Message import Message
@@ -88,7 +93,26 @@ class CalibrationShapes(QObject, Extension):
         # https://github.com/5axes/Calibration-Shapes/issues/1
         # Cura should be able to find the scripts from inside the plugin folder if the scripts are into a folder named resources
         Resources.addSearchPath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources"))
+ 
+        self.Major=1
+        self.Minor=0
+
+        # Logger.log('d', "Info Version CuraVersion --> " + str(Version(CuraVersion)))
+        Logger.log('d', "Info CuraVersion --> " + str(CuraVersion))
         
+        # Test version for futur release 4.9
+        if "master" in CuraVersion or "beta" in CuraVersion or "BETA" in CuraVersion:
+            # Master is always a developement version.
+            self.Major=4
+            self.Minor=9
+
+        else:
+            try:
+                self.Major = int(CuraVersion.split(".")[0])
+                self.Minor = int(CuraVersion.split(".")[1])
+            except:
+                pass
+                
         self._controller = CuraApplication.getInstance().getController()
         self._message = None
         
@@ -122,7 +146,8 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bi-Color Calibration Cube"), self.addHollowCalibrationCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Extruder Offset Calibration Part"), self.addExtruderOffsetCalibration)        
         self.addMenuItem("   ", lambda: None)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
+        if self.Major < 4 or ( self.Major == 4 and self.Minor < 9 ) :
+            self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Define default size"), self.defaultSize)
         self.addMenuItem("    ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Help"), self.gotoHelp)
@@ -221,7 +246,7 @@ class CalibrationShapes(QObject, Extension):
     def copyScript(self) -> None:
         File_List = ['RetractTower.py', 'SpeedTower.py', 'TempFanTower.py']
         
-        plugPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources")
+        plugPath =  os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources"), "scripts")
         # Logger.log("d", "plugPath= %s", plugPath)
         
         stringMatch = re.split("plugins", plugPath)
