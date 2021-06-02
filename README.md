@@ -35,6 +35,7 @@ Bed Level : For this part the initial design is scaled to the bed size
 Multi-Extruder Calibration part
 
 - Cube bi-color
+- Calibration Cube bi-color
 - Extruder Offset Calibration
 
 All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
