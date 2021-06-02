@@ -1,10 +1,10 @@
 #------------------------------------------------------------------------------------------------------------------------------------
 #
-# Cura PostProcessingPlugin
+# Cura PostProcessing Script
 # Author:   5axes
 # Date:     November 29 2020
 #
-# Description:  postprocessing-script to easily define a Retract Tower
+# Description:  postprocessing script to easily define a Retract Tower
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 #
