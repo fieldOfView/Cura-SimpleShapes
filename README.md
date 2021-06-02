@@ -60,13 +60,16 @@ Several postprocessing Scripts are included into the plugin to help the user to 
 
 ### Copy Scripts
 
-These scripts can be copied into the scripts directory via the function **Copy Scripts**. 
 **Note :** Since Cura 4.9 don't need to use this function anymore. Have been remove from the menu.
+
+These scripts can be copied into the scripts directory via the function **Copy Scripts**. 
 
 **After you have copied these scripts, you must restart Cura to see the scripts in the postprocessing scripts list.**
 
-### Tower generation scripts
 After the restart the scripts must be visible in the Postprocessing scripts list.
+
+### Tower generation scripts
+The scripts provided with this plugin must be visible in the Postprocessing scripts list.
 
 ![Adding script](./images/plugins.jpg)
 
