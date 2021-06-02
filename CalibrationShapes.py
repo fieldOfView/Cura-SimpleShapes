@@ -22,6 +22,7 @@
 # V1.2.4   : Check Adaptive Layers options for Tower
 # V1.2.5   : Set meshfix_union_all_remove_holes for Tower if Nozzle_Size > 0.4
 # V1.2.6   : Retract tower script modification (Version 1.4)
+#          : https://github.com/5axes/Calibration-Shapes/issues/28
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
