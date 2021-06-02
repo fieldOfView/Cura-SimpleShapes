@@ -19,8 +19,9 @@
 # V1.2.1   : Change CopyScript condition to fileSize
 # V1.2.2   : Error correction
 # V1.2.3   : Change error message
-# V1.2.4   : Check Adaptative Layers options for Tower
+# V1.2.4   : Check Adaptive Layers options for Tower
 # V1.2.5   : Set meshfix_union_all_remove_holes for Tower if Nozzle_Size > 0.4
+# V1.2.6   : Retract tower script modification (Version 1.4)
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
