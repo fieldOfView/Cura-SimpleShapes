@@ -152,6 +152,9 @@ class SlowSkirt(Script):
             lines = layer.split("\n")
             for line in lines:                  
                
+                if line.startswith(";TYPE:"):
+                    Idl=0
+                    
                 if line.startswith(";TYPE:SKIRT"):
                     line_index = lines.index(line)
                     lcd_gcode = "M117 Slow Reduction {}".format(int(SlowReduction))
