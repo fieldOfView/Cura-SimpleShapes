@@ -1,7 +1,8 @@
 // Support Test
 // 
 // by Dotdash32 (JDeWitt)
-
+// https://github.com/dotdash32
+//
 // rendering aids
 // $fa = 3; //min fragment angle
 // $fs = 0.5; // min fragment size
