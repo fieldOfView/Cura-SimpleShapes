@@ -139,6 +139,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Flow Test"), self.addFlowTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Hole Test"), self.addHoleTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Tolerance Test"), self.addTolerance)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Support Test"), self.addSupportTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a MultiCube Calibration"), self.addMultiCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bed Level Calibration"), self.addBedLevelCalibration)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Linear/Pressure Adv Tower"), self.addPressureAdvTower)
@@ -379,6 +380,10 @@ class CalibrationShapes(QObject, Extension):
 
     def addTolerance(self) -> None:
         self._registerShapeStl("Tolerance")
+
+    # Dotdash addition 2 - Support test
+    def addSupportTest(self) -> None:
+        self._registerShapeStl("SupportTest")
 
     # Dotdash addition - for Linear/Pressure advance
     def addPressureAdvTower(self) -> None:
