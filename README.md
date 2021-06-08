@@ -24,6 +24,7 @@ You can also load standard test  / calibration  part :
 - [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl)
 - [Junction Deviation Tower](./models/JunctionDeviationTower.stl)
 - [Tolerance Test](./models/Tolerance.stl)
+- [Support Test](./models/SupportTest.stl)
 - [MultiCube Test](./models/MultiCube.stl)
 
 
