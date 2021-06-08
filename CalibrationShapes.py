@@ -26,6 +26,7 @@
 # V1.3.0   : Test the version: since 4.9 the followin bug is solved .. Don't need to use the function CopyScript
 #          : https://github.com/5axes/Calibration-Shapes/issues/1
 #
+# V1.3.1   : Modification with a code simplification by @dmarx
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
