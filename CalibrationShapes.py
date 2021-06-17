@@ -28,6 +28,8 @@
 #
 # V1.3.1   : Modification with a code simplification by @dmarx
 # V1.3.2   : New Support test Part  thanks to @dotdash32 : https://github.com/5axes/Calibration-Shapes/pull/44
+# V1.3.3   : Change on F-strings are supported since Python 3.6, which means that because of that line, the plugin is not loaded in Cura versions <=4.8. 
+#            
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -322,7 +324,7 @@ class CalibrationShapes(QObject, Extension):
             
     def _registerShapeStl(self, mesh_name, mesh_filename=None, **kwargs) -> None:
         if mesh_filename is None:
-            mesh_filename = f"{mesh_name}.stl"
+            mesh_filename = mesh_name + ".stl"
         
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", mesh_filename)
         mesh =  trimesh.load(model_definition_path)
