@@ -61,7 +61,7 @@ Several postprocessing Scripts are included into the plugin to help the user to 
 
 ### Copy Scripts
 
-**Note :** Since Cura 4.9 don't need to use this function anymore. Have been remove from the menu.
+**Note :** Since Cura 4.9 you don't need to use this function anymore. Has been removed from the menu.
 
 These scripts can be copied into the scripts directory via the function **Copy Scripts**. 
 
