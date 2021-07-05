@@ -29,7 +29,7 @@
 # V1.3.1   : Modification with a code simplification by @dmarx
 # V1.3.2   : New Support test Part  thanks to @dotdash32 : https://github.com/5axes/Calibration-Shapes/pull/44
 # V1.3.3   : Change on F-strings are supported since Python 3.6, which means that because of that line, the plugin is not loaded in Cura versions <=4.8. 
-#            
+# V1.4.0   : test for retract if retraction is enable and if value>0       
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -363,6 +363,7 @@ class CalibrationShapes(QObject, Extension):
     def addRetractTower(self) -> None:
         self._registerShapeStl("RetractTower")
         self._checkAdaptativ(False)
+        self._checkRetract(True)
         
     def addRetractTest(self) -> None:
         self._registerShapeStl("RetractTest")
@@ -436,6 +437,29 @@ class CalibrationShapes(QObject, Extension):
         mesh.apply_transform(trimesh.transformations.translation_matrix([0, 0, self._size*0.5]))
         self._addShape("Sphere",self._toMeshData(mesh))
 
+    #----------------------------------------------------------
+    # Check retraction_enable must be True
+    #----------------------------------------------------------   
+    def _checkRetract(self, val):
+        # Logger.log("d", "In checkRetract = %s", str(val))
+        global_container_stack = CuraApplication.getInstance().getGlobalContainerStack() 
+        extruder = global_container_stack.extruderList[0]
+        retraction_e = float(extruder.getProperty("retraction_enable", "value"))
+        
+        if retraction_e !=  val :
+            Message(text = "Info modification current profil retraction_enable\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            # Define retraction_enable
+            extruder.setProperty("retraction_enable", "value", True)
+        
+        
+        retraction_amount = extruder.getProperty("retraction_amount", "value")
+        Logger.log("d", "In checkRetract retraction_amount = %s", str(retraction_amount))
+        
+        if  (retraction_amount == 0) :
+            Message(text = "Info modification current profil retraction_amount\nNew value : %s" % (str(1.0)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            # Define retraction_amount
+            extruder.setProperty("retraction_amount", "value", 1.0)
+            
     #----------------------------------------------------------
     # Check adaptive_layer_height_enabled must be False
     #----------------------------------------------------------   
