@@ -25,7 +25,7 @@ You can also load standard test  / calibration  part :
 | [Overhang Test](https://github.com/5axes/Calibration-Shapes/wiki/Overhang-Test)          | [Overhang Test](./models/Overhang.stl) |
 | [Flow Test](https://github.com/5axes/Calibration-Shapes/wiki/Flow-Test)          | [Flow Test](./models/FlowTest.stl) |
 | [Hole Test](https://github.com/5axes/Calibration-Shapes/wiki/Hole-Test)          | [Hole Test](./models/HoleTest.stl) |
-| [Linear/Pressure Adv Tower](https://github.com/5axes/Calibration-Shapes/wiki/Linear-Pressure-Advance-Tower)          | [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl) |
+| [Linear/Pressure Advance Tower](https://github.com/5axes/Calibration-Shapes/wiki/Linear-Pressure-Advance-Tower)          | [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl) |
 | [Junction Deviation Tower](https://github.com/5axes/Calibration-Shapes/wiki/Junction-Deviation-Tower)          | [Junction Deviation Tower](./models/JunctionDeviationTower.stl) |
 | [Tolerance Test](https://github.com/5axes/Calibration-Shapes/wiki/Tolerance)          | [Tolerance Test](./models/Tolerance.stl) |
 | [Support Test](https://github.com/5axes/Calibration-Shapes/wiki/Support-Test)          | [Support Test](./models/SupportTest.stl) |
@@ -35,9 +35,9 @@ You can also load standard test  / calibration  part :
 
 Bed Level : For this part the initial design is scaled to the bed size
 
-| Wiki Page                                                                                    | Stl Model                                                |
-|:--------------------------------------------------------------------------------------------:|:--------------------------------------------------------:|
-| [Bed Level Calibration](https://github.com/5axes/Calibration-Shapes/wiki/ParametricBedLevel) | [Bed Level Calibration](./models/ParametricBedLevel.stl) |
+| Wiki Page                                                                                               | Stl Model                                                |
+|:-------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------:|
+| [Parametric Bed Level Calibration](https://github.com/5axes/Calibration-Shapes/wiki/ParametricBedLevel) | [Bed Level Calibration](./models/ParametricBedLevel.stl) |
 
 Multi-Extruder Calibration part
 
