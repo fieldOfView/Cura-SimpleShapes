@@ -6,34 +6,37 @@ The default size for all the simple shapes is 20 mm, but can be modified via the
 
 ![menu Extensions Calibration Shapes](./images/menu.jpg)
 
-Calibration part
---
+### Calibration part
 
 You can also load standard test  / calibration  part :
-- [Calibration Cube XYZ](./models/CalibrationCube.stl)
-- [PLA  TempTower 220 - 180°C](./models/TempTowerPLA.stl)
-- [PLA  TempTower 220 - 190°C](./models/TempTowerPLA190°C.stl)
-- [PLA+ TempTower 230 - 200°C](./models/TempTowerPLA+.stl)
-- [ABS  TempTower 250 - 210°C](./models/TempTowerABS.stl)
-- [PETG TempTower 260 - 230°C](./models/TempTowerPETG.stl)
-- [Retract Tower](./models/RetractTower.stl)
-- [Retract Test part](./models/RetractTest.stl)
-- [Bridge Spiral test](./models/BridgeTest.stl)
-- [Thin Wall Test](./models/ThinWall.stl)
-- [Overhang Test](./models/Overhang.stl)
-- [Flow Test](./models/FlowTest.stl)
-- [Hole Test](./models/HoleTest.stl)
-- [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl)
-- [Junction Deviation Tower](./models/JunctionDeviationTower.stl)
-- [Tolerance Test](./models/Tolerance.stl)
-- [Support Test](./models/SupportTest.stl)
-- [MultiCube Test](./models/MultiCube.stl)
+
+| Wiki Page | Stl Model                                               |
+|-----------|:-------------------------------------------------------:|
+| [Calibration Cube XYZ](https://github.com/5axes/Calibration-Shapes/wiki/Calibration-Cube-XYZ)           | [Calibration Cube XYZ](./models/CalibrationCube.stl) |
+|           | [PLA  TempTower 220 - 180°C](./models/TempTowerPLA.stl) |
+|           | [PLA+ TempTower 230 - 200°C](./models/TempTowerPLA+.stl) |
+|           | [ABS  TempTower 250 - 210°C](./models/TempTowerABS.stl) |
+|           | [PETG TempTower 260 - 230°C](./models/TempTowerPETG.stl) |
+|           | [Retract Tower](./models/RetractTower.stl) |
+|           | [Retract Test part](./models/RetractTest.stl) |
+|           | [Bridge Spiral test](./models/BridgeTest.stl) |
+|           | [Thin Wall Test](./models/ThinWall.stl) |
+|           | [Overhang Test](./models/Overhang.stl) |
+|           | [Flow Test](./models/FlowTest.stl) |
+|           | [Hole Test](./models/HoleTest.stl) |
+|           | [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl) |
+|           | [Junction Deviation Tower](./models/JunctionDeviationTower.stl) |
+|           | [Tolerance Test](./models/Tolerance.stl) |
+|           | [Support Test](./models/SupportTest.stl) |
+|           | [MultiCube Test](./models/MultiCube.stl) |
+
 
 
 Bed Level : For this part the initial design is scaled to the bed size
 
-- [Bed Level Calibration](./models/ParametricBedLevel.stl)
-
+| Wiki Page | Stl Model                                                |
+|-----------|:--------------------------------------------------------:|
+|           | [Bed Level Calibration](./models/ParametricBedLevel.stl) |
 
 Multi-Extruder Calibration part
 
@@ -43,8 +46,7 @@ Multi-Extruder Calibration part
 
 All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
 
-Define default size
---
+### Define default size
 
 The function **Define default size** gives you the possibility to change the default size for the standard primitives (cube/cylinder/tube).
 
