@@ -11,38 +11,39 @@ The default size for all the simple shapes is 20 mm, but can be modified via the
 You can also load standard test  / calibration  part :
 
 | Wiki Page | Stl Model                                               |
-|-----------|:-------------------------------------------------------:|
+|:-----------:|:-------------------------------------------------------:|
 | [Calibration Cube XYZ](https://github.com/5axes/Calibration-Shapes/wiki/Calibration-Cube-XYZ)           | [Calibration Cube XYZ](./models/CalibrationCube.stl) |
-|           | [PLA  TempTower 220 - 180°C](./models/TempTowerPLA.stl) |
-|           | [PLA+ TempTower 230 - 200°C](./models/TempTowerPLA+.stl) |
-|           | [ABS  TempTower 250 - 210°C](./models/TempTowerABS.stl) |
-|           | [PETG TempTower 260 - 230°C](./models/TempTowerPETG.stl) |
-|           | [Retract Tower](./models/RetractTower.stl) |
-|           | [Retract Test part](./models/RetractTest.stl) |
-|           | [Bridge Spiral test](./models/BridgeTest.stl) |
-|           | [Thin Wall Test](./models/ThinWall.stl) |
-|           | [Overhang Test](./models/Overhang.stl) |
-|           | [Flow Test](./models/FlowTest.stl) |
-|           | [Hole Test](./models/HoleTest.stl) |
-|           | [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl) |
-|           | [Junction Deviation Tower](./models/JunctionDeviationTower.stl) |
-|           | [Tolerance Test](./models/Tolerance.stl) |
-|           | [Support Test](./models/SupportTest.stl) |
-|           | [MultiCube Test](./models/MultiCube.stl) |
+| [PLA  TempTower 220 - 180°C](https://github.com/5axes/Calibration-Shapes/wiki/PLA-TempTower-220---180°C)          | [PLA  TempTower 220 - 180°C](./models/TempTowerPLA.stl) |
+| [PLA  TempTower 220 - 190°C](https://github.com/5axes/Calibration-Shapes/wiki/PLA-TempTower-220---190°C)          | [PLA  TempTower 220 - 190°C](./models/TempTowerPLA190°C.stl) |
+| [PLA+ TempTower 230 - 200°C](https://github.com/5axes/Calibration-Shapes/wiki/PLA+-TempTower-230---200°C)          | [PLA+ TempTower 230 - 200°C](./models/TempTowerPLA+.stl) |
+| [ABS  TempTower 250 - 210°C](https://github.com/5axes/Calibration-Shapes/wiki/ABS-TempTower-250---210°C)          | [ABS  TempTower 250 - 210°C](./models/TempTowerABS.stl) |
+| [PETG TempTower 260 - 230°C](https://github.com/5axes/Calibration-Shapes/wiki/PETG-TempTower-260---230°C)          | [PETG TempTower 260 - 230°C](./models/TempTowerPETG.stl) |
+| [Retract Tower](https://github.com/5axes/Calibration-Shapes/wiki/Retract-Tower)          | [Retract Tower](./models/RetractTower.stl) |
+| [Retract Test part](https://github.com/5axes/Calibration-Shapes/wiki/Retract-Test-part)          | [Retract Test part](./models/RetractTest.stl) |
+| [Bridge Spiral test](https://github.com/5axes/Calibration-Shapes/wiki/Bridge-Spiral-test)          | [Bridge Spiral test](./models/BridgeTest.stl) |
+| [Thin Wall Test](https://github.com/5axes/Calibration-Shapes/wiki/Thin-Wall-Test)          | [Thin Wall Test](./models/ThinWall.stl) |
+| [Overhang Test](https://github.com/5axes/Calibration-Shapes/wiki/Overhang-Test)          | [Overhang Test](./models/Overhang.stl) |
+| [Flow Test](https://github.com/5axes/Calibration-Shapes/wiki/Flow-Test)          | [Flow Test](./models/FlowTest.stl) |
+| [Hole Test](https://github.com/5axes/Calibration-Shapes/wiki/Hole-Test)          | [Hole Test](./models/HoleTest.stl) |
+| [Linear/Pressure Adv Tower](https://github.com/5axes/Calibration-Shapes/wiki/Linear-Pressure-Advance-Tower)          | [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl) |
+| [Junction Deviation Tower](https://github.com/5axes/Calibration-Shapes/wiki/Junction-Deviation-Tower)          | [Junction Deviation Tower](./models/JunctionDeviationTower.stl) |
+| [Tolerance Test](https://github.com/5axes/Calibration-Shapes/wiki/Tolerance)          | [Tolerance Test](./models/Tolerance.stl) |
+| [Support Test](https://github.com/5axes/Calibration-Shapes/wiki/Support-Test)          | [Support Test](./models/SupportTest.stl) |
+| [MultiCube Test](https://github.com/5axes/Calibration-Shapes/wiki/MultiCube)          | [MultiCube Test](./models/MultiCube.stl) |
 
 
 
 Bed Level : For this part the initial design is scaled to the bed size
 
-| Wiki Page | Stl Model                                                |
-|-----------|:--------------------------------------------------------:|
-|           | [Bed Level Calibration](./models/ParametricBedLevel.stl) |
+| Wiki Page                                                                                    | Stl Model                                                |
+|:--------------------------------------------------------------------------------------------:|:--------------------------------------------------------:|
+| [Bed Level Calibration](https://github.com/5axes/Calibration-Shapes/wiki/ParametricBedLevel) | [Bed Level Calibration](./models/ParametricBedLevel.stl) |
 
 Multi-Extruder Calibration part
 
-- Cube bi-color
-- Calibration Cube bi-color
-- Extruder Offset Calibration
+- [Cube bi-color](https://github.com/5axes/Calibration-Shapes/wiki/Cube-Bi-Color)
+- [Calibration Cube bi-color](https://github.com/5axes/Calibration-Shapes/wiki/CubeCalibrationBiColor)
+- [Extruder Offset Calibration](https://github.com/5axes/Calibration-Shapes/wiki/ExtruderOffsetCalibration)
 
 All the parts have been designed via OpenSCAD. OpenSCAD can be downloaded [here](http://www.openscad.org/downloads.html)
 
