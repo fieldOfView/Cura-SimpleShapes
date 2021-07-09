@@ -6,11 +6,11 @@ The default size for all the simple shapes is 20 mm, but can be modified via the
 
 ![menu Extensions Calibration Shapes](./images/menu.jpg)
 
-### Calibration part
+## Calibration part
 
 You can also load standard test  / calibration  part :
 
-| Wiki Page | Stl Model                                               |
+|  Wiki Page  | Stl Model                                               |
 |:-----------:|:-------------------------------------------------------:|
 | [Calibration Cube XYZ](https://github.com/5axes/Calibration-Shapes/wiki/Calibration-Cube-XYZ)           | [Calibration Cube XYZ](./models/CalibrationCube.stl) |
 | [PLA  TempTower 220 - 180°C](https://github.com/5axes/Calibration-Shapes/wiki/PLA-TempTower-220---180°C)          | [PLA  TempTower 220 - 180°C](./models/TempTowerPLA.stl) |
@@ -80,9 +80,10 @@ The scripts provided with this plugin must be visible in the Postprocessing scri
 ![Adding script](./images/plugins.jpg)
 
 
-SpeedTower.py
------
-Description:  postprocessing-script to easily define a Speed Tower.
+#### SpeedTower.py
+
+
+Description :  postprocessing-script to easily define a Speed Tower.
 
 Five options :
 
@@ -99,8 +100,8 @@ Five options :
 ![SpeedTower.py](./images/speedtower.jpg)
 
 
-TempFanTower.py
------
+#### TempFanTower.py
+
 
 Description:  postprocessing-script to easily to create a temptower and not use 10 changeAtZ-scripts
 
@@ -111,8 +112,9 @@ Description:  postprocessing-script to easily to create a temptower and not use 
 ![TempFanTower.py](./images/tempfan.jpg)
 
 
-RetractTower.py
------
+#### RetractTower.py
+
+
 
 Description:  postprocessing-script to easily create a Retract Tower
 
@@ -126,7 +128,8 @@ Two options :
 
 ![RetractTower.py](./images/retract-tower.jpg)
 
-Help
---
+
+## Help
+
 
 This function will redirect you on the [Wiki](https://github.com/5axes/Calibration-Shapes/wiki) of this repositery.
