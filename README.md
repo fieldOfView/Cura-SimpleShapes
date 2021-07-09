@@ -60,9 +60,9 @@ This plugin is using the [Trimesh](https://github.com/mikedh/trimesh) library to
 
 Several postprocessing Scripts are included into the plugin to help the user to generate automaticaly the differents Towers.
 
-- [RetractTower.py](./resources/RetractTower.py)
-- [SpeedTower.py](./resources/SpeedTower.py)
-- [TempFanTower.py](./resources/TempFanTower.py)
+- [RetractTower.py](./resources/scripts/RetractTower.py)
+- [SpeedTower.py](./resources/scripts/SpeedTower.py)
+- [TempFanTower.py](./resources/scripts/TempFanTower.py)
 
 ### Copy Scripts
 
