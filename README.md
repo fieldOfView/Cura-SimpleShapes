@@ -103,11 +103,11 @@ Five options :
 #### TempFanTower.py
 
 
-Description:  postprocessing-script to easily to create a temptower and not use 10 changeAtZ-scripts
+Description:  postprocessing-script to easily create a temptower and not use 10 changeAtZ-scripts
 
  The default values are for this temptower PLA model : [PLA TempTower 220°C - 180°C](./models/TempTowerPLA.stl)
 - Temp Tower PLA from 220°C to 180°C  (Other design possible to test PLA from 220°C to 190°C)
-- Possibility to define also a Fan Tower , Fan percentage speed indicate with semi-colon as seprator
+- Possibility to define also a Fan Tower , Fan percentage speed are defined with semi-colon as separator in the fan variation field
 
 ![TempFanTower.py](./images/tempfan.jpg)
 
