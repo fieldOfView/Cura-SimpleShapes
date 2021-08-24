@@ -9,7 +9,7 @@ nz=0.4; // Nozzle Size
 lay=0.2; // Layer Height
 
 xy=15; // Size
-w5=3;
+w5=4;
 
 hs=8; // height
 hw=0.8; // height pin
@@ -26,7 +26,7 @@ w=4; // Pin Width
 wo=w+0.05; // Width
 
 spw=nz+0.05; // Support Width
-spi=2; // Support interval
+spi=3.5; // Support interval
 
 module flowtowerMain(){
 difference() {
@@ -96,13 +96,13 @@ translate([0,lay*4,lay]) cube([w+spw*2,xy,lay*2],true);
 }
 
 //Support
-color("blue",1.0)
+color("red",1.0)
 for (i=[0:hs:h-hs]) {
 translate([0,0,hs/2+i])
 for (mz=[0,1]) mirror([0,0,mz]) {
 for (yi=[0:spi:xy-spi])
 if (!(i==h-hs && mz==1))
-translate([0,xy/2-spw/2-yi,-hs/2+hw/2+lay*3/2]) cube([w+spw,spw,hw+lay*3],true);
+translate([0,(xy/2-spw/2-yi)-(fs/2),-hs/2+hw/2+lay*2/2]) cube([w+spw,spw,hw+lay*2],true);
 } // for
 } // for
 
