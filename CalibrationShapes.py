@@ -493,20 +493,26 @@ class CalibrationShapes(QObject, Extension):
             extruder.setProperty("meshfix_union_all_remove_holes", "value", True) 
  
     #----------------------------------------------------------
-    # Check fill_outline_gaps must be True
+    # Check fill_outline_gaps (Print Thin Walls) must be True
     #----------------------------------------------------------   
     def _checkThinWalls(self, val):
         # Logger.log("d", "In checkAdaptativ = %s", str(val))
         # Fix some settings in Cura to get a better result
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack() 
-        adaptive_layer = global_container_stack.getProperty("fill_outline_gaps", "value")
-        extruder = global_container_stack.extruderList[0]
+        thin_wall = global_container_stack.getProperty("fill_outline_gaps", "value")
         
-        if adaptive_layer !=  val :
+        if thin_wall !=  val :
             Message(text = "Info modification current profil fill_outline_gaps\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
             # Define adaptive_layer
-            global_container_stack.setProperty("fill_outline_gaps", "value", False)
-         
+            global_container_stack.setProperty("fill_outline_gaps", "value", val)
+        
+        extruder = global_container_stack.extruderList[0]
+        thin_wall = extruder.getProperty("fill_outline_gaps", "value")
+        
+        if thin_wall !=  val :
+            Message(text = "Info modification extruder current profil fill_outline_gaps\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            # Define adaptive_layer
+            extruder.setProperty("fill_outline_gaps", "value", val)
             
     #----------------------------------------
     # Initial Source code from  fieldOfView
