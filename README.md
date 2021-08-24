@@ -140,7 +140,7 @@ Description:  postprocessing-script to easily create a FlowTower
 - Temp Tower PLA from 110% to 90% 
     - Using Flow Varation   :  [Flow Varation](https://marlinfw.org/docs/gcode/M221.html) (M221 S) 
 
-![TempFanTower.py](./images/flow-tower.jpg)
+![FlowTower.py](./images/flowtower.jpg)
 
 ## Help
 
