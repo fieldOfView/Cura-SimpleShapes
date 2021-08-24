@@ -2,22 +2,13 @@
 #
 # Cura PostProcessing Script
 # Author:   5axes
-# Date:     February 29, 2020
+# Date:     August 29, 2021
 #
-# Description:  postprocessing script to easily define a Speed Tower 
-#           Option for  Speed
-#                       Acceleration
-#                       Junction Deviation
-#                       Marlin Linear Advance
-#                       RepRap Pressure Advance
+# Description:  postprocessing script to easily define a Flow Tower 
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 #
-#   Version 1.0 29/02/2020
-#   Version 1.1 29/01/2021
-#   Version 1.2 05/04/2021 by dotdash32(https://github.com/dotdash32) for Marlin Linear Advance & RepRap Pressure Advance
-#   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
-#   Version 1.4 18/05/2021  : float
+#   Version 1.0 29/08/2021
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -26,53 +17,40 @@ from UM.Application import Application
 from UM.Logger import Logger
 import re #To perform the search
 
-__version__ = '1.4'
+__version__ = '1.0'
 
-class SpeedTower(Script):
+class FlowTower(Script):
     def __init__(self):
         super().__init__()
 
     def getSettingDataString(self):
         return """{
-            "name": "SpeedTower",
-            "key": "SpeedTower",
+            "name": "FlowTower",
+            "key": "FlowTower",
             "metadata": {},
             "version": 2,
             "settings":
             {
-                "command": {
-                    "label": "Command",
-                    "description": "GCode Commande",
-                    "type": "enum",
-                    "options": {
-                        "acceleration": "Acceleration",
-                        "jerk": "Jerk",
-                        "junction": "Junction Deviation",
-                        "marlinadv": "Marlin Linear",
-                        "rrfpresure": "RepRap Pressure"
-                    },
-                    "default_value": "acceleration"
-                },
                 "startValue":
                 {
                     "label": "Starting value",
                     "description": "the starting value of the Tower.",
                     "type": "float",
-                    "default_value": 8.0
+                    "default_value": 110.0
                 },
                 "valueChange":
                 {
                     "label": "Value Increment",
-                    "description": "the value change of each block, can be positive or negative. I you want 50 and then 40, you need to set this to -10.",
+                    "description": "the value change of each block, can be positive or negative. I you want 110 and then 108, you need to set this to -2.",
                     "type": "float",
-                    "default_value": 4.0
+                    "default_value": -2.0
                 },
                 "changelayer":
                 {
                     "label": "Change Layer",
                     "description": "how many layers needs to be printed before the value should be changed.",
                     "type": "float",
-                    "default_value": 30,
+                    "default_value": 40,
                     "minimum_value": 1,
                     "maximum_value": 1000,
                     "maximum_value_warning": 100
@@ -82,7 +60,7 @@ class SpeedTower(Script):
                     "label": "Change Layer Offset",
                     "description": "if the Tower has a base, put the layer high off it here",
                     "type": "float",
-                    "default_value": 4,
+                    "default_value": 0,
                     "minimum_value": 0,
                     "maximum_value": 1000,
                     "maximum_value_warning": 100
@@ -100,7 +78,6 @@ class SpeedTower(Script):
     def execute(self, data):
 
         UseLcd = self.getSettingValueByKey("lcdfeedback")
-        Instruction = self.getSettingValueByKey("command")
         StartValue = float(self.getSettingValueByKey("startValue"))
         ValueChange = float(self.getSettingValueByKey("valueChange"))
         ChangeLayer = self.getSettingValueByKey("changelayer")
@@ -124,21 +101,8 @@ class SpeedTower(Script):
                     # Logger.log('d', 'Instruction : {}'.format(Instruction))
 
                     if (layer_index==ChangeLayerOffset):
-                        if  (Instruction=='acceleration'):
-                            Command = "M204 S{:d}".format(int(CurrentValue))
-                            lcd_gcode = "M117 Acceleration S{:d}".format(int(CurrentValue))
-                        if  (Instruction=='jerk'):
-                            Command = "M205 X{:d} Y{:d}".format(int(CurrentValue), int(CurrentValue))
-                            lcd_gcode = "M117 Jerk X{:d} Y{:d}".format(int(CurrentValue), int(CurrentValue))
-                        if  (Instruction=='junction'):
-                            Command = "M205 J{:.3f}".format(float(CurrentValue))
-                            lcd_gcode = "M117 Junction J{:.3f}".format(float(CurrentValue))     
-                        if  (Instruction=='marlinadv'):
-                            Command = "M900 K{:.3f}".format(float(CurrentValue))
-                            lcd_gcode = "M117 Linear Advance K{:.3f}".format(float(CurrentValue))  
-                        if  (Instruction=='rrfpresure'):
-                            Command = "M572 D0 S{:.3f}".format(float(CurrentValue))
-                            lcd_gcode = "M117 Pressure Advance S{:.3f}".format(float(CurrentValue))   
+                        Command = "M221 S{:d}".format(int(CurrentValue))
+                        lcd_gcode = "M117 Flow S{:d}".format(int(CurrentValue))  
                             
                         lines.insert(line_index + 1, ";TYPE:CUSTOM LAYER")
                         lines.insert(line_index + 2, Command)
@@ -147,21 +111,8 @@ class SpeedTower(Script):
 
                     if ((layer_index-ChangeLayerOffset) % ChangeLayer == 0) and ((layer_index-ChangeLayerOffset)>0):
                             CurrentValue += ValueChange
-                            if  (Instruction=='acceleration'):
-                                Command = "M204 S{:d}".format(int(CurrentValue))
-                                lcd_gcode = "M117 Acceleration S{:d}".format(int(CurrentValue))
-                            if  (Instruction=='jerk'):
-                                Command = "M205 X{:d} Y{:d}".format(int(CurrentValue), int(CurrentValue))
-                                lcd_gcode = "M117 Jerk X{:d} Y{:d}".format(int(CurrentValue), int(CurrentValue))
-                            if  (Instruction=='junction'):
-                                Command = "M205 J{:.3f}".format(float(CurrentValue))
-                                lcd_gcode = "M117 Junction J{:.3f}".format(float(CurrentValue))
-                            if (Instruction=='marlinadv'):
-                                Command = "M900 K{:.3f}".format(float(CurrentValue))
-                                lcd_gcode = "M117 Linear Advance K{:.3f}".format(float(CurrentValue))
-                            if  (Instruction=='rrfpresure'):
-                                Command = "M572 D0 S{:.3f}".format(float(CurrentValue))
-                                lcd_gcode = "M117 Pressure Advance S{:.3f}".format(float(CurrentValue)) 
+                            Command = "M221 S{:d}".format(int(CurrentValue))
+                            lcd_gcode = "M117 Flow S{:d}".format(int(CurrentValue)) 
                                 
                             lines.insert(line_index + 1, ";TYPE:CUSTOM VALUE")
                             lines.insert(line_index + 2, Command)

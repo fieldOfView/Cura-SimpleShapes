@@ -29,7 +29,8 @@
 # V1.3.1   : Modification with a code simplification by @dmarx
 # V1.3.2   : New Support test Part  thanks to @dotdash32 : https://github.com/5axes/Calibration-Shapes/pull/44
 # V1.3.3   : Change on F-strings are supported since Python 3.6, which means that because of that line, the plugin is not loaded in Cura versions <=4.8. 
-# V1.4.0   : test for retract if retraction is enable and if value>0       
+# V1.4.0   : test for retract if retraction is enable and if value>0     
+# V1.4.1   : New Flow Tower calibration   
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -140,6 +141,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bridge Test"), self.addBridgeTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Thin Wall Test"), self.addThinWall)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Overhang Test"), self.addOverhangTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a FlowTower Test"), self.addFlowTowerTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Flow Test"), self.addFlowTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Hole Test"), self.addHoleTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Tolerance Test"), self.addTolerance)
@@ -250,7 +252,7 @@ class CalibrationShapes(QObject, Extension):
  
     # Copy the scripts to the right directory ( Temporary solution)
     def copyScript(self) -> None:
-        File_List = ['RetractTower.py', 'SpeedTower.py', 'TempFanTower.py']
+        File_List = ['RetractTower.py', 'SpeedTower.py', 'TempFanTower.py', 'FlowTower.py']
         
         plugPath =  os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources"), "scripts")
         # Logger.log("d", "plugPath= %s", plugPath)
@@ -380,6 +382,11 @@ class CalibrationShapes(QObject, Extension):
     def addFlowTest(self) -> None:
         self._registerShapeStl("FlowTest", "FlowTest.stl")
 
+    def addFlowTowerTest(self) -> None:
+        self._registerShapeStl("FlowTowerTest", "Flow-tower-04x02.stl")
+        self._checkAdaptativ(False)
+        self._checkThinWalls(True)
+        
     def addHoleTest(self) -> None:
         self._registerShapeStl("FlowTest", "HoleTest.stl")
 
@@ -484,6 +491,22 @@ class CalibrationShapes(QObject, Extension):
             Message(text = "Info modification current profil meshfix_union_all_remove_holes (machine_nozzle_size>0.4)\nNew value : %s" % (str(True)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
             # Define adaptive_layer
             extruder.setProperty("meshfix_union_all_remove_holes", "value", True) 
+ 
+    #----------------------------------------------------------
+    # Check fill_outline_gaps must be True
+    #----------------------------------------------------------   
+    def _checkThinWalls(self, val):
+        # Logger.log("d", "In checkAdaptativ = %s", str(val))
+        # Fix some settings in Cura to get a better result
+        global_container_stack = CuraApplication.getInstance().getGlobalContainerStack() 
+        adaptive_layer = global_container_stack.getProperty("fill_outline_gaps", "value")
+        extruder = global_container_stack.extruderList[0]
+        
+        if adaptive_layer !=  val :
+            Message(text = "Info modification current profil fill_outline_gaps\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            # Define adaptive_layer
+            global_container_stack.setProperty("fill_outline_gaps", "value", False)
+         
             
     #----------------------------------------
     # Initial Source code from  fieldOfView
