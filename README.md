@@ -136,8 +136,8 @@ Two options :
 
 Description:  postprocessing-script to easily create a FlowTower
 
- The default values are for this temptower PLA model : [FlowTower Nozzle 0.4 / Layer height 0.2](./models/Flow-tower-04x02.stl)
-- Temp Tower PLA from 110% to 90% 
+ The default values are for this temptower model : [FlowTower Nozzle 0.4 / Layer height 0.2](./models/Flow-tower-04x02.stl)
+- FlowTower from 110% to 90% 
     - Using Flow Varation   :  [Flow Varation](https://marlinfw.org/docs/gcode/M221.html) (M221 S) 
 
 ![FlowTower.py](./images/flowtower.jpg)
