@@ -24,6 +24,7 @@ You can also load standard test  / calibration  part :
 | [Thin Wall Test](https://github.com/5axes/Calibration-Shapes/wiki/Thin-Wall-Test)          | [Thin Wall Test](./models/ThinWall.stl) |
 | [Overhang Test](https://github.com/5axes/Calibration-Shapes/wiki/Overhang-Test)          | [Overhang Test](./models/Overhang.stl) |
 | [Flow Test](https://github.com/5axes/Calibration-Shapes/wiki/Flow-Test)          | [Flow Test](./models/FlowTest.stl) |
+| [FlowTower Test](https://github.com/5axes/Calibration-Shapes/wiki/FlowTower-Test)          | [Flow Test](./models/Flow-tower-04x02.stl) |
 | [Hole Test](https://github.com/5axes/Calibration-Shapes/wiki/Hole-Test)          | [Hole Test](./models/HoleTest.stl) |
 | [Linear/Pressure Advance Tower](https://github.com/5axes/Calibration-Shapes/wiki/Linear-Pressure-Advance-Tower)          | [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl) |
 | [Junction Deviation Tower](https://github.com/5axes/Calibration-Shapes/wiki/Junction-Deviation-Tower)          | [Junction Deviation Tower](./models/JunctionDeviationTower.stl) |
@@ -63,6 +64,7 @@ Several postprocessing Scripts are included into the plugin to help the user to 
 - [RetractTower.py](./resources/scripts/RetractTower.py)
 - [SpeedTower.py](./resources/scripts/SpeedTower.py)
 - [TempFanTower.py](./resources/scripts/TempFanTower.py)
+- [FlowTower.py](./resources/scripts/FlowTower.py)
 
 ### Copy Scripts
 
@@ -128,6 +130,17 @@ Two options :
 
 ![RetractTower.py](./images/retract-tower.jpg)
 
+
+#### FlowTower.py
+
+
+Description:  postprocessing-script to easily create a FlowTower
+
+ The default values are for this temptower PLA model : [FlowTower Nozzle 0.4 / Layer height 0.2](./models/Flow-tower-04x02.stl)
+- Temp Tower PLA from 110% to 90% 
+    - Using Flow Varation   :  [Flow Varation](https://marlinfw.org/docs/gcode/M221.html) (M221 S) 
+
+![FlowTower.py](./images/flowtower.jpg)
 
 ## Help
 
