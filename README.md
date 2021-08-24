@@ -24,7 +24,7 @@ You can also load standard test  / calibration  part :
 | [Thin Wall Test](https://github.com/5axes/Calibration-Shapes/wiki/Thin-Wall-Test)          | [Thin Wall Test](./models/ThinWall.stl) |
 | [Overhang Test](https://github.com/5axes/Calibration-Shapes/wiki/Overhang-Test)          | [Overhang Test](./models/Overhang.stl) |
 | [Flow Test](https://github.com/5axes/Calibration-Shapes/wiki/Flow-Test)          | [Flow Test](./models/FlowTest.stl) |
-| [FlowTower Test](https://github.com/5axes/Calibration-Shapes/wiki/FlowTower-Test)          | [Flow Test](./models/Flow-tower-04x02.stl) |
+| [Tower Flow Test](https://github.com/5axes/Calibration-Shapes/wiki/FlowTower-Test)          | [TowerFlow Test](./models/Flow-tower-04x02.stl) |
 | [Hole Test](https://github.com/5axes/Calibration-Shapes/wiki/Hole-Test)          | [Hole Test](./models/HoleTest.stl) |
 | [Linear/Pressure Advance Tower](https://github.com/5axes/Calibration-Shapes/wiki/Linear-Pressure-Advance-Tower)          | [Linear/Pressure Adv Tower](./models/PressureAdvTower.stl) |
 | [Junction Deviation Tower](https://github.com/5axes/Calibration-Shapes/wiki/Junction-Deviation-Tower)          | [Junction Deviation Tower](./models/JunctionDeviationTower.stl) |
