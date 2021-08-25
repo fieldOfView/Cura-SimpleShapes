@@ -29,7 +29,7 @@
 # V1.3.1   : Modification with a code simplification by @dmarx
 # V1.3.2   : New Support test Part  thanks to @dotdash32 : https://github.com/5axes/Calibration-Shapes/pull/44
 # V1.3.3   : Change on F-strings are supported since Python 3.6, which means that because of that line, the plugin is not loaded in Cura versions <=4.8. 
-# V1.4.0   : test for retract if retraction is enable and if value>0     
+# V1.4.0   : Test for retract if retraction is enable and if value>0     
 # V1.4.1   : New Flow Tower calibration   
 # V1.5.0   : Multi Flow calibration   
 #
