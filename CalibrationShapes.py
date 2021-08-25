@@ -339,14 +339,14 @@ class CalibrationShapes(QObject, Extension):
         if fl>0 :
             fact=kwargs.get('factor', 1)
             
-            
             origin = [0, 0, 0]
             DirX = [1, 0, 0]
             DirY = [0, 1, 0]
-            # DirZ = [0, 0, 1]
+            DirZ = [0, 0, 1]
             mesh.apply_transform(trimesh.transformations.scale_matrix(fact, origin, DirX))
             mesh.apply_transform(trimesh.transformations.scale_matrix(fact, origin, DirY))
-            mesh.apply_transform(trimesh.transformations.translation_matrix([0, (100-fl)*10-50, 0]))
+            mesh.apply_transform(trimesh.transformations.scale_matrix(fact, origin, DirZ))
+            mesh.apply_transform(trimesh.transformations.translation_matrix([0, (100-fl)*10*fact, 0]))
             self._addShapeFlow(mesh_name,self._toMeshData(mesh), **kwargs)
             
         else :
@@ -408,7 +408,7 @@ class CalibrationShapes(QObject, Extension):
         nozzle_size = float(extruder.getProperty("machine_nozzle_size", "value"))
         
         s_factor = nozzle_size / 0.4
-        Logger.log("d", "In addMultiFlowTest s_factor = %s", str(s_factor))
+        # Logger.log("d", "In addMultiFlowTest s_factor = %s", str(s_factor))
  
         self._registerShapeStl("MultiFlowTest110%", "Flow110.stl", flow = 110 , factor = s_factor)
         self._registerShapeStl("MultiFlowTest108%", "Flow108.stl", flow = 108 , factor = s_factor)
