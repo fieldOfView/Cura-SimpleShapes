@@ -33,6 +33,12 @@ You can also load standard test  / calibration  part :
 | [MultiCube Test](https://github.com/5axes/Calibration-Shapes/wiki/MultiCube)          | [MultiCube Test](./models/MultiCube.stl) |
 
 
+Multi flow parts : For this parts the initial design is scaled to the nozzle size
+
+| Wiki Page                                                                                               | Stl Model                                                |
+|:-------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------:|
+| [Parametric Multi Flow test](https://github.com/5axes/Calibration-Shapes/wiki/MultiFlowTest) | [Flow 100%](./models/Flow100.stl) |
+
 
 Bed Level : For this part the initial design is scaled to the bed size
 
