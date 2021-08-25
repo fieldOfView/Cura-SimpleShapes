@@ -31,6 +31,7 @@
 # V1.3.3   : Change on F-strings are supported since Python 3.6, which means that because of that line, the plugin is not loaded in Cura versions <=4.8. 
 # V1.4.0   : test for retract if retraction is enable and if value>0     
 # V1.4.1   : New Flow Tower calibration   
+# V1.5.0   : Multi Flow calibration   
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -57,6 +58,7 @@ from cura.CuraApplication import CuraApplication
 from UM.Mesh.MeshData import MeshData, calculateNormalsFromIndexedVertices
 from UM.Resources import Resources
 from UM.Operations.AddSceneNodeOperation import AddSceneNodeOperation
+from UM.Settings.SettingInstance import SettingInstance
 from cura.Scene.CuraSceneNode import CuraSceneNode
 from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
 from cura.Scene.BuildPlateDecorator import BuildPlateDecorator
@@ -143,6 +145,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Overhang Test"), self.addOverhangTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a FlowTower Test"), self.addFlowTowerTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Flow Test"), self.addFlowTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Multi-Flow Test"), self.addMultiFlowTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Hole Test"), self.addHoleTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Tolerance Test"), self.addTolerance)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Support Test"), self.addSupportTest)
@@ -330,8 +333,24 @@ class CalibrationShapes(QObject, Extension):
         
         model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", mesh_filename)
         mesh =  trimesh.load(model_definition_path)
+        
+        fl=kwargs.get('flow', 0)
         # addShape
-        self._addShape(mesh_name,self._toMeshData(mesh), **kwargs)
+        if fl>0 :
+            fact=kwargs.get('factor', 1)
+            
+            
+            origin = [0, 0, 0]
+            DirX = [1, 0, 0]
+            DirY = [0, 1, 0]
+            # DirZ = [0, 0, 1]
+            mesh.apply_transform(trimesh.transformations.scale_matrix(fact, origin, DirX))
+            mesh.apply_transform(trimesh.transformations.scale_matrix(fact, origin, DirY))
+            mesh.apply_transform(trimesh.transformations.translation_matrix([0, (100-fl)*10-50, 0]))
+            self._addShapeFlow(mesh_name,self._toMeshData(mesh), **kwargs)
+            
+        else :
+            self._addShape(mesh_name,self._toMeshData(mesh), **kwargs)
         
     def addCalibrationCube(self) -> None:
         self._registerShapeStl("CalibrationCube")
@@ -382,8 +401,30 @@ class CalibrationShapes(QObject, Extension):
     def addFlowTest(self) -> None:
         self._registerShapeStl("FlowTest", "FlowTest.stl")
 
+    def addMultiFlowTest(self) -> None:
+    
+        global_container_stack = CuraApplication.getInstance().getGlobalContainerStack() 
+        extruder = global_container_stack.extruderList[0]
+        nozzle_size = float(extruder.getProperty("machine_nozzle_size", "value"))
+        
+        s_factor = nozzle_size / 0.4
+        Logger.log("d", "In addMultiFlowTest s_factor = %s", str(s_factor))
+ 
+        self._registerShapeStl("MultiFlowTest110%", "Flow110.stl", flow = 110 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest108%", "Flow108.stl", flow = 108 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest106%", "Flow106.stl", flow = 106 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest104%", "Flow104.stl", flow = 104 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest102%", "Flow102.stl", flow = 102 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest100%", "Flow100.stl", flow = 100 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest98%", "Flow98.stl", flow = 98 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest96%", "Flow96.stl", flow = 96 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest94%", "Flow94.stl", flow = 94 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest92%", "Flow92.stl", flow = 92 , factor = s_factor)
+        self._registerShapeStl("MultiFlowTest90%", "Flow90.stl", flow = 90 , factor = s_factor)
+        self._checkThinWalls(True)
+        
     def addFlowTowerTest(self) -> None:
-        self._registerShapeStl("FlowTowerTest", "Flow-tower-04x02.stl")
+        self._registerShapeStl("TowerFlow", "Flow-tower-04x02.stl")
         self._checkAdaptativ(False)
         self._checkThinWalls(True)
         
@@ -577,11 +618,10 @@ class CalibrationShapes(QObject, Extension):
         else :
             default_extruder_position = application.getMachineManager().defaultExtruderPosition
         # Logger.log("d", "default_extruder_position= %s", type(default_extruder_position))
-        # default_extruder_id = global_stack.extruders[default_extruder_position].getId()
         default_extruder_id = global_stack.extruders[default_extruder_position].getId()
         # Logger.log("d", "default_extruder_id= %s", default_extruder_id)
         node.callDecoration("setActiveExtruder", default_extruder_id)
-
+        
         active_build_plate = application.getMultiBuildPlateModel().activeBuildPlate
         node.addDecorator(BuildPlateDecorator(active_build_plate))
 
@@ -589,4 +629,46 @@ class CalibrationShapes(QObject, Extension):
 
         application.getController().getScene().sceneChanged.emit(node)
         
+    def _addShapeFlow(self, mesh_name, mesh_data: MeshData, flow = 100 , factor = 1) -> None:
+        application = CuraApplication.getInstance()
+        global_stack = application.getGlobalContainerStack()
+        if not global_stack:
+            return
 
+        node = CuraSceneNode()
+
+        node.setMeshData(mesh_data)
+        node.setSelectable(True)
+        if len(mesh_name)==0:
+            node.setName("TestPart" + str(id(mesh_data)))
+        else:
+            node.setName(str(mesh_name))
+
+        scene = self._controller.getScene()
+        op = AddSceneNodeOperation(node, scene.getRoot())
+        op.push()
+
+        extruder_nr=len(global_stack.extruders)
+        # Logger.log("d", "extruder_nr= %d", extruder_nr)
+        default_extruder_position = application.getMachineManager().defaultExtruderPosition
+        # Logger.log("d", "default_extruder_position= %s", type(default_extruder_position))
+        default_extruder_id = global_stack.extruders[default_extruder_position].getId()
+        # Logger.log("d", "default_extruder_id= %s", default_extruder_id)
+        node.callDecoration("setActiveExtruder", default_extruder_id)
+
+        stack = node.callDecoration("getStack") # created by SettingOverrideDecorator that is automatically added to CuraSceneNode
+
+        settings = stack.getTop()
+        
+        definition = stack.getSettingDefinition("material_flow")
+        new_instance = SettingInstance(definition, settings)
+        new_instance.setProperty("value", flow)
+        new_instance.resetState()  # Ensure that the state is not seen as a user state.
+        settings.addInstance(new_instance)
+        
+        active_build_plate = application.getMultiBuildPlateModel().activeBuildPlate
+        node.addDecorator(BuildPlateDecorator(active_build_plate))
+
+        node.addDecorator(SliceableObjectDecorator())
+
+        application.getController().getScene().sceneChanged.emit(node)
