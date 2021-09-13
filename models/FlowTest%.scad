@@ -6,7 +6,7 @@ font = "Arial:style=Bold";
 $fn=100;
 
 nz = 0.4;
-height = 1;
+height = 1.6;
 long = 20;
 width = 8;
 diam_ext = width*0.8;
