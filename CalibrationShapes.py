@@ -410,17 +410,11 @@ class CalibrationShapes(QObject, Extension):
         s_factor = nozzle_size / 0.4
         # Logger.log("d", "In addMultiFlowTest s_factor = %s", str(s_factor))
  
-        self._registerShapeStl("MultiFlowTest110%", "Flow110.stl", flow = 110 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest108%", "Flow108.stl", flow = 108 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest106%", "Flow106.stl", flow = 106 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest104%", "Flow104.stl", flow = 104 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest102%", "Flow102.stl", flow = 102 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest100%", "Flow100.stl", flow = 100 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest98%", "Flow98.stl", flow = 98 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest96%", "Flow96.stl", flow = 96 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest94%", "Flow94.stl", flow = 94 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest92%", "Flow92.stl", flow = 92 , factor = s_factor)
-        self._registerShapeStl("MultiFlowTest90%", "Flow90.stl", flow = 90 , factor = s_factor)
+        for id in range(90, 112, 2):
+            stl_file="Flow" + str(id) + ".stl"
+            block_name="MultiFlowTest" + str(id) + "%"
+            self._registerShapeStl(block_name, stl_file, flow = id , factor = s_factor)
+
         self._checkThinWalls(True)
         
     def addFlowTowerTest(self) -> None:
