@@ -2,6 +2,9 @@
 // Flow Test % by 5@axes
 //---------------------------
 
+Texte = "96";
+
+
 font = "Arial:style=Bold";
 $fn=100;
 
@@ -22,7 +25,7 @@ translate([0, 0, 0]) Model();
 module Model() {
     difference() {
       Corps();
-      translate([0 , (width+width2)/2, height/4]) letter("110");
+      translate([0 , (width+width2)/2, height/4]) letter(Texte);
     } 
 }
 

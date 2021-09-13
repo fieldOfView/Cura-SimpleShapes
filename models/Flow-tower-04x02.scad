@@ -20,7 +20,7 @@ fontMain=hs/3.5;
 fontSub=hs/1.5;
 
 rzh=lay;
-fs=0.8; // Chamfer size
+fs=1.2; // Chamfer size
 
 w=4; // Pin Width
 wo=w+0.05; // Width
@@ -44,7 +44,7 @@ translate([0,0,hs+i]) cube([xy+1,xy+1,rzh],true);
 
 for (i=[0:hs:h-hs]) {
         // Text % on Main Tower
-        translate([-xy/2+(xy/2-w/2)/2,-xy/2,hw+i]) rotate([90,0,0]) linear_extrude(height=0.5, center=true) text(str(ns[i/hs]), size=fontMain, valign="bottom", halign="center");
+        translate([-xy/2+(xy/2-w/2)/2,-xy/2,hw+i]) rotate([90,0,0]) linear_extrude(height=0.8, center=true) text(str(ns[i/hs]), size=fontMain, valign="bottom", halign="center");
 
         // Chamfer Int
         color("red",1.0)
