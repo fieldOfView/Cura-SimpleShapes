@@ -2,7 +2,7 @@
 // Flow Test % by 5@axes
 //---------------------------
 
-Texte = "96";
+Texte = "90";
 
 
 font = "Arial:style=Bold";
