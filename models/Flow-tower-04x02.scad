@@ -47,6 +47,8 @@ for (i=[0:hs:h-hs]) {
         // Text % on Main Tower
         translate([-xy/2,0,hw+i]) rotate([90,0,-90]) linear_extrude(height=0.8, center=true) text(str(ns[i/hs]), size=fontMain, valign="bottom", halign="center");
 
+        translate([+xy/2,0,hw+i]) rotate([90,0,90]) linear_extrude(height=0.8, center=true) text(str(ns[i/hs]), size=fontMain, valign="bottom", halign="center");
+    
         // Chamfer Int
         color("red",1.0)
         for (yi=[-xy/2,xy/2])
@@ -114,7 +116,7 @@ translate([0,(xy/2-spw/2-yi)-(fs/2),-hs/2+hw/2+lay*2/2]) cube([w+spw,spw,hw+lay*
 //Main bloc
 flowtowerMain();
 
-//Sub bloc
+//Pin bloc
 translate([0,-xy-5,0]) flowtowerpin();
 
 
