@@ -16,11 +16,12 @@ hw=0.8; // height pin
 ns=[110,108,106,104,102,100,98,96,94,92,90];
 h=hs*11; 
 
-fontMain=hs/3.5;
+fontMain=hs/1.5;
 fontSub=hs/1.5;
 
 rzh=lay;
-fs=1.2; // Chamfer size
+fs=2.0; // Chamfer size
+fsp=2.2; // Pin Chamfer size
 
 w=4; // Pin Width
 wo=w+0.05; // Width
@@ -44,7 +45,7 @@ translate([0,0,hs+i]) cube([xy+1,xy+1,rzh],true);
 
 for (i=[0:hs:h-hs]) {
         // Text % on Main Tower
-        translate([-xy/2+(xy/2-w/2)/2,-xy/2,hw+i]) rotate([90,0,0]) linear_extrude(height=0.8, center=true) text(str(ns[i/hs]), size=fontMain, valign="bottom", halign="center");
+        translate([-xy/2,0,hw+i]) rotate([90,0,-90]) linear_extrude(height=0.8, center=true) text(str(ns[i/hs]), size=fontMain, valign="bottom", halign="center");
 
         // Chamfer Int
         color("red",1.0)
@@ -63,7 +64,7 @@ translate([-xy/2,-xy/2,h/2]) rotate([0,0,45]) cube([fs,fs,h+1],true);
 
 } // mod
 
-module flowtowerSub() {
+module flowtowerpin() {
 union(){
 difference(){
 union(){   
@@ -75,8 +76,9 @@ translate([0,0,hs/2+i]) cube([w,xy,hs-hw*2-lay*6],true);
 for (i=[0:hs:h-hs])
 translate([0,0,hs+i]) cube([xy+w5*2+1,xy+w5*2+1,rzh],true);
 
+// Pin Chamfer 
 for (xii=[-w/2,w/2])
-translate([xii,xy/2,h/2]) rotate([0,0,45]) cube([fs,fs,h],true);
+translate([xii,xy/2,h/2]) rotate([0,0,45]) cube([fsp,fsp,h],true);
 
 for (i=[0:hs:h-hs]) {
 for (ri=[0]) rotate([0,0,ri])
@@ -84,6 +86,7 @@ translate([0,-xy/2-w5,hs/2+i]) rotate([90,0,0]) linear_extrude(height=0.5, cente
 }
 
 translate([0,-xy/2-w5/2,0])
+// Back Pin Chamfer 
 for (my=[0,1]) mirror([0,my,0])
 for (mx=[0,1]) mirror([mx,0,0])
 translate([-xy/2,-w5/2,h/2]) rotate([0,0,45]) cube([fs,fs,h+1],true);
@@ -112,6 +115,6 @@ translate([0,(xy/2-spw/2-yi)-(fs/2),-hs/2+hw/2+lay*2/2]) cube([w+spw,spw,hw+lay*
 flowtowerMain();
 
 //Sub bloc
-translate([0,-xy-5,0]) flowtowerSub();
+translate([0,-xy-5,0]) flowtowerpin();
 
 
