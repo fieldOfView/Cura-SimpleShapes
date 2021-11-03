@@ -32,6 +32,7 @@
 # V1.4.0   : Test for retract if retraction is enable and if value>0     
 # V1.4.1   : New Flow Tower calibration   
 # V1.5.0   : Multi Flow calibration   
+# V1.5.1   : Dimensional Accuracy Test 
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -149,6 +150,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Hole Test"), self.addHoleTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Tolerance Test"), self.addTolerance)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Support Test"), self.addSupportTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Dimensional Accuracy Test"), self.addDimensionalTest
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a MultiCube Calibration"), self.addMultiCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bed Level Calibration"), self.addBedLevelCalibration)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Linear/Pressure Adv Tower"), self.addPressureAdvTower)
@@ -432,6 +434,10 @@ class CalibrationShapes(QObject, Extension):
     def addSupportTest(self) -> None:
         self._registerShapeStl("SupportTest")
 
+    # Dimensional Accuracy Test
+    def addDimensionalTest(self) -> None:
+        self._registerShapeStl("DimensionalAccuracyTest")
+        
     # Dotdash addition - for Linear/Pressure advance
     def addPressureAdvTower(self) -> None:
         self._registerShapeStl("PressureAdv", "PressureAdvTower.stl")
