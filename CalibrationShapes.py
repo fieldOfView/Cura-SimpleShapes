@@ -128,7 +128,7 @@ class CalibrationShapes(QObject, Extension):
         self.setMenuName(catalog.i18nc("@item:inmenu", "Part for calibration"))
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cube"), self.addCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a cylinder"), self.addCylinder)
-        # self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a sphere"), self.addSphere)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a tube"), self.addTube)
         self.addMenuItem("", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Calibration Cube"), self.addCalibrationCube)
