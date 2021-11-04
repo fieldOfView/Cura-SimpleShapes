@@ -33,6 +33,7 @@
 # V1.4.1   : New Flow Tower calibration   
 # V1.5.0   : Multi Flow calibration   
 # V1.5.1   : Dimensional Accuracy Test 
+# V1.5.2   : Modification Dimensional Accuracy Test Geometry and validation Flow Tower calibration
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
