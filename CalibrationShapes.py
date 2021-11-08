@@ -691,6 +691,12 @@ class CalibrationShapes(QObject, Extension):
         new_instance.setProperty("value", flow)
         new_instance.resetState()  # Ensure that the state is not seen as a user state.
         settings.addInstance(new_instance)
+
+        definition = stack.getSettingDefinition("material_flow_layer_0")
+        new_instance = SettingInstance(definition, settings)
+        new_instance.setProperty("value", flow)
+        new_instance.resetState()  # Ensure that the state is not seen as a user state.
+        settings.addInstance(new_instance)
         
         active_build_plate = application.getMultiBuildPlateModel().activeBuildPlate
         node.addDecorator(BuildPlateDecorator(active_build_plate))
