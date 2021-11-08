@@ -34,10 +34,7 @@
 # V1.5.0   : Multi Flow calibration   
 # V1.5.1   : Dimensional Accuracy Test 
 # V1.5.2   : Modification Dimensional Accuracy Test Geometry and validation Flow Tower calibration
-<<<<<<< Updated upstream
-=======
 # V1.5.3   : Modification Fill Gaps Between Wall for flowtower
->>>>>>> Stashed changes
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -303,6 +300,7 @@ class CalibrationShapes(QObject, Extension):
      
     def gotoHelp(self) -> None:
         QDesktopServices.openUrl(QUrl("https://github.com/5axes/Calibration-Shapes/wiki"))
+
 
     def addBedLevelCalibration(self) -> None:
         # Get the build plate Size
