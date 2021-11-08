@@ -34,6 +34,10 @@
 # V1.5.0   : Multi Flow calibration   
 # V1.5.1   : Dimensional Accuracy Test 
 # V1.5.2   : Modification Dimensional Accuracy Test Geometry and validation Flow Tower calibration
+<<<<<<< Updated upstream
+=======
+# V1.5.3   : Modification Fill Gaps Between Wall for flowtower
+>>>>>>> Stashed changes
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -424,6 +428,7 @@ class CalibrationShapes(QObject, Extension):
         self._registerShapeStl("TowerFlow", "Flow-tower-04x02.stl")
         self._checkAdaptativ(False)
         self._checkThinWalls(True)
+        self._checkFill_Perimeter_Gaps("nowhere")
         
     def addHoleTest(self) -> None:
         self._registerShapeStl("FlowTest", "HoleTest.stl")
@@ -555,6 +560,28 @@ class CalibrationShapes(QObject, Extension):
             Message(text = "Info modification extruder current profil fill_outline_gaps\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
             # Define adaptive_layer
             extruder.setProperty("fill_outline_gaps", "value", val)
+
+    #----------------------------------------------------------
+    # Check fill_perimeter_gaps (Print Thin Walls) must be "nowhere"
+    #----------------------------------------------------------   
+    def _checkFill_Perimeter_Gaps(self, val):
+        # Logger.log("d", "In checkAdaptativ = %s", str(val))
+        # Fix some settings in Cura to get a better result
+        global_container_stack = CuraApplication.getInstance().getGlobalContainerStack() 
+        fill_perimeter_gaps = global_container_stack.getProperty("fill_perimeter_gaps", "value")
+        
+        if fill_perimeter_gaps !=  val :
+            Message(text = "Info modification current profil fill_perimeter_gaps\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            # Define adaptive_layer
+            global_container_stack.setProperty("fill_perimeter_gaps", "value", val)
+        
+        extruder = global_container_stack.extruderList[0]
+        fill_perimeter_gaps = extruder.getProperty("fill_perimeter_gaps", "value")
+        
+        if fill_perimeter_gaps !=  val :
+            Message(text = "Info modification extruder current profil fill_perimeter_gaps\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            # Define adaptive_layer
+            extruder.setProperty("fill_perimeter_gaps", "value", val)
             
     #----------------------------------------
     # Initial Source code from  fieldOfView
