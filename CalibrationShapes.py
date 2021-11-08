@@ -351,7 +351,7 @@ class CalibrationShapes(QObject, Extension):
             mesh.apply_transform(trimesh.transformations.scale_matrix(fact, origin, DirX))
             mesh.apply_transform(trimesh.transformations.scale_matrix(fact, origin, DirY))
             mesh.apply_transform(trimesh.transformations.scale_matrix(fact, origin, DirZ))
-            mesh.apply_transform(trimesh.transformations.translation_matrix([0, (100-fl)*10*fact, 0]))
+            mesh.apply_transform(trimesh.transformations.translation_matrix([0, (100-fl)*12*fact, 0]))
             self._addShapeFlow(mesh_name,self._toMeshData(mesh), **kwargs)
             
         else :
@@ -421,6 +421,7 @@ class CalibrationShapes(QObject, Extension):
             self._registerShapeStl(block_name, stl_file, flow = id , factor = s_factor)
 
         self._checkThinWalls(True)
+        self._checkFill_Perimeter_Gaps("nowhere")
         
     def addFlowTowerTest(self) -> None:
         self._registerShapeStl("TowerFlow", "Flow-tower-04x02.stl")

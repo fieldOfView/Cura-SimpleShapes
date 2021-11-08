@@ -5,19 +5,19 @@
 Texte = "90";
 
 
-font = "Arial:style=Bold";
+font = "Agency FB:style=Bold";
 $fn=100;
 
 nz = 0.4;
-height = 1.6;
-long = 20;
-width = 8;
+height = 1.2;
+long = 24;
+width = 12;
 diam_ext = width*0.8;
 lh = 0.25;
 long2 =15;
-width2=8;
-letter_size = width2*0.7;
-letter_height = height;
+width2=10;
+letter_size = width2*0.6;
+letter_height = height*0.9;
 
 
 translate([0, 0, 0]) Model();
@@ -25,7 +25,7 @@ translate([0, 0, 0]) Model();
 module Model() {
     difference() {
       Corps();
-      translate([0 , (width+width2)/2, height/4]) letter(Texte);
+      translate([letter_size/6 , (width+width2)/2.1, height/4]) letter(Texte);
     } 
 }
 
@@ -38,12 +38,17 @@ module letter(Txt) {
 
 module Corps() {
     union() {
-        // First pilar
+        // First rectangle
         translate([0 , 0, height/2]) cube([long,width,height], center = true);
-        translate([0 , (width+width2)/2, height/4]) cube([long2,width2,height*0.5], center = true);
-        translate([0 , 0, height+(lh/2)]) difference(){
+        translate([0 , (width+width2)/2, height*0.3]) cube([long2,width2,height*0.6], center = true);
+        translate([long/4.5 , 0, height+(lh/2)]) difference(){
               cylinder(h=lh,r=diam_ext/2,center = true);
-              cylinder(h=lh+1,r=(diam_ext/2)-(nz+0.05),center = true);
+              cylinder(h=lh+1,r=(diam_ext/2)-(nz+0.02),center = true);
+        }
+        
+        translate([-long/4.5 , 0, height+(lh/2)]) union(){
+              cube([diam_ext,(nz+0.02),lh],center = true);
+              cube([(nz+0.02),diam_ext,lh],center = true);
         }
     }
 }
