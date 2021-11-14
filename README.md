@@ -89,7 +89,7 @@ The scripts provided with this plugin must be visible in the Postprocessing scri
 ![Adding script](./images/plugins.jpg)
 
 
-#### SpeedTower.py
+#### [SpeedTower.py](resources/scripts/SpeedTower.py)
 
 
 Description :  postprocessing-script to easily define a Speed Tower.
@@ -109,7 +109,7 @@ Five options :
 ![SpeedTower.py](./images/speedtower.jpg)
 
 
-#### TempFanTower.py
+#### [TempFanTower.py](resources/scripts/TempFanTower.py)
 
 
 Description:  postprocessing-script to easily create a temptower and not use 10 changeAtZ-scripts
@@ -121,7 +121,7 @@ Description:  postprocessing-script to easily create a temptower and not use 10 
 ![TempFanTower.py](./images/tempfan.jpg)
 
 
-#### RetractTower.py
+#### [RetractTower.py](resources/scripts/RetractTower.py)
 
 
 
@@ -138,7 +138,7 @@ Two options :
 ![RetractTower.py](./images/retract-tower.jpg)
 
 
-#### FlowTower.py
+#### [FlowTower.py](resources/scripts/FlowTower.py)
 
 
 Description:  postprocessing-script to easily create a FlowTower
