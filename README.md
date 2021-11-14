@@ -2,7 +2,7 @@
 
 This plugin adds a menu to create some simple shapes to the scene (cube, cylinder, tube) and calibration sample parts. They are used most of the time to create some fast test parts and common calibration/test parts. 
 
-The default size for all the simple shapes is 20 mm, but can be modified via the **Define default size** menu.
+The default size for all the simple shapes is 20 mm, but can be modified via the [**Define default size**](#Define-default-size) menu.
 
 ![menu Extensions Calibration Shapes](./images/menu.jpg)
 
