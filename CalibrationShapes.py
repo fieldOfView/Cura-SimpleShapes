@@ -397,6 +397,7 @@ class CalibrationShapes(QObject, Extension):
         self._registerShapeStl("RetractTest")
     
     def addXYCalibration(self) -> None:
+        self._registerShapeStl("xy_calibration_limited")
         self._registerShapeStl("xy_calibration")
         
     def addBridgeTest(self) -> None:

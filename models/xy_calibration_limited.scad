@@ -16,7 +16,7 @@ height2 = 7.8;
 letter_height = 5.2;
 letter_size =8;
 
-translate([-70,-70,0]) union() {
+translate([-10,-10,0]) union() {
 Ruler();
 translate([5,5,3]) letter("0");
 translate([lg_x*10-5,5,0]) letter("X");
