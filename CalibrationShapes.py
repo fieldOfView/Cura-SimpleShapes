@@ -35,6 +35,7 @@
 # V1.5.1   : Dimensional Accuracy Test 
 # V1.5.2   : Modification Dimensional Accuracy Test Geometry and validation Flow Tower calibration
 # V1.5.3   : Modification Fill Gaps Between Wall for flowtower
+# V1.5.4   : Add XY calibration axis
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -142,6 +143,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
         
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a XY Calibration Test"), self.addXYCalibration)
         # self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Junction Deviation Tower"), self.addJunctionDeviationTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bridge Test"), self.addBridgeTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Thin Wall Test"), self.addThinWall)
@@ -393,6 +395,9 @@ class CalibrationShapes(QObject, Extension):
         
     def addRetractTest(self) -> None:
         self._registerShapeStl("RetractTest")
+    
+    def addXYCalibration(self) -> None:
+        self._registerShapeStl("xy_calibration")
         
     def addBridgeTest(self) -> None:
         self._registerShapeStl("BridgeTest")
