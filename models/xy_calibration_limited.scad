@@ -8,8 +8,8 @@ $fn=120;
 font = "Arial:style=Bold";
 
 // 150mm x 150mm ; 10mm steps
-lg_x = 15;
-lg_y = 15;
+lg_x = 3;
+lg_y = 3;
 
 height = 4.8;
 height2 = 7.8;
