@@ -1,6 +1,6 @@
 //------------------------------------------------------
 // XY calibration test
-// Simple and printable in a couple of minutes
+// Simple Calibration X & Y Axis
 // 5@xes 15/11/2021
 //------------------------------------------------------
 
@@ -11,13 +11,15 @@ font = "Arial:style=Bold";
 cm_x = 15;
 cm_y = 15;
 
-height = 0.8;
-letter_height =1;
+height = 0.6;
+letter_height =1.;
 letter_size =8;
 
-union() {
-translate([-75,-75,0]) Ruler();
-translate([-75,-75,0]) letter("X");
+translate([-70,-70,0]) union() {
+Ruler();
+translate([5,5,0]) letter("0");
+translate([cm_x*10-5,5,0]) letter("X");
+translate([5,cm_x*10-5,0]) letter("Y");
 }
 
 module Ruler() {
@@ -41,7 +43,7 @@ translate([5,1,0]) cube([4, cm_y*10-2,height]);
 
 }
 
-  cylinder(r=1,h=1);
+  cylinder(r=1,h=0.1);
 }
 }
 
