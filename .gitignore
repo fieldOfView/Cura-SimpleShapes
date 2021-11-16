@@ -8,3 +8,4 @@ __pycache__/
 *.mo
 *.pot
 models/Calibration-Extruder-Offset-6parts-export.stl
+resources/~$CalibrationCalcul.xlsx
