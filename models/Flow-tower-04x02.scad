@@ -1,9 +1,18 @@
+//=====================================================
 //
 // Flow test tower
 // Initial model from Alexander Sudarkin
 // https://www.thingiverse.com/thing:4179047
 // Freely adapted by 5@xes
 //
+//=====================================================
+//
+// - Modifications -
+// -----------------
+//
+// 12/2021 : wo=w+lay;  previous value wo=w+0.05;
+//
+//=====================================================
 
 nz=0.4; // Nozzle Size
 lay=0.2; // Layer Height
@@ -25,7 +34,7 @@ fs=2.0; // Chamfer size
 fsp=2.2; // Pin Chamfer size
 
 w=4; // Pin Width
-wo=w+0.05; // Width
+wo=w+lay; // Housing Width
 
 spw=nz+0.05; // Support Width
 spi=3.5; // Support interval
@@ -40,7 +49,7 @@ color("red",1.0)
 for (i=[0:hs:h-hs])
 translate([0,0,(hs/2)+i]) cube([wo,xy+1,hs-hw*2],true);
 
-// interval
+// Interval
 for (i=[0:hs:h-hs])
 translate([0,0,hs+i]) cube([xy+1,xy+1,rzh],true);
 
