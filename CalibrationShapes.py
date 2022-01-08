@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------------
 # Part of the initial source code for primitive Shape (c) 2018 fieldOfView
 # The CalibrationShapes plugin is released under the terms of the AGPLv3 or higher.
-# Modifications 5@xes 2020-2021
+# Modifications 5@xes 2020-2022
 #-----------------------------------------------------------------------------------
 # V1.04    : https://github.com/5axes/Calibration-Shapes/issues/4
 #          : https://github.com/5axes/Calibration-Shapes/issues/3
@@ -37,6 +37,8 @@
 # V1.5.3   : Modification Fill Gaps Between Wall for flowtower
 # V1.5.4   : Add XY calibration axis
 # V1.6.0   : Change calibration part design and remove from the list the Multicube
+#
+# V1.7.0   : Add AccelerationTower
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
@@ -142,6 +144,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PETG TempTower"), self.addPETGTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an ABS TempTower"), self.addABSTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Acceleration Tower"), self.addAccelerationTower)
         
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Test"), self.addRetractTest)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a XY Calibration Test"), self.addXYCalibration)
@@ -397,6 +400,10 @@ class CalibrationShapes(QObject, Extension):
         self._registerShapeStl("RetractTower")
         self._checkAdaptativ(False)
         self._checkRetract(True)
+
+    def addAccelerationTower(self) -> None:
+        self._registerShapeStl("AccelerationTower")
+        self._checkAdaptativ(False)
         
     def addRetractTest(self) -> None:
         self._registerShapeStl("RetractTest")
