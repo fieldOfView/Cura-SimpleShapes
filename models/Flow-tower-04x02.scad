@@ -10,7 +10,7 @@
 // - Modifications -
 // -----------------
 //
-// 12/2021 : wo=w+lay;  previous value wo=w+0.05;
+// 12/2021 : wo=w+(lay/2);  previous value wo=w+0.05;
 //
 //=====================================================
 
@@ -34,7 +34,7 @@ fs=2.0; // Chamfer size
 fsp=2.2; // Pin Chamfer size
 
 w=4; // Pin Width
-wo=w+lay; // Housing Width
+wo=w+(lay/2); // Housing Width
 
 spw=nz+0.05; // Support Width
 spi=3.5; // Support interval
