@@ -15,6 +15,8 @@
 // Based on a design proposed by stoempie https://www.thingiverse.com/thing:2493504
 // Freely adapted by 5@xes  2020
 //-------------------------------------------------------------------------------------------
+// Modification 01/2022 increase the wall thickness to 4 Line_Width
+//-------------------------------------------------------------------------------------------
 
 $fn=30;
 font = "Arial:style=Bold";
@@ -108,7 +110,7 @@ module Colonne() {
         cube([cube_size,cube_size,cube_size*0.9], center = false);
         translate([0.5*Line_Width, 0.5*Line_Width, 0]) cube([cube_size-(Line_Width),cube_size-(Line_Width),cube_size], center = false);  
         }
-           translate([(2*Line_Width), (2*Line_Width), -0.5]) cube([cube_size-(4*Line_Width),cube_size-(4*Line_Width),cube_size+1], center = false); 
+           translate([(4*Line_Width), (4*Line_Width), -0.5]) cube([cube_size-(8*Line_Width),cube_size-(8*Line_Width),cube_size+1], center = false); 
     }
     }
 module Etage() {
