@@ -1,8 +1,11 @@
-//------------------------------------------------------
+//-------------------------------------------------------
 // AccelerationTower
 // Accleration & Riging test Part
 // 5@xes 16/01/2021
-//------------------------------------------------------
+// -------------------------------------------------------
+// Test model based on the Klipper Documentation articles
+//  https://www.klipper3d.org/Resonance_Compensation.html
+//--------------------------------------------------------
 
 $fn = 120;
 font = "Arial:style=Regular";
