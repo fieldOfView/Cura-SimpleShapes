@@ -63,13 +63,14 @@ module OneStep() {
 
         difference() {
             cube([length,thickness/2,height], center =false);
-            translate([length/3-radius*2,0,height/2]) rotate([90,0,-45]) cylinder(thickness*5,Rad,Rad,center = true);
+            translate([length/3-radius*2.025,0,height/2]) rotate([90,0,-20]) cylinder(thickness*5,Rad,Rad,center = true);
             translate([2*length/3+radius,0,height/2]) rotate([90,0,45]) cylinder(thickness*5,Rad,Rad,center = true);
             translate([2*length/3-pocket/2,0,0]) cube([pocket,thickness/2,height],center = false);
 
         }
         color("red",1.0)
-        translate([length/3-(gap+radius*2),0,height/2]) rotate([90,0,45]) cylinder(thickness*5,radius,radius,center = true);
+        translate([length/3-(gap+radius*2),0,height/2]) rotate([90,0,20]) cylinder(thickness*5,radius,radius,center = true);
+        cube([length/5,thickness/2,height], center =false);
         translate([length/2*3,0,height/2]) rotate([90,0,-45]) cylinder(thickness*5,radius,radius,center = true);
         color("blue",1.0)
         translate([0,thickness/2,0]) cube([length,thickness/2,height], center = false);
