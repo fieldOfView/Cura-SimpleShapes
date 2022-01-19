@@ -1,5 +1,13 @@
+//===========================================================
 // OpenSCAD  test object for dimensional Accuracy Test
 // Author : 5@xes
+// - D = 30 mm h= 5 mm
+// - D = 25 mm h= 10 mm
+// - D = 20 mm h= 15 mm
+// - D = 15 mm h= 20 mm
+// - D = 10 mm h= 25 mm
+// - D =  5 mm h= 30 mm
+//===========================================================
 
 $fn = 200;
 
