@@ -1,12 +1,15 @@
+//--------------------------------------------
 // Support Test
 // 
 // by Dotdash32 (JDeWitt)
 // https://github.com/dotdash32
 //
 // rendering aids
-// $fa = 3; //min fragment angle
-// $fs = 0.5; // min fragment size
-$fn=45; // number of fragments
+// $fa = 3; //min segment angle
+// $fs = 0.5; // min segment size
+//--------------------------------------------
+
+$fn=45; // number of segments
 
 //parameters
 thickness = 2; //primary thickness of walls
