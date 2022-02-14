@@ -7,6 +7,7 @@
 # Description:  postprocessing script to easily define a Speed Tower 
 #           Option for  Speed
 #                       Acceleration
+#                       Jerk
 #                       Junction Deviation
 #                       Marlin Linear Advance
 #                       RepRap Pressure Advance
@@ -18,6 +19,7 @@
 #   Version 1.2 05/04/2021 by dotdash32(https://github.com/dotdash32) for Marlin Linear Advance & RepRap Pressure Advance
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
 #   Version 1.4 18/05/2021  : float
+#   Version 1.5 14/02/2022  : Set Speed Stteing M220 S
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -26,7 +28,7 @@ from UM.Application import Application
 from UM.Logger import Logger
 import re #To perform the search
 
-__version__ = '1.4'
+__version__ = '1.5'
 
 class SpeedTower(Script):
     def __init__(self):
@@ -45,6 +47,7 @@ class SpeedTower(Script):
                     "description": "GCode Commande",
                     "type": "enum",
                     "options": {
+                        "speed": "Speed",
                         "acceleration": "Acceleration",
                         "jerk": "Jerk",
                         "junction": "Junction Deviation",
@@ -124,6 +127,9 @@ class SpeedTower(Script):
                     # Logger.log('d', 'Instruction : {}'.format(Instruction))
 
                     if (layer_index==ChangeLayerOffset):
+                        if  (Instruction=='speed'):
+                            Command = "M220 S{:d}".format(int(CurrentValue))
+                            lcd_gcode = "M117 Speed S{:d}".format(int(CurrentValue))
                         if  (Instruction=='acceleration'):
                             Command = "M204 S{:d}".format(int(CurrentValue))
                             lcd_gcode = "M117 Acceleration S{:d}".format(int(CurrentValue))
@@ -147,6 +153,9 @@ class SpeedTower(Script):
 
                     if ((layer_index-ChangeLayerOffset) % ChangeLayer == 0) and ((layer_index-ChangeLayerOffset)>0):
                             CurrentValue += ValueChange
+                            if  (Instruction=='speed'):
+                                Command = "M220 S{:d}".format(int(CurrentValue))
+                                lcd_gcode = "M117 Speed S{:d}".format(int(CurrentValue))
                             if  (Instruction=='acceleration'):
                                 Command = "M204 S{:d}".format(int(CurrentValue))
                                 lcd_gcode = "M117 Acceleration S{:d}".format(int(CurrentValue))
