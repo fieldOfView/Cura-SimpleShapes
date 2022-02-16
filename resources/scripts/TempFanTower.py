@@ -4,7 +4,7 @@
 # Author:   5axes
 # Date:     January 13, 2020
 #
-# Description:  postprocessing-script to easily use an temptower and not use 10 changeAtZ-scripts
+# Description:  postprocessing-script to easily use a TempTower and not use 10 changeAtZ-scripts
 #
 #
 #------------------------------------------------------------------------------------------------------------------------------------
@@ -14,13 +14,14 @@
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
 #   Version 1.4 18/05/2021  : ChangeLayerOffset
 #
+#   Version 1.5 15/02/2022 Change Int for Layeroffset & changelayer
 #------------------------------------------------------------------------------------------------------------------------------------
 
 from ..Script import Script
 from UM.Application import Application
 from UM.Logger import Logger
 
-__version__ = '1.4'
+__version__ = '1.5'
 
 class TempFanTower(Script):
     def __init__(self):
@@ -60,7 +61,7 @@ class TempFanTower(Script):
                 {
                     "label": "Change Layer",
                     "description": "How many layers needs to be printed before the temperature should be changed",
-                    "type": "float",
+                    "type": "int",
                     "default_value": 52,
                     "minimum_value": 1,
                     "maximum_value": 1000,
@@ -71,7 +72,7 @@ class TempFanTower(Script):
                 {
                     "label": "Change Layer Offset",
                     "description": "If the Temptower has a base, put the layer high off it here",
-                    "type": "float",
+                    "type": "int",
                     "default_value": 5,
                     "minimum_value": 0,
                     "maximum_value": 1000,

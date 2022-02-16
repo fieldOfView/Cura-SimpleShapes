@@ -20,6 +20,7 @@
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
 #   Version 1.4 18/05/2021  : float
 #   Version 1.5 14/02/2022  : Set Speed Stteing M220 S
+#   Version 1.6 15/02/2022  : Change Int for Layeroffset & changelayer
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -28,7 +29,7 @@ from UM.Application import Application
 from UM.Logger import Logger
 import re #To perform the search
 
-__version__ = '1.5'
+__version__ = '1.6'
 
 class SpeedTower(Script):
     def __init__(self):
@@ -74,7 +75,7 @@ class SpeedTower(Script):
                 {
                     "label": "Change Layer",
                     "description": "how many layers needs to be printed before the value should be changed.",
-                    "type": "float",
+                    "type": "int",
                     "default_value": 30,
                     "minimum_value": 1,
                     "maximum_value": 1000,
@@ -84,7 +85,7 @@ class SpeedTower(Script):
                 {
                     "label": "Change Layer Offset",
                     "description": "if the Tower has a base, put the layer high off it here",
-                    "type": "float",
+                    "type": "int",
                     "default_value": 4,
                     "minimum_value": 0,
                     "maximum_value": 1000,

@@ -9,6 +9,7 @@
 #------------------------------------------------------------------------------------------------------------------------------------
 #
 #   Version 1.0 29/08/2021
+#   Version 1.1 15/02/2022 Change Int for Layeroffset & changelayer
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -17,7 +18,7 @@ from UM.Application import Application
 from UM.Logger import Logger
 import re #To perform the search
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 class FlowTower(Script):
     def __init__(self):
@@ -49,7 +50,7 @@ class FlowTower(Script):
                 {
                     "label": "Change Layer",
                     "description": "how many layers needs to be printed before the value should be changed.",
-                    "type": "float",
+                    "type": "int",
                     "default_value": 40,
                     "minimum_value": 1,
                     "maximum_value": 1000,
@@ -59,7 +60,7 @@ class FlowTower(Script):
                 {
                     "label": "Change Layer Offset",
                     "description": "if the Tower has a base, put the layer high off it here",
-                    "type": "float",
+                    "type": "int",
                     "default_value": 0,
                     "minimum_value": 0,
                     "maximum_value": 1000,
