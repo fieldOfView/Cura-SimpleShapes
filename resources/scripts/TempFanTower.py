@@ -71,7 +71,7 @@ class TempFanTower(Script):
                 "changelayeroffset":
                 {
                     "label": "Change Layer Offset",
-                    "description": "If the Temptower has a base, put the layer high off it here",
+                    "description": "If the print has a base, indicate the number of layers from which to start the changes.",
                     "type": "int",
                     "default_value": 5,
                     "minimum_value": 0,
@@ -100,8 +100,8 @@ class TempFanTower(Script):
         
         startTemperature = self.getSettingValueByKey("startTemperature")
         temperaturechange = self.getSettingValueByKey("temperaturechange")
-        changelayer = self.getSettingValueByKey("changelayer")
-        ChangeLayerOffset = self.getSettingValueByKey("changelayeroffset")
+        changelayer = int(self.getSettingValueByKey("changelayer"))
+        ChangeLayerOffset = int(self.getSettingValueByKey("changelayeroffset"))
         ChangeLayerOffset += 2  # Modification to take into account the numbering offset in Gcode
                                 # layer_index = 0 for initial Block 1= Start Gcode normaly first layer = 0
         

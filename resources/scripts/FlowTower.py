@@ -81,8 +81,8 @@ class FlowTower(Script):
         UseLcd = self.getSettingValueByKey("lcdfeedback")
         StartValue = float(self.getSettingValueByKey("startValue"))
         ValueChange = float(self.getSettingValueByKey("valueChange"))
-        ChangeLayer = self.getSettingValueByKey("changelayer")
-        ChangeLayerOffset = self.getSettingValueByKey("changelayeroffset")
+        ChangeLayer = int(self.getSettingValueByKey("changelayer"))
+        ChangeLayerOffset = int(self.getSettingValueByKey("changelayeroffset"))
         ChangeLayerOffset += 2  # Modification to take into account the numbering offset in Gcode
                                 # layer_index = 0 for initial Block 1= Start Gcode normaly first layer = 0 
 
