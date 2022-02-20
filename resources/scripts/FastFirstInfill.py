@@ -16,7 +16,7 @@
 from ..Script import Script
 from UM.Logger import Logger
 from UM.Application import Application
-import re #To perform the search
+import re # To perform the search
 from enum import Enum
 
 __version__ = '1.1'
