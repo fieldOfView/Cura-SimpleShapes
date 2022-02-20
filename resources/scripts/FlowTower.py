@@ -35,21 +35,21 @@ class FlowTower(Script):
                 "startValue":
                 {
                     "label": "Starting value",
-                    "description": "the starting value of the Tower.",
+                    "description": "The starting value of the Tower.",
                     "type": "float",
                     "default_value": 110.0
                 },
                 "valueChange":
                 {
                     "label": "Value Increment",
-                    "description": "the value change of each block, can be positive or negative. I you want 110 and then 108, you need to set this to -2.",
+                    "description": "The value change of each block, can be positive or negative. I you want 110 and then 108, you need to set this to -2.",
                     "type": "float",
                     "default_value": -2.0
                 },
                 "changelayer":
                 {
                     "label": "Change Layer",
-                    "description": "how many layers needs to be printed before the value should be changed.",
+                    "description": "How many layers needs to be printed before the value should be changed.",
                     "type": "int",
                     "default_value": 40,
                     "minimum_value": 1,
@@ -59,7 +59,7 @@ class FlowTower(Script):
                 "changelayeroffset":
                 {
                     "label": "Change Layer Offset",
-                    "description": "if the Tower has a base, put the layer high off it here",
+                    "description": "If the print has a base, indicate the number of layers from which to start the changes.",
                     "type": "int",
                     "default_value": 0,
                     "minimum_value": 0,

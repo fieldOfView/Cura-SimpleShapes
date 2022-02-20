@@ -20,7 +20,7 @@
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
 #   Version 1.4 18/05/2021  : float
 #   Version 1.5 14/02/2022  : Set Speed Stteing M220 S
-#   Version 1.6 15/02/2022  : Change Int for Layeroffset & changelayer
+#   Version 1.6 15/02/2022  : Change Int for changelayeroffset & changelayer
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -60,21 +60,21 @@ class SpeedTower(Script):
                 "startValue":
                 {
                     "label": "Starting value",
-                    "description": "the starting value of the Tower.",
+                    "description": "The starting value of the Tower.",
                     "type": "float",
                     "default_value": 8.0
                 },
                 "valueChange":
                 {
                     "label": "Value Increment",
-                    "description": "the value change of each block, can be positive or negative. I you want 50 and then 40, you need to set this to -10.",
+                    "description": "The value change of each block, can be positive or negative. I you want 50 and then 40, you need to set this to -10.",
                     "type": "float",
                     "default_value": 4.0
                 },
                 "changelayer":
                 {
                     "label": "Change Layer",
-                    "description": "how many layers needs to be printed before the value should be changed.",
+                    "description": "How many layers needs to be printed before the value should be changed.",
                     "type": "int",
                     "default_value": 30,
                     "minimum_value": 1,
@@ -84,7 +84,7 @@ class SpeedTower(Script):
                 "changelayeroffset":
                 {
                     "label": "Change Layer Offset",
-                    "description": "if the Tower has a base, put the layer high off it here",
+                    "description": "If the print has a base, indicate the number of layers from which to start the changes.",
                     "type": "int",
                     "default_value": 4,
                     "minimum_value": 0,
