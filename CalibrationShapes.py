@@ -41,6 +41,7 @@
 # V1.7.0   : Add AccelerationTower. Modification of the Temp Tower Design with Thicker design to avoit this report : https://github.com/5axes/Calibration-Shapes/issues/78
 #
 # V1.8.0   : New design on Acceleration Tower
+# V1.8.1   : Script Modification + New Script
 #
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
