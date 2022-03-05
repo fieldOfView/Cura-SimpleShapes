@@ -12,7 +12,7 @@ font = "Gill Sans MT:style=Bold";
 letter_height = 0.8;
 letter_size =10;
 
-translate([0,0,0]) letter("3");
+translate([0,0,0]) letter("8");
 
 
 module letter(Txt) {
