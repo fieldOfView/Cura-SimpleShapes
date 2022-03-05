@@ -151,6 +151,13 @@ Description:  postprocessing-script to easily create a FlowTower
 
 ![FlowTower.py](./images/flowtower.jpg)
 
+## Add Mark
+
+New Function to add a mark in front of each part to identify every part. Before to use this function you must select every model on the build plate. The selecting order will also give the number used to identify the Model.
+
+![Add Mark](./images/AddMark.jpg)
+
+
 ## Help
 
 
