@@ -444,7 +444,7 @@ class CalibrationShapes(QObject, Extension):
                 model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", Filename)
                 mesh = trimesh.load(model_definition_path)
 
-                mesh.apply_transform(trimesh.transformations.translation_matrix([PosX, -PosY, 0]))
+                mesh.apply_transform(trimesh.transformations.translation_matrix([PosX-3, -PosY, 0]))
                 # addShape
                 self._addShape(Ident[0],self._toMeshData(mesh))
                 
@@ -453,7 +453,7 @@ class CalibrationShapes(QObject, Extension):
                 model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", Filename)
                 mesh = trimesh.load(model_definition_path)
 
-                mesh.apply_transform(trimesh.transformations.translation_matrix([PosX+5, -PosY, 0]))
+                mesh.apply_transform(trimesh.transformations.translation_matrix([PosX+3, -PosY, 0]))
                 # addShape
                 self._addShape(Ident[1],self._toMeshData(mesh))
                 
