@@ -14,12 +14,12 @@ font = "Arial:style=Bold";
 Hc=0.12; // Layer Height
 
 cube_size = 40*Hc;
-letter_size = 0.75*cube_size;
+letter_size = 0.85*cube_size;
 letter_depth = 0.1*cube_size;
 nz=Hc*(2+cos(30));
 step=cube_size;
   
-translate([cube_size*-4, -cube_size, Hc*(1+cos(30))]) union() {
+translate([cube_size*-4, -cube_size*0.5, Hc*(1+cos(30))]) union() {
   Base();
   difference() {
   union() {
