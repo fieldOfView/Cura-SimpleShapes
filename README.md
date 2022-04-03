@@ -32,6 +32,7 @@ You can also load standard test  / calibration  part :
 | [Junction Deviation Tower](https://github.com/5axes/Calibration-Shapes/wiki/Junction-Deviation-Tower)           | [Junction Deviation Tower](./models/JunctionDeviationTower.stl) |
 | [Tolerance Test](https://github.com/5axes/Calibration-Shapes/wiki/Tolerance)                                    | [Tolerance Test](./models/Tolerance.stl)                        |
 | [Support Test](https://github.com/5axes/Calibration-Shapes/wiki/Support-Test)                                   | [Support Test](./models/SupportTest.stl)                        |
+| [Lithophane Test](https://github.com/5axes/Calibration-Shapes/wiki/Lithophane-Test)                                   | [Lithophane Test](./models/Lithophane.stl)                        |
 | [Dimensional Accuracy Test](https://github.com/5axes/Calibration-Shapes/wiki/Dimensional-Accuracy-Test)         | [Dimensional Accuracy](./models/DimensionalAccuracyTest.stl)    |
 | [MultiCube Test](https://github.com/5axes/Calibration-Shapes/wiki/MultiCube)                                    | [MultiCube Test](./models/MultiCube.stl)                        |
 
