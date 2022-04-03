@@ -8,12 +8,12 @@
 // Freely adapted by 5@xes  2022
 //-------------------------------------------------------------------------------------------
 
-$fn=30;
+$fn=40;
 font = "Arial:style=Bold";
 
 Hc=0.12; // Layer Height
 
-cube_size = 30*Hc;
+cube_size = 40*Hc;
 letter_size = 0.75*cube_size;
 letter_depth = 0.1*cube_size;
 nz=Hc*(2+cos(30));
@@ -40,14 +40,14 @@ translate([cube_size*-4, -cube_size, Hc*(1+cos(30))]) union() {
   translate([1.5, 0.5, nz+step*14]) OneStep(0.6);
   translate([1.5, 0.5, nz+step*15]) OneStep(0.4);
   }
-     color("red")  translate([cube_size*3.7, cube_size*3.05, cube_size*8+nz]) rotate([0,0,180]) linear_extrude(height = cube_size*17, center = true, convexity = 10, scale = 2.70, $fn = 16) {square(size = [cube_size*3.2, cube_size], center = false);}
+     color("red")  translate([cube_size*3.6, cube_size*2.5, cube_size*8+nz]) rotate([0,0,180]) linear_extrude(height = cube_size*17, center = true, convexity = 10, scale = 2.00, $fn = 16) {square(size = [cube_size*3.2, cube_size], center = false);}
   }
 }
 
 
 module Base() {
     minkowski() {
-        translate([0, -cube_size*0.4, -Hc]) cube([cube_size*8,cube_size*3,3*Hc], center = false);
+        translate([0, -cube_size*0.4, -Hc]) cube([cube_size*8,cube_size*2.3,3*Hc], center = false);
         sphere(Hc,$fn=5);
     }
 }
