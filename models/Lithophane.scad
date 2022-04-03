@@ -40,14 +40,14 @@ translate([cube_size*-4, -cube_size, Hc*(1+cos(30))]) union() {
   translate([1.5, 0.5, nz+step*14]) OneStep(0.6);
   translate([1.5, 0.5, nz+step*15]) OneStep(0.4);
   }
-     color("red")  translate([cube_size*3.6, cube_size*2.5, cube_size*8+nz]) rotate([0,0,180]) linear_extrude(height = cube_size*17, center = true, convexity = 10, scale = 2.00, $fn = 16) {square(size = [cube_size*3.2, cube_size], center = false);}
+    color("red")  translate([cube_size*3.5, cube_size*2.1, cube_size*8+nz]) rotate([0,0,180]) linear_extrude(height = cube_size*17, center = true, convexity = 10, scale = 1.8, $fn = 16) {square(size = [cube_size*3.2, cube_size], center = false);}
   }
 }
 
 
 module Base() {
     minkowski() {
-        translate([0, -cube_size*0.4, -Hc]) cube([cube_size*8,cube_size*2.3,3*Hc], center = false);
+        translate([0, -cube_size*0.4, -Hc]) cube([cube_size*7.6,cube_size*2,3*Hc], center = false);
         sphere(Hc,$fn=5);
     }
 }
@@ -74,7 +74,7 @@ difference() {
 
 module Etage(ThickNess) {
         union() {
-            cube([cube_size*3,cube_size*2,cube_size], center = false);
+            cube([cube_size*3,cube_size,cube_size], center = false);
             translate([cube_size*3, 0, 0])  cube([(4*cube_size),ThickNess,cube_size], center = false);
             
 
