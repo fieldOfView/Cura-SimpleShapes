@@ -40,7 +40,7 @@ translate([cube_size*-4, -cube_size, Hc*(1+cos(30))]) union() {
   translate([1.5, 0.5, nz+step*14]) OneStep(0.6);
   translate([1.5, 0.5, nz+step*15]) OneStep(0.4);
   }
-     color("red")  translate([cube_size*3.7, cube_size*3.05, cube_size*8+nz]) rotate([0,0,180]) linear_extrude(height = cube_size*17, center = true, convexity = 10, scale = 2.72, $fn = 16) {square(size = [cube_size*3.2, cube_size], center = false);}
+     color("red")  translate([cube_size*3.7, cube_size*3.05, cube_size*8+nz]) rotate([0,0,180]) linear_extrude(height = cube_size*17, center = true, convexity = 10, scale = 2.70, $fn = 16) {square(size = [cube_size*3.2, cube_size], center = false);}
   }
 }
 
