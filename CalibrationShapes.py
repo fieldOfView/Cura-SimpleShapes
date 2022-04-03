@@ -44,6 +44,7 @@
 # V1.8.1   : Script Modification + New Script
 #
 # V1.9.0   : Add Function to Add Mark
+# V1.9.1   : Add Lithophane Test part
 #-----------------------------------------------------------------------------------
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
 from PyQt5.QtGui import QDesktopServices
@@ -176,6 +177,7 @@ class CalibrationShapes(QObject, Extension):
         
         
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Support Test"), self.addSupportTest)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Lithophane Test"), self.addLithophaneTest)
         
         # self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a MultiCube Calibration"), self.addMultiCube)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Bed Level Calibration"), self.addBedLevelCalibration)
@@ -551,6 +553,10 @@ class CalibrationShapes(QObject, Extension):
     def addTolerance(self) -> None:
         self._registerShapeStl("Tolerance")
 
+
+    def addLithophaneTest(self) -> None:
+        self._registerShapeStl("Lithophane")
+        
     # Dotdash addition 2 - Support test
     def addSupportTest(self) -> None:
         self._registerShapeStl("SupportTest")
