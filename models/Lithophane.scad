@@ -13,7 +13,7 @@ font = "Arial:style=Bold";
 
 Hc=0.12; // Layer Height
 
-cube_size = 20*Hc;
+cube_size = 30*Hc;
 letter_size = 0.75*cube_size;
 letter_depth = 0.1*cube_size;
 nz=Hc*(2+cos(30));
