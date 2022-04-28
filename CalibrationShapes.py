@@ -1,5 +1,6 @@
 #-----------------------------------------------------------------------------------
 # Part of the initial source code for primitive Shape (c) 2018 fieldOfView
+#
 # The CalibrationShapes plugin is released under the terms of the AGPLv3 or higher.
 # Modifications 5@xes 2020-2022
 #-----------------------------------------------------------------------------------
@@ -45,10 +46,20 @@
 #
 # V1.9.0   : Add Function to Add Mark
 # V1.9.1   : Add Lithophane Test part
+#
+# V2.0.0   : Update for Cura 5.0
+#
 #-----------------------------------------------------------------------------------
-from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
-from PyQt5.QtGui import QDesktopServices
 
+USE_QT5 = False
+try:
+    from PyQt6.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
+    from PyQt6.QtGui import QDesktopServices
+except ImportError:
+    from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
+    from PyQt5.QtGui import QDesktopServices
+    USE_QT5 = True
+    
 # Imports from the python standard library to build the plugin functionality
 import os
 import re
@@ -88,8 +99,6 @@ from UM.Logger import Logger
 from UM.Message import Message
 
 from UM.i18n import i18nCatalog
-
-
 
 catalog = i18nCatalog("cura")
 
@@ -142,7 +151,15 @@ class CalibrationShapes(QObject, Extension):
                 self.Minor = int(CuraVersion.split(".")[1])
             except:
                 pass
-                
+ 
+        # Shortcut
+        if not USE_QT5:
+            self._qml_folder = "qml" 
+        else:
+            self._qml_folder = "qml_qt5" 
+
+        self._qml_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), self._qml_folder, "CalibrationShapes.qml")
+        
         self._controller = CuraApplication.getInstance().getController()
         self._message = None
         
@@ -200,13 +217,12 @@ class CalibrationShapes(QObject, Extension):
         
     # Define the default value pour the standard element
     def defaultSize(self) -> None:
-    
+ 
         if self._continueDialog is None:
             self._continueDialog = self._createDialogue()
         self._continueDialog.show()
         #self.userSizeChanged.emit()
-        
- 
+
     #====User Input=====================================================================================================
     @pyqtProperty(str, notify= userSizeChanged)
     def sizeInput(self):
@@ -220,8 +236,9 @@ class CalibrationShapes(QObject, Extension):
     #This method builds the dialog from the qml file and registers this class
     #as the manager variable
     def _createDialogue(self):
-        qml_file_path = os.path.join(PluginRegistry.getInstance().getPluginPath(self.getPluginId()), "CalibrationShapes.qml")
-        component_with_context = Application.getInstance().createQmlComponent(qml_file_path, {"manager": self})
+        #qml_file_path = os.path.join(PluginRegistry.getInstance().getPluginPath(self.getPluginId()), "CalibrationShapes.qml")
+        #Logger.log('d', 'Qml_path : ' + str(self._qml_path)) 
+        component_with_context = Application.getInstance().createQmlComponent(self._qml_path, {"manager": self})
         return component_with_context
 
     def getSize(self) -> float:
@@ -759,16 +776,18 @@ class CalibrationShapes(QObject, Extension):
         op = AddSceneNodeOperation(node, scene.getRoot())
         op.push()
 
-        extruder_nr=len(global_stack.extruders)
-        # Logger.log("d", "extruder_nr= %d", extruder_nr)
+        extruder_stack = application.getExtruderManager().getActiveExtruderStacks() 
+        
+        extruder_nr=len(extruder_stack)
+        Logger.log("d", "extruder_nr= %d", extruder_nr)
         # default_extruder_position  : <class 'str'>
         if ext_pos>0 and ext_pos<=extruder_nr :
-            default_extruder_position = str(ext_pos-1)
+            default_extruder_position = int(ext_pos-1)
         else :
-            default_extruder_position = application.getMachineManager().defaultExtruderPosition
-        # Logger.log("d", "default_extruder_position= %s", type(default_extruder_position))
-        default_extruder_id = global_stack.extruders[default_extruder_position].getId()
-        # Logger.log("d", "default_extruder_id= %s", default_extruder_id)
+            default_extruder_position = int(application.getMachineManager().defaultExtruderPosition)
+        Logger.log("d", "default_extruder_position= %s", type(default_extruder_position))
+        default_extruder_id = extruder_stack[default_extruder_position].getId()
+        Logger.log("d", "default_extruder_id= %s", default_extruder_id)
         node.callDecoration("setActiveExtruder", default_extruder_id)
         
         active_build_plate = application.getMultiBuildPlateModel().activeBuildPlate

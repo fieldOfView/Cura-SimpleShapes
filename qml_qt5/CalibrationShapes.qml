@@ -64,7 +64,7 @@ Window
         anchors.right: parent.right
         anchors.rightMargin: 10
 
-        tooltip: "Close this dialog box"
+        ToolTip.text: "Close this dialog box"
 
         style: ButtonStyle{
             background: Rectangle {
