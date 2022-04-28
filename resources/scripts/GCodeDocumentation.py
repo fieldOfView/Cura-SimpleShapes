@@ -27,6 +27,7 @@
 # Version 5.04 of 07/05/2020 Who  : 5axes What : Adding support flow info and info on xy_offset (Version 4.6) 
 # Version 5.1.0 of 09/05/2020 Who : 5axes What : Add message for 4.6
 # Version 5.2.0 of 13/02/2022 Who : 5axes What : New Settings
+# Version 6.0.0 of 01/05/2022 Who : 5axes What : Update for Cura 5.0
 #
 #
 import string
@@ -40,7 +41,7 @@ catalog = i18nCatalog("cura")
         
 ## 
 class GCodeDocumentation(Script):
-    version = "5.2.0"
+    version = "6.0.0"
     
     def getSettingDataString(self):
         return """{
@@ -92,8 +93,8 @@ class GCodeDocumentation(Script):
         
         # Deprecation Warning
         # extrud = list(Application.getInstance().getGlobalContainerStack().extruders.values())
-        extrud = Application.getInstance().getGlobalContainerStack().extruderList
-        GetVal = extrud[id_ex].getProperty(key, "value")
+        extruder_stack = Application.getInstance().getExtruderManager().getActiveExtruderStacks()
+        GetVal = extruder_stack[id_ex].getProperty(key, "value")
         GetLabel = Application.getInstance().getGlobalContainerStack().getProperty(key, "label")
         GetType = Application.getInstance().getGlobalContainerStack().getProperty(key, "type")
         GetUnit = Application.getInstance().getGlobalContainerStack().getProperty(key, "unit")
@@ -124,6 +125,8 @@ class GCodeDocumentation(Script):
         extruder_id  = self.getSettingValueByKey("extruder_nb")
         extruder_id = extruder_id -1
         extrud = Application.getInstance().getGlobalContainerStack().extruderList
+        extruders = Application.getInstance().getExtruderManager().getActiveExtruderStacks()
+        
         _msg = ''
         VersC=1.0
 
@@ -164,7 +167,7 @@ class GCodeDocumentation(Script):
         replace_string = replace_string + "\n;==============================================================================="
         
         # add extruder specific data to slice info
-        extruders = list(Application.getInstance().getGlobalContainerStack().extruders.values())
+        # extruders = list(Application.getInstance().getGlobalContainerStack().extruders.values())
         #   Profile
         GetValStr = extruders[extruder_id].qualityChanges.getMetaData().get("name", "")
         GetLabel = "Profile ( Version Cura " + CuraVersion + " )"
