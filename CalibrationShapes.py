@@ -51,14 +51,14 @@
 #
 #-----------------------------------------------------------------------------------
 
-USE_QT5 = False
+VERSION_QT5 = False
 try:
     from PyQt6.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
     from PyQt6.QtGui import QDesktopServices
 except ImportError:
     from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, QUrl
     from PyQt5.QtGui import QDesktopServices
-    USE_QT5 = True
+    VERSION_QT5 = True
     
 # Imports from the python standard library to build the plugin functionality
 import os
@@ -153,10 +153,10 @@ class CalibrationShapes(QObject, Extension):
                 pass
  
         # Shortcut
-        if not USE_QT5:
-            self._qml_folder = "qml" 
-        else:
+        if VERSION_QT5:
             self._qml_folder = "qml_qt5" 
+        else:
+            self._qml_folder = "qml_qt6" 
 
         self._qml_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), self._qml_folder, "CalibrationShapes.qml")
         

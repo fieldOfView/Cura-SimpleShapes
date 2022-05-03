@@ -27,9 +27,9 @@ Window
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.WindowCloseButtonHint
 
     // Setting the dimensions of the dialog window
-    width: 250
+    width: 200
     height: 50
-    minimumWidth: 250
+    minimumWidth: 200
     minimumHeight: 50
 
     // Position of the window
@@ -39,7 +39,7 @@ Window
     // Define a Window a border (Red for) and a background color
     Rectangle {
         id: bg_rect
-        width: 250
+        width: 200
         height: 50
         color: "#fff"
         border.color: "#D22"
@@ -65,9 +65,11 @@ Window
         anchors.right: parent.right
         anchors.rightMargin: 10
 
-		ToolTip.visible: down
+		ToolTip.delay: 2000
+		ToolTip.timeout: 1000
+		ToolTip.visible: hovered
 		ToolTip.text: qsTr("Close this dialog box")
-	
+				
 		background: Rectangle {
 			implicitWidth: 100
 			implicitHeight: 25
@@ -97,10 +99,10 @@ Window
     }
 
     //User input of height
-    TextField
+    UM.TextFieldWithUnit
     {
         id: size_input
-        width: 80
+        width: 90
         text: sizeInput
 		// "ie. 20.0"
 
@@ -111,7 +113,9 @@ Window
 
 		font.family: "Arial"
         font.pointSize: 12
-
+		
+		unit: "mm"
+		
         // Validate entered value
         Keys.onReturnPressed:
         {
@@ -123,21 +127,6 @@ Window
         {
             manager.sizeEntered(size_input.text)
         }
-    }
-
-    // Text: "mm"
-    Text
-    {
-        id: text_unit
-        text: "mm"
-        font.family: "Arial"
-        font.pointSize: 12
-        color: "#131151"
-
-        anchors.bottom: text_size.bottom
-        anchors.bottomMargin: 0
-        anchors.left: size_input.right
-        anchors.leftMargin: 5
     }
 
 
