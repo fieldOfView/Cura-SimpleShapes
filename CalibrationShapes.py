@@ -48,6 +48,7 @@
 # V1.9.1   : Add Lithophane Test part
 #
 # V2.0.0   : Update for Cura 5.0
+# V2.0.1   : Correction on Bug 5.0 MultiFlow Test
 #
 #-----------------------------------------------------------------------------------
 
@@ -815,12 +816,14 @@ class CalibrationShapes(QObject, Extension):
         scene = self._controller.getScene()
         op = AddSceneNodeOperation(node, scene.getRoot())
         op.push()
+        
+        extruder_stack = application.getExtruderManager().getActiveExtruderStacks() 
 
-        extruder_nr=len(global_stack.extruders)
+        extruder_nr=len(extruder_stack)
         # Logger.log("d", "extruder_nr= %d", extruder_nr)
-        default_extruder_position = application.getMachineManager().defaultExtruderPosition
+        default_extruder_position = int(application.getMachineManager().defaultExtruderPosition)
         # Logger.log("d", "default_extruder_position= %s", type(default_extruder_position))
-        default_extruder_id = global_stack.extruders[default_extruder_position].getId()
+        default_extruder_id = extruder_stack[default_extruder_position].getId()
         # Logger.log("d", "default_extruder_id= %s", default_extruder_id)
         node.callDecoration("setActiveExtruder", default_extruder_id)
 
