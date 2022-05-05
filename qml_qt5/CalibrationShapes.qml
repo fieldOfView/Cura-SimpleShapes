@@ -64,7 +64,7 @@ Window
         anchors.right: parent.right
         anchors.rightMargin: 10
 
-        ToolTip.text: "Close this dialog box"
+        tooltip: "Close this dialog box"
 
         style: ButtonStyle{
             background: Rectangle {
@@ -140,26 +140,5 @@ Window
         anchors.leftMargin: 5
     }
 
-
-    //Textfield for User Messages
-    Text
-    {
-        id: user_text
-
-        width: 280
-        anchors.top: parent.top
-        anchors.topMargin: 2
-        anchors.left: parent.left
-        anchors.leftMargin: 10
-
-        text: userInfoText
-
-        font.family: "Arial"
-        font.pointSize: 10
-        //The color gets overwritten by the html tags added to the text
-        color: "black"
-
-        wrapMode: Text.Wrap
-    }
 
 }

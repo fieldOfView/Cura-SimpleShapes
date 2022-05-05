@@ -9,7 +9,6 @@ import UM 1.6 as UM
 import Cura 1.7 as Cura
 
 
-// Dialog from Uranium.
 // UM.Dialog
 // Dialog
 Window
@@ -83,10 +82,10 @@ Window
         }
     }
 
-    //Text "Size: "
-    Text
+    // Label "Size: "
+    Label
     {
-        id: text_size
+        id: label_size
         text: "Size:"
         font.family: "Arial"
         font.pointSize: 12
@@ -106,9 +105,9 @@ Window
         text: sizeInput
 		// "ie. 20.0"
 
-        anchors.top: text_size.top
+        anchors.top: label_size.top
         anchors.topMargin: -2
-        anchors.left: text_size.right
+        anchors.left: label_size.right
         anchors.leftMargin: 10
 
 		font.family: "Arial"
@@ -127,28 +126,6 @@ Window
         {
             manager.sizeEntered(size_input.text)
         }
-    }
-
-
-    //Textfield for User Messages
-    Text
-    {
-        id: user_text
-
-        width: 280
-        anchors.top: parent.top
-        anchors.topMargin: 2
-        anchors.left: parent.left
-        anchors.leftMargin: 10
-
-        text: userInfoText
-
-        font.family: "Arial"
-        font.pointSize: 10
-        //The color gets overwritten by the html tags added to the text
-        color: "black"
-
-        wrapMode: Text.Wrap
     }
 
 }
