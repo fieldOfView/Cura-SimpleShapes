@@ -154,7 +154,7 @@ Description:  postprocessing-script to easily create a FlowTower
 
 ## Add Mark
 
-Following a [request](https://github.com/5axes/Calibration-Shapes/issues/91) from a user I have added a new function. New Function to add a mark in front of each part to identify every part. Before to use this function you must select every model on the build plate. The selecting order will also give the number used to identify the Model.
+Following a [request](https://github.com/5axes/Calibration-Shapes/issues/91) from a user I have added a new function to add a mark in front of each part to identify every part. Before to use this function you must select every model on the build plate. The selecting order will also give the number used to identify the Model.
 
 ![Add Mark](./images/AddMark.jpg)
 
