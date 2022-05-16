@@ -141,11 +141,10 @@ class CalibrationShapes(QObject, Extension):
         Logger.log('d', "Info CuraVersion --> " + str(CuraVersion))
         
         # Test version for futur release 4.9
-        if "master" in CuraVersion or "beta" in CuraVersion or "BETA" in CuraVersion:
+        if "master" in CuraVersion :
             # Master is always a developement version.
             self.Major=4
-            self.Minor=9
-
+            self.Minor=13
         else:
             try:
                 self.Major = int(CuraVersion.split(".")[0])
