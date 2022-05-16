@@ -5,7 +5,7 @@
 //   - 0.8
 //   - 1
 
-$fn=16;
+$fn=20;
 
 union () {
     translate([11,0,0]) cube([15,0.35,5], center = false);
@@ -19,11 +19,11 @@ union () {
 }
 
 union () {
-    difference() {
+    rotate([0,0,45]) difference() {
         cylinder(r=26.5, h=5);
-        translate([8,0,-1]) cylinder(r=18, h=10);
-        translate([0,8,-1]) cylinder(r=18, h=10);
-        translate([-8,0,-1]) cylinder(r=18, h=10);
-        translate([0,-8,-1]) cylinder(r=18, h=10);
+        translate([12,0,-1]) cylinder(r=15, h=10);
+        translate([0,12,-1]) cylinder(r=15, h=10);
+        translate([-12,0,-1]) cylinder(r=15, h=10);
+        translate([0,-12,-1]) cylinder(r=15, h=10);
     }
 }
