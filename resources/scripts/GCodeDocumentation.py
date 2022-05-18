@@ -28,6 +28,7 @@
 # Version 5.1.0 of 09/05/2020 Who : 5axes What : Add message for 4.6
 # Version 5.2.0 of 13/02/2022 Who : 5axes What : New Settings
 # Version 6.0.0 of 01/05/2022 Who : 5axes What : Update for Cura 5.0
+# Version 6.0.1 of 18/05/2022 Who : 5axes What : Change Test for CuraVersion
 #
 #
 import string
@@ -131,11 +132,11 @@ class GCodeDocumentation(Script):
         VersC=1.0
 
 
-        # Test version for futur release 4.9
-        if "master" in CuraVersion or "beta" in CuraVersion or "BETA" in CuraVersion:
+        # Test version for Cura Master
+        if "master" in CuraVersion:
             # Master is always a developement version.
             Major=4
-            Minor=9
+            Minor=13
 
         else:
             try:
@@ -146,9 +147,8 @@ class GCodeDocumentation(Script):
         
         Logger.log('d', "Info G-Code Documentation --> " + str(Major) + " / " + str(Minor))
         
-        
         # test depuis 3.6
-        if Major < 4 or Minor < 6 :
+        if Major < 4 and Minor < 6 :
             _msg = "Attention Version Cura " + str(CuraVersion)
         
         if _msg != None and _msg != '':
