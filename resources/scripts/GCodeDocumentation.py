@@ -131,8 +131,8 @@ class GCodeDocumentation(Script):
         _msg = ''
         VersC=1.0
 
-
         # Test version for Cura Master
+        # https://github.com/smartavionics/Cura
         if "master" in CuraVersion:
             Major=4
             Minor=20
