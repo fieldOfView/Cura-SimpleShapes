@@ -134,10 +134,8 @@ class GCodeDocumentation(Script):
 
         # Test version for Cura Master
         if "master" in CuraVersion:
-            # Master is always a developement version.
             Major=4
-            Minor=13
-
+            Minor=20
         else:
             try:
                 Major = int(CuraVersion.split(".")[0])
