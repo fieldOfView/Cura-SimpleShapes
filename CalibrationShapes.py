@@ -63,17 +63,15 @@ except ImportError:
     
 # Imports from the python standard library to build the plugin functionality
 import os
+import sys
 import re
 import math
 import numpy
 import trimesh
 import shutil
-import sys
-
+from shutil import copyfile
 
 from typing import Optional, List
-
-from shutil import copyfile
 
 from UM.Extension import Extension
 from UM.PluginRegistry import PluginRegistry
@@ -129,9 +127,9 @@ class CalibrationShapes(QObject, Extension):
         # convert as float to avoid further issue
         self._size = float(self._preferences.getValue("calibrationshapes/size"))
         
-        # Suggested solution from fieldOfView . Unfortunatly it doesn't works 
+        # Suggested solution from fieldOfView . in this discussion solved in Cura 4.9
         # https://github.com/5axes/Calibration-Shapes/issues/1
-        # Cura should be able to find the scripts from inside the plugin folder if the scripts are into a folder named resources
+        # Cura are able to find the scripts from inside the plugin folder if the scripts are into a folder named resources
         Resources.addSearchPath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources"))
  
         self.Major=1
