@@ -205,7 +205,6 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem("   ", lambda: None)
         if self.Major < 4 or ( self.Major == 4 and self.Minor < 9 ) :
             self.addMenuItem(catalog.i18nc("@item:inmenu", "Copy Scripts"), self.copyScript)
-        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add Mark"), self.addMark)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Define default size"), self.defaultSize)
         self.addMenuItem("    ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Help"), self.gotoHelp)
@@ -425,65 +424,7 @@ class CalibrationShapes(QObject, Extension):
         for node in DepthFirstIterator(scene.getRoot()):
             if node.callDecoration("isSliceable"):
                 yield node
-                
-        
-    def addMark(self) -> None:
-
-        nodes_list = self._getAllSelectedNodes()
-        if not nodes_list:
-            return
-        Id = 0
-        for node in nodes_list:         
-            name = node.getName()
-            Id += 1
-            Logger.log("d", "name= %s", name)
-            
-            # filename = node.getMeshData().getFileName() 
-            # Logger.log("d", "filename= %s", name)
-
-            node_bounds = node.getBoundingBox()
-            Logger.log("d", "width= %s", str(node_bounds.width))
-            Logger.log("d", "depth= %s", str(node_bounds.depth))
-            Logger.log("d", "Center X= %s", str(node_bounds.center.x))
-            Logger.log("d", "Center Y= %s", str(node_bounds.center.z))
-            
-            Ident = str(Id)
-            
-            
-            PosX = node_bounds.center.x
-            PosY = node_bounds.center.z+0.5*node_bounds.depth+6
-
-            Logger.log("d", "Pos X= %s", str(PosX))
-            Logger.log("d", "Pos Y= %s", str(PosY))
-            
-            if Id>9 :
-                Logger.log("d", "Ident[0]= %s",Ident[0])
-                Filename = Ident[0] + ".stl"
-                model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", Filename)
-                mesh = trimesh.load(model_definition_path)
-
-                mesh.apply_transform(trimesh.transformations.translation_matrix([PosX-3, -PosY, 0]))
-                # addShape
-                self._addShape(Ident[0],self._toMeshData(mesh))
-                
-                Logger.log("d", "Ident[1]= %s",Ident[1])
-                Filename = Ident[1] + ".stl"
-                model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", Filename)
-                mesh = trimesh.load(model_definition_path)
-
-                mesh.apply_transform(trimesh.transformations.translation_matrix([PosX+3, -PosY, 0]))
-                # addShape
-                self._addShape(Ident[1],self._toMeshData(mesh))
-                
-            else:
-                Filename = str(Id) + ".stl"
-                model_definition_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", Filename)
-                mesh = trimesh.load(model_definition_path)
-
-                mesh.apply_transform(trimesh.transformations.translation_matrix([PosX, -PosY, 0]))
-                # addShape
-                self._addShape(Ident,self._toMeshData(mesh))
-        
+                       
     def addCalibrationCube(self) -> None:
         self._registerShapeStl("CalibrationCube")
 
