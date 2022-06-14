@@ -50,6 +50,7 @@
 # V2.0.0   : Update for Cura 5.0
 # V2.0.1   : Correction on Bug 5.0 MultiFlow Test
 # V2.1.0   : Modification of meshfix_union_all_remove_holes on the model and not on the part
+#          : Same for fill_outline_gaps Print Thin Walls
 #
 #-------------------------------------------------------------------------------------------
 
@@ -682,7 +683,7 @@ class CalibrationShapes(QObject, Extension):
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)            
             Message(text = "Information definition for the test part of : " + translated_label + "\nSet value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
-            # Define adaptive_layer
+            thin_wall =  val
             # global_container_stack.setProperty("fill_outline_gaps", "value", val)
            
         return thin_wall
@@ -785,14 +786,14 @@ class CalibrationShapes(QObject, Extension):
  
         stack = node.callDecoration("getStack") # created by SettingOverrideDecorator that is automatically added to CuraSceneNode
         settings = stack.getTop()
-        
+        # Remove All Holes
         if hole :
             definition = stack.getSettingDefinition("meshfix_union_all_remove_holes")
             new_instance = SettingInstance(definition, settings)
             new_instance.setProperty("value", True)
             new_instance.resetState()  # Ensure that the state is not seen as a user state.
             settings.addInstance(new_instance) 
-            
+        # Print Thin Walls    
         if thin :
             definition = stack.getSettingDefinition("fill_outline_gaps")
             new_instance = SettingInstance(definition, settings)
@@ -838,16 +839,15 @@ class CalibrationShapes(QObject, Extension):
         node.callDecoration("setActiveExtruder", default_extruder_id)
 
         stack = node.callDecoration("getStack") # created by SettingOverrideDecorator that is automatically added to CuraSceneNode
-
         settings = stack.getTop()
-
+        # Remove All Holes
         if hole :
             definition = stack.getSettingDefinition("meshfix_union_all_remove_holes")
             new_instance = SettingInstance(definition, settings)
             new_instance.setProperty("value", True)
             new_instance.resetState()  # Ensure that the state is not seen as a user state.
             settings.addInstance(new_instance) 
-
+        # Print Thin Walls
         if thin :
             definition = stack.getSettingDefinition("fill_outline_gaps")
             new_instance = SettingInstance(definition, settings)
