@@ -120,7 +120,7 @@ class CalibrationShapes(QObject, Extension):
         Extension.__init__(self)
        
         
-        #Inzialize varables
+        #Initialize variables
         self.userText = ""
         self._continueDialog = None
         
@@ -213,9 +213,10 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem("    ", lambda: None)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Help"), self.gotoHelp)
   
-        #Inzialize varables
+        #Initialize variables
         self.userText = ""
         self._continueDialog = None
+        self._removeHole = False
         
     # Define the default value pour the standard element
     def defaultSize(self) -> None:
@@ -439,33 +440,45 @@ class CalibrationShapes(QObject, Extension):
         self._registerShapeStl("JunctionDeviationTower")
     
     def addPLATempTower(self) -> None:
+        self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("PLATempTower", "TempTowerPLA.stl")
         self._checkAdaptativ(False)
+        
 
     def addPLATempTowerSimple(self) -> None:
+        self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("PLATempTower", "TempTowerPLA190°C.stl")
         self._checkAdaptativ(False)
+        
 
     def addPLAPlusTempTower(self) -> None:
+        self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("PLA+TempTower", "TempTowerPLA+.stl")
         self._checkAdaptativ(False)
         
+        
     def addPETGTempTower(self) -> None:
+        self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("PETGTempTower", "TempTowerPETG.stl")
         self._checkAdaptativ(False)
+        
         
     def addABSTempTower(self) -> None:
         self._registerShapeStl("ABSTempTower", "TempTowerABS.stl")
         self._checkAdaptativ(False)
+        self._removeHole = self._checkAllRemoveHoles(False)
 
     def addRetractTower(self) -> None:
+        self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("RetractTower")
         self._checkAdaptativ(False)
         self._checkRetract(True)
 
     def addAccelerationTower(self) -> None:
+        self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("AccelerationTower")
         self._checkAdaptativ(False)
+        
         
     def addRetractTest(self) -> None:
         self._registerShapeStl("RetractTest")
@@ -506,6 +519,7 @@ class CalibrationShapes(QObject, Extension):
         self._checkFill_Perimeter_Gaps("nowhere")
         
     def addFlowTowerTest(self) -> None:
+        self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("TowerFlow", "Flow-tower-04x02.stl")
         self._checkAdaptativ(False)
         self._checkThinWalls(True)
@@ -628,6 +642,13 @@ class CalibrationShapes(QObject, Extension):
             Message(text = "! Modification ! in the current profile of : " + translated_label + "\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
             # Define adaptive_layer
             global_container_stack.setProperty("adaptive_layer_height_enabled", "value", False)
+    
+    def _checkAllRemoveHoles(self, val)-> bool:
+        global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
+        extruder_stack = CuraApplication.getInstance().getExtruderManager().getActiveExtruderStacks()[0]        
+        adaptive_layer = global_container_stack.getProperty("adaptive_layer_height_enabled", "value")
+        extruder = global_container_stack.extruderList[0]
+        _Remove = False
         
         nozzle_size = float(extruder.getProperty("machine_nozzle_size", "value"))
         remove_holes = extruder.getProperty("meshfix_union_all_remove_holes", "value")
@@ -635,14 +656,15 @@ class CalibrationShapes(QObject, Extension):
         # Logger.log("d", "In checkAdaptativ remove_holes = %s", str(remove_holes))
         
         if (nozzle_size >  0.4) and (remove_holes == False) :
+            _Remove = True
             key="meshfix_union_all_remove_holes"
             definition_key=key + " label"
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)  
-            Message(text = "! Modification ! in the current profile of : " + translated_label + "\n(machine_nozzle_size>0.4)\nNew value : %s" % (str(True)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            Message(text = "Information definition for the test part of : " + translated_label + "\n(machine_nozzle_size>0.4)\nNew value : %s" % (str(True)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
             # Define adaptive_layer
-            extruder.setProperty("meshfix_union_all_remove_holes", "value", True) 
- 
+            # extruder.setProperty("meshfix_union_all_remove_holes", "value", True) 
+        Return _Remove
     #----------------------------------------------------------
     # Check fill_outline_gaps (Print Thin Walls) must be True
     #----------------------------------------------------------   
