@@ -647,7 +647,7 @@ class CalibrationShapes(QObject, Extension):
     # Check fill_outline_gaps (Print Thin Walls) must be True
     #----------------------------------------------------------   
     def _checkThinWalls(self, val):
-        # Logger.log("d", "In checkAdaptativ = %s", str(val))
+        # Logger.log("d", "In checkThinWalls = %s", str(val))
         # Fix some settings in Cura to get a better result
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack() 
         extruder_stack = CuraApplication.getInstance().getExtruderManager().getActiveExtruderStacks()[0] 
