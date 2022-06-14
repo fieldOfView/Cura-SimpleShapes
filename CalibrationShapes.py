@@ -118,7 +118,6 @@ class CalibrationShapes(QObject, Extension):
     def __init__(self, parent = None) -> None:
         QObject.__init__(self, parent)
         Extension.__init__(self)
-       
         
         #Initialize variables
         self.userText = ""
@@ -454,14 +453,12 @@ class CalibrationShapes(QObject, Extension):
     def addPLAPlusTempTower(self) -> None:
         self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("PLA+TempTower", "TempTowerPLA+.stl")
-        self._checkAdaptativ(False)
-        
+        self._checkAdaptativ(False)      
         
     def addPETGTempTower(self) -> None:
         self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("PETGTempTower", "TempTowerPETG.stl")
-        self._checkAdaptativ(False)
-        
+        self._checkAdaptativ(False)   
         
     def addABSTempTower(self) -> None:
         self._registerShapeStl("ABSTempTower", "TempTowerABS.stl")
@@ -477,8 +474,7 @@ class CalibrationShapes(QObject, Extension):
     def addAccelerationTower(self) -> None:
         self._removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("AccelerationTower")
-        self._checkAdaptativ(False)
-        
+        self._checkAdaptativ(False)    
         
     def addRetractTest(self) -> None:
         self._registerShapeStl("RetractTest")
@@ -520,17 +516,16 @@ class CalibrationShapes(QObject, Extension):
         
     def addFlowTowerTest(self) -> None:
         self._removeHole = self._checkAllRemoveHoles(False)
-        self._registerShapeStl("TowerFlow", "Flow-tower-04x02.stl")
-        self._checkAdaptativ(False)
         self._checkThinWalls(True)
         self._checkFill_Perimeter_Gaps("nowhere")
+        self._registerShapeStl("TowerFlow", "Flow-tower-04x02.stl")
+        self._checkAdaptativ(False)
         
     def addHoleTest(self) -> None:
         self._registerShapeStl("FlowTest", "HoleTest.stl")
 
     def addTolerance(self) -> None:
         self._registerShapeStl("Tolerance")
-
 
     def addLithophaneTest(self) -> None:
         self._registerShapeStl("Lithophane")
@@ -646,7 +641,6 @@ class CalibrationShapes(QObject, Extension):
     def _checkAllRemoveHoles(self, val)-> bool:
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
         extruder_stack = CuraApplication.getInstance().getExtruderManager().getActiveExtruderStacks()[0]        
-        adaptive_layer = global_container_stack.getProperty("adaptive_layer_height_enabled", "value")
         extruder = global_container_stack.extruderList[0]
         _Remove = False
         
@@ -661,10 +655,11 @@ class CalibrationShapes(QObject, Extension):
             definition_key=key + " label"
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)  
-            Message(text = "Information definition for the test part of : " + translated_label + "\n(machine_nozzle_size>0.4)\nNew value : %s" % (str(True)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            Message(text = "Information definition for the test part of : " + translated_label + "\n(machine_nozzle_size>0.4)\nSet value : %s" % (str(True)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
             # Define adaptive_layer
             # extruder.setProperty("meshfix_union_all_remove_holes", "value", True) 
-        Return _Remove
+        return _Remove
+        
     #----------------------------------------------------------
     # Check fill_outline_gaps (Print Thin Walls) must be True
     #----------------------------------------------------------   
@@ -787,7 +782,17 @@ class CalibrationShapes(QObject, Extension):
         default_extruder_id = extruder_stack[default_extruder_position].getId()
         Logger.log("d", "default_extruder_id= %s", default_extruder_id)
         node.callDecoration("setActiveExtruder", default_extruder_id)
+ 
+        stack = node.callDecoration("getStack") # created by SettingOverrideDecorator that is automatically added to CuraSceneNode
+        settings = stack.getTop()
         
+        if self._removeHole :
+            definition = stack.getSettingDefinition("meshfix_union_all_remove_holes")
+            new_instance = SettingInstance(definition, settings)
+            new_instance.setProperty("value", True)
+            new_instance.resetState()  # Ensure that the state is not seen as a user state.
+            settings.addInstance(new_instance) 
+            
         active_build_plate = application.getMultiBuildPlateModel().activeBuildPlate
         node.addDecorator(BuildPlateDecorator(active_build_plate))
 
@@ -827,7 +832,14 @@ class CalibrationShapes(QObject, Extension):
         stack = node.callDecoration("getStack") # created by SettingOverrideDecorator that is automatically added to CuraSceneNode
 
         settings = stack.getTop()
-        
+
+        if self._removeHole :
+            definition = stack.getSettingDefinition("meshfix_union_all_remove_holes")
+            new_instance = SettingInstance(definition, settings)
+            new_instance.setProperty("value", True)
+            new_instance.resetState()  # Ensure that the state is not seen as a user state.
+            settings.addInstance(new_instance) 
+            
         definition = stack.getSettingDefinition("material_flow")
         new_instance = SettingInstance(definition, settings)
         new_instance.setProperty("value", flow)
