@@ -49,6 +49,7 @@
 #
 # V2.0.0   : Update for Cura 5.0
 # V2.0.1   : Correction on Bug 5.0 MultiFlow Test
+# V2.0.2   : Function to Add Mark removed new plugin with much more option to do that : https://github.com/5axes/NameIt
 # V2.1.0   : Modification of meshfix_union_all_remove_holes on the model and not on the part
 #          : Same for fill_outline_gaps Print Thin Walls
 #
@@ -607,7 +608,7 @@ class CalibrationShapes(QObject, Extension):
             definition_key=key + " label"
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)            
-            Message(text = "! Modification ! in the current profile of : " + translated_label + "\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            Message(text = "! Modification ! in the current profile of : " + translated_label + "\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes"), message_type = Message.MessageType.WARNING).show()
             # Define retraction_enable
             extruder.setProperty("retraction_enable", "value", True)
         
@@ -620,7 +621,7 @@ class CalibrationShapes(QObject, Extension):
             definition_key=key + " label"
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)             
-            Message(text = "! Modification ! in the current profile of : " + translated_label + "\nNew value : %s" % (str(1.0)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            Message(text = "! Modification ! in the current profile of : " + translated_label + "\nNew value : %s" % (str(1.0)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes"), message_type = Message.MessageType.WARNING).show()
             # Define retraction_amount
             extruder.setProperty("retraction_amount", "value", 1.0)
             
@@ -641,10 +642,13 @@ class CalibrationShapes(QObject, Extension):
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)  
             
-            Message(text = "! Modification ! in the current profile of : " + translated_label + "\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            Message(text = "! Modification ! in the current profile of : " + translated_label + "\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes"), message_type = Message.MessageType.WARNING).show()
             # Define adaptive_layer
             global_container_stack.setProperty("adaptive_layer_height_enabled", "value", False)
-    
+ 
+    #--------------------------------------------------------------------------  
+    # Check meshfix_union_all_remove_holes Set to true if nozzle_size > 0.4
+    #--------------------------------------------------------------------------    
     def _checkAllRemoveHoles(self, val)-> bool:
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
         extruder_stack = CuraApplication.getInstance().getExtruderManager().getActiveExtruderStacks()[0]        
@@ -656,13 +660,13 @@ class CalibrationShapes(QObject, Extension):
         # Logger.log("d", "In checkAdaptativ nozzle_size = %s", str(nozzle_size))
         # Logger.log("d", "In checkAdaptativ remove_holes = %s", str(remove_holes))
         
-        if (nozzle_size >  0.4) and (remove_holes == False) :
+        if (nozzle_size > 0.4) and (remove_holes == False) :
             _Remove = True
             key="meshfix_union_all_remove_holes"
             definition_key=key + " label"
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)  
-            Message(text = "Information definition for the test part of : " + translated_label + "\n(machine_nozzle_size>0.4)\nSet value : %s" % (str(True)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            Message(text = "Individual definition for the calibration part of : " + translated_label + "\n(machine_nozzle_size>0.4)\nSet value : %s" % (str(True)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes"), message_type = Message.MessageType.POSITIVE).show()
             # Define adaptive_layer
             # extruder.setProperty("meshfix_union_all_remove_holes", "value", True) 
         return _Remove
@@ -682,7 +686,7 @@ class CalibrationShapes(QObject, Extension):
             definition_key=key + " label"
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)            
-            Message(text = "Information definition for the test part of : " + translated_label + "\nSet value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            Message(text = "Individual definition for the calibration part of : " + translated_label + "\nSet value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes"), message_type = Message.MessageType.POSITIVE).show()
             thin_wall =  val
             # global_container_stack.setProperty("fill_outline_gaps", "value", val)
            
@@ -703,7 +707,7 @@ class CalibrationShapes(QObject, Extension):
             definition_key=key + " label"
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)              
-            Message(text = "! Modification ! in the current profile of : " + translated_label + "\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            Message(text = "! Modification ! in the current profile of : " + translated_label + "\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes"), message_type = Message.MessageType.WARNING).show()
             # Define adaptive_layer
             global_container_stack.setProperty("fill_perimeter_gaps", "value", val)
         
@@ -711,7 +715,7 @@ class CalibrationShapes(QObject, Extension):
         fill_perimeter_gaps = extruder.getProperty("fill_perimeter_gaps", "value")
         
         if fill_perimeter_gaps !=  val :
-            Message(text = "! Modification ! for the extruder definition of : " + translated_label + "\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+            Message(text = "! Modification ! for the extruder definition of : " + translated_label + "\nNew value : %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes"), message_type = Message.MessageType.WARNING).show()
             # Define adaptive_layer
             extruder.setProperty("fill_perimeter_gaps", "value", val)
             
