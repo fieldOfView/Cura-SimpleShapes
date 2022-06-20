@@ -90,7 +90,6 @@ from UM.Scene.Selection import Selection
 from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
 from cura.Scene.BuildPlateDecorator import BuildPlateDecorator
 from UM.Operations.AddSceneNodeOperation import AddSceneNodeOperation
-from UM.Operations.GroupedOperation import GroupedOperation
 from UM.Operations.RemoveSceneNodeOperation import RemoveSceneNodeOperation
 from UM.Operations.SetTransformOperation import SetTransformOperation
 
@@ -121,9 +120,6 @@ class CalibrationShapes(QObject, Extension):
         QObject.__init__(self, parent)
         Extension.__init__(self)
         
-        #Initialize variables
-        self.userText = ""
-        self._continueDialog = None
         
         # set the preferences to store the default value
         self._preferences = CuraApplication.getInstance().getPreferences()
