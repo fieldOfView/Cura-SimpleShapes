@@ -27,9 +27,9 @@ Window
 
     // Setting the dimensions of the dialog window
     width: 200
-    height: 50
+    height: 60
     minimumWidth: 200
-    minimumHeight: 50
+    minimumHeight: 60
 
     // Position of the window
     x: Screen.width*0.5 - width - 50
@@ -39,7 +39,7 @@ Window
     Rectangle {
         id: bg_rect
         width: 200
-        height: 50
+        height: 60
         color: "#fff"
         border.color: "#D22"
         border.width: 3
@@ -55,12 +55,12 @@ Window
     Button
     {
         id: close_button
-        text: "<font color='#ffffff'>" + "x" + "</font>"
+        text: "<font color='#ffffff'>" + "X" + "</font>"
         width: 25
         height: 25
 
         anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.topMargin: 18
         anchors.right: parent.right
         anchors.rightMargin: 10
 
@@ -82,6 +82,28 @@ Window
         }
     }
 
+
+    //Textfield for User Messages
+    Text
+    {
+        id: user_text
+
+        width: 200
+        anchors.top: parent.top
+        anchors.topMargin: 2
+        anchors.left: parent.left
+        anchors.leftMargin: 10
+
+        text: userInfoText
+
+        font.family: "Arial"
+        font.pointSize: 10
+        //The color gets overwritten by the html tags added to the text
+        color: "black"
+
+        wrapMode: Text.Wrap
+    }
+	
     // Label "Size: "
     Label
     {
