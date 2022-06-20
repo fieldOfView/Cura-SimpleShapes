@@ -65,8 +65,7 @@ module Etage() {
             // Premier pilier
             cube([cube_size,cube_size,cube_size*0.8], center = false);
             translate([Hc, Hc, 0]) cube(48*Hc, center = false);
-            
-            // deuxième pilier
+            // Deuxième pilier
             cylinder_size = 0.5 * cube_size;
             translate([3.5*cube_size, cylinder_size, 0])  cylinder(cube_size*0.8,cylinder_size,cylinder_size, center = false);
             translate([3.5*cube_size,  cylinder_size, 0])  cylinder(cube_size,cylinder_size*0.9,cylinder_size*0.9, center = false);
