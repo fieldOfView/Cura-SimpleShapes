@@ -52,7 +52,7 @@
 # V2.0.2   : Function to Add Mark removed new plugin with much more option to do that : https://github.com/5axes/NameIt
 # V2.1.0   : Modification of meshfix_union_all_remove_holes on the model and not on the part
 #          : Same for fill_outline_gaps Print Thin Walls
-#
+# V2.1.2   : Supress the function 
 #-------------------------------------------------------------------------------------------
 
 VERSION_QT5 = False
@@ -373,8 +373,7 @@ class CalibrationShapes(QObject, Extension):
         mesh.apply_transform(trimesh.transformations.scale_matrix(factor_w, origin, DirX))
         mesh.apply_transform(trimesh.transformations.scale_matrix(factor_d, origin, DirY))
         # addShape
-        self._addShape("BedLevelCalibration",self._toMeshData(mesh))
-        
+        self._addShape("BedLevelCalibration",self._toMeshData(mesh))       
             
     def _registerShapeStl(self, mesh_name, mesh_filename=None, **kwargs) -> None:
         if mesh_filename is None:
@@ -441,13 +440,11 @@ class CalibrationShapes(QObject, Extension):
         self._registerShapeStl("PLATempTower", "TempTowerPLA.stl", hole=_removeHole)
         self._checkAdaptativ(False)
         
-
     def addPLATempTowerSimple(self) -> None:
         _removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("PLATempTower", "TempTowerPLA190°C.stl", hole=_removeHole)
         self._checkAdaptativ(False)
         
-
     def addPLAPlusTempTower(self) -> None:
         _removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("PLA+TempTower", "TempTowerPLA+.stl", hole=_removeHole)
@@ -513,17 +510,14 @@ class CalibrationShapes(QObject, Extension):
         
         self._checkFill_Perimeter_Gaps("nowhere")
         # End of Sub
-
         
-    def addFlowTowerTest(self) -> None:
-        
+    def addFlowTowerTest(self) -> None:    
         _removeHole = self._checkAllRemoveHoles(False)
         _thinW = self._checkThinWalls(True)
 
         self._registerShapeStl("TowerFlow", "Flow-tower-04x02.stl" , hole=_removeHole , thin = _thinW )
         self._checkAdaptativ(False)
-        self._checkFill_Perimeter_Gaps("nowhere")
-        
+        self._checkFill_Perimeter_Gaps("nowhere")      
         
     def addHoleTest(self) -> None:
         self._registerShapeStl("FlowTest", "HoleTest.stl")
