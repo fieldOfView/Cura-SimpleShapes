@@ -21,6 +21,7 @@
 #   Version 1.4 18/05/2021  : float
 #   Version 1.5 14/02/2022  : Set Speed using M220 S
 #   Version 1.6 15/02/2022  : Change Int for changelayeroffset & changelayer
+#   Version 1.7 04/08/2022  : Restore and Save the Speed Factor in case of Speed option by using M220 B and M220 R
 #
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -29,7 +30,7 @@ from UM.Application import Application
 from UM.Logger import Logger
 import re #To perform the search
 
-__version__ = '1.6'
+__version__ = '1.7'
 
 class SpeedTower(Script):
     def __init__(self):
@@ -114,7 +115,7 @@ class SpeedTower(Script):
 
         CurrentValue = StartValue
         Command=""
-
+        max_layer=9999
         idl=0
         
         for layer in data:
@@ -122,14 +123,19 @@ class SpeedTower(Script):
             
             lines = layer.split("\n")
             for line in lines:                  
-               
+                if line.startswith(";LAYER_COUNT:"):
+                    max_layer = int(line.split(":")[1])   # Recuperation Nb Layer Maxi
+                    # Logger.log('d', 'Max_layer : {}'.format(max_layer))
+                    
                 if line.startswith(";LAYER:"):
                     line_index = lines.index(line)
                     # Logger.log('d', 'Instruction : {}'.format(Instruction))
+                    # Logger.log('d', 'layer_index : {}'.format(layer_index))
+                    # Logger.log('d', 'ChangeLayerOffset : {}'.format(ChangeLayerOffset))
 
                     if (layer_index==ChangeLayerOffset):
                         if  (Instruction=='speed'):
-                            Command = "M220 S{:d}".format(int(CurrentValue))
+                            Command = "M220 B\nM220 S{:d}".format(int(CurrentValue))
                             lcd_gcode = "M117 Speed S{:d}".format(int(CurrentValue))
                         if  (Instruction=='acceleration'):
                             Command = "M204 S{:d}".format(int(CurrentValue))
@@ -178,7 +184,13 @@ class SpeedTower(Script):
                             if UseLcd == True :               
                                lines.insert(line_index + 3, lcd_gcode)                                              
             
+            # Logger.log('d', 'layer_index : {}'.format(layer_index))
+            if  (Instruction=='speed') and  (layer_index==max_layer+1) :
+                line_index = len(lines)
+                # Logger.log('d', 'line_index : {}'.format(line_index))
+                lines.insert(line_index, "M220 R\n")
+                
             result = "\n".join(lines)
             data[layer_index] = result
-
+        
         return data
