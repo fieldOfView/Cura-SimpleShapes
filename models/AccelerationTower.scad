@@ -9,7 +9,7 @@
 
 $fn = 120;
 font = "Arial:style=Regular";
-length = 120;
+length = 121;
 thickness= 10;
 height = 5;
 step =9;
