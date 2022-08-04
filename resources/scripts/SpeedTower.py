@@ -19,7 +19,7 @@
 #   Version 1.2 05/04/2021 by dotdash32(https://github.com/dotdash32) for Marlin Linear Advance & RepRap Pressure Advance
 #   Version 1.3 18/04/2021  : ChangeLayerOffset += 2
 #   Version 1.4 18/05/2021  : float
-#   Version 1.5 14/02/2022  : Set Speed Stteing M220 S
+#   Version 1.5 14/02/2022  : Set Speed using M220 S
 #   Version 1.6 15/02/2022  : Change Int for changelayeroffset & changelayer
 #
 #------------------------------------------------------------------------------------------------------------------------------------
