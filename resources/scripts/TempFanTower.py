@@ -4,7 +4,7 @@
 # Author:   5axes
 # Date:     January 13, 2020
 #
-# Description:  postprocessing-script to easily use a TempTower and not use 10 changeAtZ-scripts
+# Description:  postprocessing-script to easily define a TempTower and not use 10 changeAtZ-scripts
 #
 #
 #------------------------------------------------------------------------------------------------------------------------------------
@@ -15,13 +15,14 @@
 #   Version 1.4 18/05/2021  : ChangeLayerOffset
 #
 #   Version 1.5 15/02/2022 Change Int for Layeroffset & changelayer
+#   Version 1.6 05/08/2022 Option maintainbridgevalue
 #------------------------------------------------------------------------------------------------------------------------------------
 
 from ..Script import Script
 from UM.Application import Application
 from UM.Logger import Logger
 
-__version__ = '1.5'
+__version__ = '1.6'
 
 class TempFanTower(Script):
     def __init__(self):
@@ -92,6 +93,14 @@ class TempFanTower(Script):
                     "type": "str",
                     "default_value": "100;40;0",
                     "enabled": "usefanvalue"
+                },
+                "maintainbridgevalue":
+                {
+                    "label": "Keep Bridge Fan Value",
+                    "description": "Don't Change the Bridge Fan value",
+                    "type": "bool",
+                    "default_value": false,
+                    "enabled": "usefanvalue"
                 }
             }
         }"""
@@ -112,8 +121,10 @@ class TempFanTower(Script):
         
         if (nbval>0):
             usefan = bool(self.getSettingValueByKey("usefanvalue"))
+            bridgevalue = bool(self.getSettingValueByKey("maintainbridgevalue"))
         else:
             usefan = False
+            bridgevalue = False
 
         
         currentTemperature = startTemperature
@@ -126,17 +137,25 @@ class TempFanTower(Script):
             layer_index = data.index(layer)
             
             lines = layer.split("\n")
-            for line in lines:
-                if line.startswith("M106 S") and ((layer_index-ChangeLayerOffset)>0) and (usefan) and (afterbridge):
-                    line_index = lines.index(line)
-                    currentfan = int((int(fanvalues[idl])/100)*255)  #  100% = 255 pour ventilateur
-                    lines[line_index] = "M106 S"+str(int(currentfan))+ " ; FAN MODI"
-                    afterbridge == False                    
+            for line in lines:                    
+                if line.startswith("M106 S") and ((layer_index-ChangeLayerOffset)>0) and (usefan) :
+                    if  afterbridge or not bridgevalue :
+                        line_index = lines.index(line)
+                        currentfan = int((int(fanvalues[idl])/100)*255)  #  100% = 255 pour ventilateur
+                        lines[line_index] = "M106 S"+str(int(currentfan))+ " ; FAN MODI"
+                        afterbridge -= 1
+                    else :  
+                        line_index = lines.index(line)
+                        afterbridge += 1                        
 
                 if line.startswith("M107") and ((layer_index-ChangeLayerOffset)>0) and (usefan):
-                    afterbridge == True
+                    afterbridge = 1
                     line_index = lines.index(line)
-                
+
+                if line.startswith(";BRIDGE") :
+                    afterbridge = 0
+                    line_index = lines.index(line)
+                    
                 if line.startswith(";LAYER:"):
                     line_index = lines.index(line)
                     
