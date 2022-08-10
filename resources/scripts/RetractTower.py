@@ -26,6 +26,7 @@
 #                                  G1 F2700 E1.00000
 #
 #   Version 1.7 15/02/2022 Change Int for Layeroffset & changelayer
+#   Version 1.8 11/08/2022 Init on G92 E0
 #------------------------------------------------------------------------------------------------------------------------------------
 
 from ..Script import Script
@@ -34,7 +35,7 @@ from UM.Application import Application
 import re #To perform the search
 from enum import Enum
 
-__version__ = '1.7'
+__version__ = '1.8'
 
 class Section(Enum):
     """Enum for section type."""
@@ -240,9 +241,11 @@ class RetractTower(Script):
                     
                 if is_not_relative_instruction_line(line):
                     relative_extrusion = False
+                    
                 if is_reset_extruder_line(line):
-                    # Logger.log('d', 'Reset_extruder :' + str(current_e))
+                    Logger.log('d', 'Reset_extruder :' + str(current_e))
                     current_e = 0
+                    save_e = 0
                     
                 # If we have define a value
                 if CurrentValue>=0:
@@ -286,7 +289,7 @@ class RetractTower(Script):
                                         lcd_gcode = "M117 speed F{:d}".format(int(CurrentValue))
                                     if  (Instruction=='distance'):
                                         current_e = save_e - CurrentValue
-                                        lines[line_index] = "G1 F{:d} E{:.5f}".format(int(current_f), current_e)
+                                        lines[line_index] = "G1 F{:d} E{:.5f} ; Modi".format(int(current_f), current_e)
                                         lcd_gcode = "M117 retract E{:.3}".format(float(CurrentValue))
                                 else:
                                     # Logger.log('d', 'Mode reset')
