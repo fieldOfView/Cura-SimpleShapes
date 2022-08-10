@@ -53,6 +53,7 @@
 # V2.1.0   : Modification of meshfix_union_all_remove_holes on the model and not on the part
 #          : Same for fill_outline_gaps Print Thin Walls
 # V2.1.2   : Supress the function 
+# V2.1.3   : Modification RetractTower + New TempTowerPC
 #-------------------------------------------------------------------------------------------
 
 VERSION_QT5 = False
@@ -174,6 +175,7 @@ class CalibrationShapes(QObject, Extension):
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PLA+ TempTower"), self.addPLAPlusTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PETG TempTower"), self.addPETGTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an ABS TempTower"), self.addABSTempTower)
+        self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a PC TempTower"), self.addPCTempTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add a Retract Tower"), self.addRetractTower)
         self.addMenuItem(catalog.i18nc("@item:inmenu", "Add an Acceleration Tower"), self.addAccelerationTower)
         
@@ -458,6 +460,11 @@ class CalibrationShapes(QObject, Extension):
     def addABSTempTower(self) -> None:
         _removeHole = self._checkAllRemoveHoles(False)
         self._registerShapeStl("ABSTempTower", "TempTowerABS.stl", hole=_removeHole)
+        self._checkAdaptativ(False)
+
+    def addPCTempTower(self) -> None:
+        _removeHole = self._checkAllRemoveHoles(False)
+        self._registerShapeStl("PCTempTower", "TempTowerPC.stl", hole=_removeHole)
         self._checkAdaptativ(False)
         
     def addRetractTower(self) -> None:
