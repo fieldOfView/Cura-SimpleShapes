@@ -18,6 +18,7 @@ You can also load standard test  / calibration  part :
 | [PLA+ TempTower 230 - 200°C](https://github.com/5axes/Calibration-Shapes/wiki/PLA+-TempTower-230---200°C)       | [PLA+ TempTower 230 - 200°C](./models/TempTowerPLA+.stl)        |
 | [ABS  TempTower 250 - 210°C](https://github.com/5axes/Calibration-Shapes/wiki/ABS-TempTower-250---210°C)        | [ABS  TempTower 250 - 210°C](./models/TempTowerABS.stl)         |
 | [PETG TempTower 260 - 230°C](https://github.com/5axes/Calibration-Shapes/wiki/PETG-TempTower-260---230°C)       | [PETG TempTower 260 - 230°C](./models/TempTowerPETG.stl)        |
+| [PC   TempTower 290 - 250°C](https://github.com/5axes/Calibration-Shapes/wiki/PC-TempTower-290---250°C)         | [PC   TempTower 290 - 250°C](./models/TempTowerPC.stl)        |
 | [Retract Tower](https://github.com/5axes/Calibration-Shapes/wiki/Retract-Tower)                                 | [Retract Tower](./models/RetractTower.stl)                      |
 | [Acceleration Tower](https://github.com/5axes/Calibration-Shapes/wiki/Acceleration-&-Ringing-Tower)             | [Acceleration Tower](./models/AccelerationTower.stl)            |
 | [Retract Test part](https://github.com/5axes/Calibration-Shapes/wiki/Retract-Test-part)                         | [Retract Test part](./models/RetractTest.stl)                   |
