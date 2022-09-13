@@ -246,7 +246,7 @@ class RetractTower(Script):
                     relative_extrusion = False
                     
                 if is_reset_extruder_line(line) and line[0] != ";" :
-                    Logger.log('d', 'Reset_extruder :' + str(current_e))
+                    # Logger.log('d', 'Reset_extruder :' + str(current_e))
                     current_e = 0
                     save_e = 0
                     
