@@ -236,14 +236,16 @@ class RetractTower(Script):
             for line in lines:                  
                 line_index = lines.index(line)
                 
+                # Check if the line start with the Comment Char
                 if is_relative_instruction_line(line) and line[0] != ";" :
                     relative_extrusion = True
                     # Logger.log('d', 'Relative_extrusion founded : {}'.format(line))
-                    
+                
+                # Check if the line start with the Comment Char                
                 if is_not_relative_instruction_line(line) and line[0] != ";" :
                     relative_extrusion = False
                     
-                if is_reset_extruder_line(line):
+                if is_reset_extruder_line(line) and line[0] != ";" :
                     Logger.log('d', 'Reset_extruder :' + str(current_e))
                     current_e = 0
                     save_e = 0
