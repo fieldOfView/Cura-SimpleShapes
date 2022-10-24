@@ -25,9 +25,10 @@
 #                                  ....
 #                                  G1 F2700 E1.00000
 #
-#   Version 1.7 15/02/2022 Change Int for Layeroffset & changelayer
-#   Version 1.8 11/08/2022 Init on G92 E0
-#   Version 1.9 13/09/2022 Do not detect M83 in comment line
+#   Version 1.7  15/02/2022 Change Int for Layeroffset & changelayer
+#   Version 1.8  11/08/2022 Init on G92 E0
+#   Version 1.9  13/09/2022 Do not detect M83 in comment line
+#   Version 1.10 24/10/2022 Do not detect Extruder value in comment line
 #------------------------------------------------------------------------------------------------------------------------------------
 
 from ..Script import Script
@@ -36,7 +37,7 @@ from UM.Application import Application
 import re #To perform the search
 from enum import Enum
 
-__version__ = '1.9'
+__version__ = '1.10'
 
 class Section(Enum):
     """Enum for section type."""
@@ -300,9 +301,10 @@ class RetractTower(Script):
                                         lines[line_index] = "G1 F{:d} E{:.5f}".format(int(CurrentValue), current_e)
                                         lcd_gcode = "M117 speed F{:d}".format(int(CurrentValue))
 
-                if is_extrusion_line(line):
+                if is_extrusion_line(line) and line[0] != ";" :
                     searchE = re.search(r"E([-+]?\d*\.?\d*)", line)
-                    if searchE:
+                    # Logger.log('d', 'SearchE : {}'.format(searchE.group(1)))
+                    if searchE :
                         save_e=float(searchE.group(1))             
                 
                 # Logger.log('d', 'L : {}'.format(line))
