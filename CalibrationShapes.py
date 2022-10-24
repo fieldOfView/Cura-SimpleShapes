@@ -56,6 +56,7 @@
 # V2.1.3   : Modification RetractTower + New TempTowerPC
 # V2.1.4   : Change for compatibility on Message Text
 # V2.1.5   : RetractTower Script to 1.9
+# V2.1.6   : RetractTower Script to 1.10 https://github.com/5axes/Calibration-Shapes/issues/120
 #-------------------------------------------------------------------------------------------
 
 VERSION_QT5 = False
