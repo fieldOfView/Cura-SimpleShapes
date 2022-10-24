@@ -28,7 +28,7 @@
 #   Version 1.7  15/02/2022 Change Int for Layeroffset & changelayer
 #   Version 1.8  11/08/2022 Init on G92 E0
 #   Version 1.9  13/09/2022 Do not detect M83 in comment line
-#   Version 1.10 24/10/2022 Do not detect Extruder value in comment line
+#   Version 1.10 24/10/2022 Do not detect Extruder value in comment line : https://github.com/5axes/Calibration-Shapes/issues/120
 #------------------------------------------------------------------------------------------------------------------------------------
 
 from ..Script import Script
