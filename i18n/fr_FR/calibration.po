@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Name It\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-25 13:29+0000\n"
-"PO-Revision-Date: 2023-01-25 14:52+0200\n"
+"POT-Creation-Date: 2023-01-25 13:41+0000\n"
+"PO-Revision-Date: 2023-01-25 14:58+0200\n"
 "Last-Translator: 5axes <5axes@free.fr>\n"
 "Language-Team: 5axes\n"
 "Language: fr\n"
@@ -192,6 +192,37 @@ msgctxt "@item:inmenu"
 msgid "Help"
 msgstr "Aide"
 
+#: CalibrationShapes.py:278
+msgctxt "@info:error"
+msgid "Entered size invalid: "
+msgstr "La taille saisie n'est pas valide: "
+
+#: CalibrationShapes.py:284
+msgctxt "@info:error"
+msgid "Size value must be positive !"
+msgstr "La valeur de la taille doit être positive !"
+
+#: CalibrationShapes.py:347
+msgctxt "@info:message"
+msgid " script(s) copied in :\n"
+msgstr " script(s) copied in :"
+
+#: CalibrationShapes.py:349
+msgctxt "@info:message"
+msgid ""
+"\n"
+"You must now restart Cura to see the scripts in the postprocessing script "
+"list"
+msgstr ""
+"\n"
+"Vous devez maintenant redémarrer Cura pour voir les scripts dans la liste "
+"des scripts de post-traitement"
+
+#: CalibrationShapes.py:351
+msgctxt "@info"
+msgid "Every script are up to date in :\n"
+msgstr "Chaque script est à jour dans :"
+
 #: CalibrationShapes.py:354 qml_qt6/CalibrationShapes.qml:20
 #: qml_qt5/CalibrationShapes.qml:20
 msgctxt "@title"
@@ -205,17 +236,75 @@ msgstr "Sélectionnez tout d'abord des pièces"
 
 #: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
 #: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
+#: CalibrationShapes.py:736 CalibrationShapes.py:738
+msgctxt "@info:label"
+msgid "! Modification ! in the current profile of : "
+msgstr "! Modification ! du profil actuel pour :"
+
+#: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
+#: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
+#, python-format
+msgctxt "@info:label"
+msgid ""
+"\n"
+"New value : %s"
+msgstr ""
+"\n"
+"Nouvelle valeur :"
+
+#: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
+#: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
 #: CalibrationShapes.py:736 CalibrationShapes.py:738 CalibrationShapes.py:747
 #: CalibrationShapes.py:749
 msgctxt "@info:title"
 msgid "Warning ! Calibration Shapes"
 msgstr "Attention ! Pièces de Calibration"
 
+#: CalibrationShapes.py:687 CalibrationShapes.py:689
+msgctxt "@info:label"
+msgid ""
+"\n"
+"(machine_nozzle_size>0.4)\n"
+"Set value :"
+msgstr ""
+"\n"
+"(Taille de buse >0.4)\n"
+"Valeur Fixée :"
+
 #: CalibrationShapes.py:687 CalibrationShapes.py:689 CalibrationShapes.py:711
 #: CalibrationShapes.py:713
 msgctxt "@info:title"
 msgid "Information ! Calibration Shapes"
 msgstr "Information ! Pièces de Calibration"
+
+#: CalibrationShapes.py:711 CalibrationShapes.py:713
+msgctxt "@info:label"
+msgid "\"Individual definition for the calibration part of : "
+msgstr "Définition individuelle pour la partie calibration de :"
+
+#: CalibrationShapes.py:711 CalibrationShapes.py:713
+msgctxt "@info:label"
+msgid ""
+"\n"
+"Set value :"
+msgstr ""
+"\n"
+"valeur définie :"
+
+#: CalibrationShapes.py:736 CalibrationShapes.py:738 CalibrationShapes.py:747
+#: CalibrationShapes.py:749
+msgctxt "@info:label"
+msgid ""
+"\n"
+"New value :"
+msgstr ""
+"\n"
+"Nouvelle valeur :"
+
+#: CalibrationShapes.py:747 CalibrationShapes.py:749
+msgctxt "@info:label"
+msgid "! Modification ! for the extruder definition of : "
+msgstr "! Modification ! pour l'extrudeuse :"
 
 #: scripts/GCodeDocumentation.py:153
 msgctxt "@info:title"

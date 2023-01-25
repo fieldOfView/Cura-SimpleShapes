@@ -616,9 +616,9 @@ class CalibrationShapes(QObject, Extension):
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)  
             if self.Major == 4 and self.Minor < 11 :
-                Message(text = catalog.i18nc("@info:label", "! Modification ! in the current profile of : ") + translated_label + catalog.i18nc("@info:label","\nNew value : %s") % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
+                Message(text = catalog.i18nc("@info:label", "! Modification ! in the current profile of : ") + translated_label + catalog.i18nc("@info:label","\nNew value :) + " %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes")).show()
             else :
-                Message(text = catalog.i18nc("@info:label","! Modification ! in the current profile of : ") + translated_label + catalog.i18nc("@info:label","\nNew value : %s") % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes"), message_type = Message.MessageType.WARNING).show()
+                Message(text = catalog.i18nc("@info:label","! Modification ! in the current profile of : ") + translated_label + catalog.i18nc("@info:label","\nNew value :) + " %s" % (str(val)), title = catalog.i18nc("@info:title", "Warning ! Calibration Shapes"), message_type = Message.MessageType.WARNING).show()
             
             # Define retraction_enable
             extruder.setProperty("retraction_enable", "value", True)
@@ -684,9 +684,9 @@ class CalibrationShapes(QObject, Extension):
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)  
             if self.Major == 4 and self.Minor < 11 : 
-                Message(text = "Individual definition for the calibration part of : " + translated_label + catalog.i18nc("@info:label","\n(machine_nozzle_size>0.4)\nSet value :") + " %s" % (str(True)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes")).show()
+                Message(text = catalog.i18nc("@info:label","Individual definition for the calibration part of : ") + translated_label + catalog.i18nc("@info:label","\n(machine_nozzle_size>0.4)\nSet value :") + " %s" % (str(True)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes")).show()
             else :
-                Message(text = "Individual definition for the calibration part of : " + translated_label + catalog.i18nc("@info:label","\n(machine_nozzle_size>0.4)\nSet value :") + " %s" % (str(True)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes"), message_type = Message.MessageType.POSITIVE).show()
+                Message(text = catalog.i18nc("@info:label","Individual definition for the calibration part of : ") + translated_label + catalog.i18nc("@info:label","\n(machine_nozzle_size>0.4)\nSet value :") + " %s" % (str(True)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes"), message_type = Message.MessageType.POSITIVE).show()
                 
             # Define adaptive_layer
             # extruder.setProperty("meshfix_union_all_remove_holes", "value", True) 
@@ -708,9 +708,9 @@ class CalibrationShapes(QObject, Extension):
             untranslated_label=extruder_stack.getProperty(key,"label")
             translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)            
             if self.Major == 4 and self.Minor < 11 :
-                Message(text = catalog.i18nc("@info:label","\"Individual definition for the calibration part of : ") + translated_label + catalog.i18nc("@info:label","\nSet value :") + " %s" % (str(val)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes")).show()
+                Message(text = catalog.i18nc("@info:label","Individual definition for the calibration part of : ") + translated_label + catalog.i18nc("@info:label","\nSet value :") + " %s" % (str(val)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes")).show()
             else :
-                Message(text = catalog.i18nc("@info:label","\"Individual definition for the calibration part of : ") + translated_label + catalog.i18nc("@info:label","\nSet value :") + " %s" % (str(val)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes"), message_type = Message.MessageType.POSITIVE).show()
+                Message(text = catalog.i18nc("@info:label","Individual definition for the calibration part of : ") + translated_label + catalog.i18nc("@info:label","\nSet value :") + " %s" % (str(val)), title = catalog.i18nc("@info:title", "Information ! Calibration Shapes"), message_type = Message.MessageType.POSITIVE).show()
             
             thin_wall =  val
             # global_container_stack.setProperty("fill_outline_gaps", "value", val)
