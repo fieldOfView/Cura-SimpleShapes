@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Name It\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-25 14:00+0000\n"
-"PO-Revision-Date: 2023-01-25 15:02+0200\n"
+"POT-Creation-Date: 2023-01-25 14:18+0000\n"
+"PO-Revision-Date: 2023-01-25 15:20+0200\n"
 "Last-Translator: 5axes <5axes@free.fr>\n"
 "Language-Team: 5axes\n"
 "Language: fr\n"
@@ -205,7 +205,7 @@ msgstr "La valeur de la taille doit être positive !"
 #: CalibrationShapes.py:347
 msgctxt "@info:message"
 msgid " script(s) copied in :\n"
-msgstr " script(s) copied in :"
+msgstr " script(s) copier dans :\n"
 
 #: CalibrationShapes.py:349
 msgctxt "@info:message"
@@ -241,9 +241,22 @@ msgctxt "@info:label"
 msgid "! Modification ! in the current profile of : "
 msgstr "! Modification ! du profil actuel pour :"
 
-#: CalibrationShapes.py:636 CalibrationShapes.py:638 CalibrationShapes.py:660
-#: CalibrationShapes.py:662 CalibrationShapes.py:736 CalibrationShapes.py:738
-#: CalibrationShapes.py:747 CalibrationShapes.py:749
+#: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
+#: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
+#: CalibrationShapes.py:736 CalibrationShapes.py:738 CalibrationShapes.py:747
+#: CalibrationShapes.py:749
+msgctxt "@info:label"
+msgid ""
+"\n"
+"New value :"
+msgstr ""
+"\n"
+"Nouvelle valeur :"
+
+#: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
+#: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
+#: CalibrationShapes.py:736 CalibrationShapes.py:738 CalibrationShapes.py:747
+#: CalibrationShapes.py:749
 msgctxt "@info:title"
 msgid "Warning ! Calibration Shapes"
 msgstr "Attention ! Pièces de Calibration"
@@ -280,21 +293,10 @@ msgstr ""
 "\n"
 "valeur définie :"
 
-#: CalibrationShapes.py:736 CalibrationShapes.py:738 CalibrationShapes.py:747
-#: CalibrationShapes.py:749
-msgctxt "@info:label"
-msgid ""
-"\n"
-"New value :"
-msgstr ""
-"\n"
-"Nouvelle valeur :"
-
 #: CalibrationShapes.py:747 CalibrationShapes.py:749
 msgctxt "@info:label"
 msgid "! Modification ! for the extruder definition of : "
 msgstr "! Modification ! pour l'extrudeuse :"
-
 
 #: scripts/GCodeDocumentation.py:153
 msgctxt "@info:title"
@@ -305,4 +307,3 @@ msgstr "Post Processing"
 msgctxt "@label"
 msgid "Size:"
 msgstr "Taille:"
-
