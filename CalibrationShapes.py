@@ -117,7 +117,7 @@ Resources.addSearchPath(
     os.path.join(os.path.abspath(os.path.dirname(__file__)))
 )  # Plugin translation file import
 
-catalog = i18nCatalog("nameit")
+catalog = i18nCatalog("calibration")
 
 if catalog.hasTranslationLoaded():
     Logger.log("i", "Calibration Shape Plugin translation loaded!")
