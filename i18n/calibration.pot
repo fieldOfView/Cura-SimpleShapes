@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Calibration Shape\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-25 13:41+0000\n"
+"POT-Creation-Date: 2023-01-25 14:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -238,8 +238,8 @@ msgctxt "@info:label"
 msgid "! Modification ! in the current profile of : "
 msgstr ""
 
-#: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
-#: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
+#: CalibrationShapes.py:636 CalibrationShapes.py:638 CalibrationShapes.py:660
+#: CalibrationShapes.py:662
 #, python-format
 msgctxt "@info:label"
 msgid ""
@@ -247,12 +247,17 @@ msgid ""
 "New value : %s"
 msgstr ""
 
-#: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
-#: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
-#: CalibrationShapes.py:736 CalibrationShapes.py:738 CalibrationShapes.py:747
-#: CalibrationShapes.py:749
+#: CalibrationShapes.py:636 CalibrationShapes.py:638 CalibrationShapes.py:660
+#: CalibrationShapes.py:662 CalibrationShapes.py:736 CalibrationShapes.py:738
+#: CalibrationShapes.py:747 CalibrationShapes.py:749
 msgctxt "@info:title"
 msgid "Warning ! Calibration Shapes"
+msgstr ""
+
+#: CalibrationShapes.py:687 CalibrationShapes.py:689 CalibrationShapes.py:711
+#: CalibrationShapes.py:713
+msgctxt "@info:label"
+msgid "Individual definition for the calibration part of : "
 msgstr ""
 
 #: CalibrationShapes.py:687 CalibrationShapes.py:689
@@ -267,11 +272,6 @@ msgstr ""
 #: CalibrationShapes.py:713
 msgctxt "@info:title"
 msgid "Information ! Calibration Shapes"
-msgstr ""
-
-#: CalibrationShapes.py:711 CalibrationShapes.py:713
-msgctxt "@info:label"
-msgid "\"Individual definition for the calibration part of : "
 msgstr ""
 
 #: CalibrationShapes.py:711 CalibrationShapes.py:713
@@ -292,6 +292,13 @@ msgstr ""
 #: CalibrationShapes.py:747 CalibrationShapes.py:749
 msgctxt "@info:label"
 msgid "! Modification ! for the extruder definition of : "
+msgstr ""
+
+#: CalibrationShapes.py:621 CalibrationShapes.py:619
+msgctxt "@info:label"
+msgid ""
+"\n"
+"New value :) + "
 msgstr ""
 
 #: scripts/GCodeDocumentation.py:153
