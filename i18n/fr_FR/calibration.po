@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Name It\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-25 12:24+0000\n"
-"PO-Revision-Date: 2023-01-25 13:27+0200\n"
+"POT-Creation-Date: 2023-01-25 13:29+0000\n"
+"PO-Revision-Date: 2023-01-25 14:52+0200\n"
 "Last-Translator: 5axes <5axes@free.fr>\n"
 "Language-Team: 5axes\n"
 "Language: fr\n"
@@ -17,137 +17,312 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Virtaal 0.7.1\n"
 
-#: NameIt.py:183
+#: CalibrationShapes.py:176
 msgctxt "@item:inmenu"
-msgid "Name It !"
-msgstr "Name It !"
+msgid "Part for calibration"
+msgstr "Pièce de Calibration"
 
-#: NameIt.py:184
+#: CalibrationShapes.py:177
 msgctxt "@item:inmenu"
-msgid "Add Number"
-msgstr "Ajouter Nombre"
+msgid "Add a cube"
+msgstr "Ajouter un Cube"
 
-#: NameIt.py:185
+#: CalibrationShapes.py:178
 msgctxt "@item:inmenu"
-msgid "Add Number From Part"
-msgstr "Ajouter Nombre Selon Pièce"
+msgid "Add a cylinder"
+msgstr "Ajouter un Cylindre"
 
-#: NameIt.py:186
+#: CalibrationShapes.py:179
 msgctxt "@item:inmenu"
-msgid "Add Name"
-msgstr "Ajouter Nom"
+msgid "Add a sphere"
+msgstr "Ajouter une Sphère"
 
-#: NameIt.py:188
+#: CalibrationShapes.py:180
 msgctxt "@item:inmenu"
-msgid "Remove Identifier"
-msgstr "Supprimer Identificateur"
+msgid "Add a tube"
+msgstr "Ajouter un Tube"
 
-#: NameIt.py:190
+#: CalibrationShapes.py:182
 msgctxt "@item:inmenu"
-msgid "Rename models"
-msgstr "Renommer modèles"
+msgid "Add a Calibration Cube"
+msgstr "Cube de calibration"
 
-#: NameIt.py:192
+#: CalibrationShapes.py:183
 msgctxt "@item:inmenu"
-msgid "Define Text Parameters"
-msgstr "Définir Paramètres de Texte"
+msgid "Add a PLA TempTower"
+msgstr "Tour de Température PLA"
 
-#: NameIt.py:194
+#: CalibrationShapes.py:184
+msgctxt "@item:inmenu"
+msgid "Add a PLA TempTower 190°C"
+msgstr "Tour de Température PLA 190°C"
+
+#: CalibrationShapes.py:185
+msgctxt "@item:inmenu"
+msgid "Add a PLA+ TempTower"
+msgstr "Tour de Température PLA+"
+
+#: CalibrationShapes.py:186
+msgctxt "@item:inmenu"
+msgid "Add a PETG TempTower"
+msgstr "Tour de Température PETG"
+
+#: CalibrationShapes.py:187
+msgctxt "@item:inmenu"
+msgid "Add an ABS TempTower"
+msgstr "Tour de Température ABS"
+
+#: CalibrationShapes.py:188
+msgctxt "@item:inmenu"
+msgid "Add a PC TempTower"
+msgstr "Tour de Température PC"
+
+#: CalibrationShapes.py:189
+msgctxt "@item:inmenu"
+msgid "Add a Retract Tower"
+msgstr "Tour Test Rétraction"
+
+#: CalibrationShapes.py:190
+msgctxt "@item:inmenu"
+msgid "Add an Acceleration Tower"
+msgstr "Tour Test Accélération"
+
+#: CalibrationShapes.py:192
+msgctxt "@item:inmenu"
+msgid "Add a Retract Test"
+msgstr "Test de Rétraction"
+
+#: CalibrationShapes.py:193
+msgctxt "@item:inmenu"
+msgid "Add a XY Calibration Test"
+msgstr "Test de calibration XY"
+
+#: CalibrationShapes.py:194
+msgctxt "@item:inmenu"
+msgid "Add a Dimensional Accuracy Test"
+msgstr "Test de Précision Dimensionnel"
+
+#: CalibrationShapes.py:195
+msgctxt "@item:inmenu"
+msgid "Add a Tolerance Test"
+msgstr "Test de Tolérance"
+
+#: CalibrationShapes.py:196
+msgctxt "@item:inmenu"
+msgid "Add a Hole Test"
+msgstr "Test pour les Trous"
+
+#: CalibrationShapes.py:199
+msgctxt "@item:inmenu"
+msgid "Add a Bridge Test"
+msgstr "Test pour le Ponts"
+
+#: CalibrationShapes.py:200
+msgctxt "@item:inmenu"
+msgid "Add a Thin Wall Test"
+msgstr "Test pour les Murs fins"
+
+#: CalibrationShapes.py:202
+msgctxt "@item:inmenu"
+msgid "Add an Overhang Test"
+msgstr "Test pour les Dépouilles"
+
+#: CalibrationShapes.py:203
+msgctxt "@item:inmenu"
+msgid "Add a FlowTower Test"
+msgstr "Tour de Débit"
+
+#: CalibrationShapes.py:204
+msgctxt "@item:inmenu"
+msgid "Add a Flow Test"
+msgstr "Test de Débit"
+
+#: CalibrationShapes.py:205
+msgctxt "@item:inmenu"
+msgid "Add a Multi-Flow Test"
+msgstr "Test Multi-Débit"
+
+#: CalibrationShapes.py:208
+msgctxt "@item:inmenu"
+msgid "Add a Support Test"
+msgstr "Test des Supports"
+
+#: CalibrationShapes.py:209
+msgctxt "@item:inmenu"
+msgid "Add a Lithophane Test"
+msgstr "Test Lithophanie"
+
+#: CalibrationShapes.py:212
+msgctxt "@item:inmenu"
+msgid "Add a Bed Level Calibration"
+msgstr "Test Réglage Plateau"
+
+#: CalibrationShapes.py:213
+msgctxt "@item:inmenu"
+msgid "Add a Linear/Pressure Adv Tower"
+msgstr "Tour Linear/Pressure Avancée"
+
+#: CalibrationShapes.py:215
+msgctxt "@item:inmenu"
+msgid "Add a Cube bi-color"
+msgstr "Cube Bi-Couleur"
+
+#: CalibrationShapes.py:216
+msgctxt "@item:inmenu"
+msgid "Add a Bi-Color Calibration Cube"
+msgstr "Cube de Calibration Bi-Couleur"
+
+#: CalibrationShapes.py:217
+msgctxt "@item:inmenu"
+msgid "Add an Extruder Offset Calibration Part"
+msgstr "Calibration du décalage de l'extrudeuse"
+
+#: CalibrationShapes.py:220
+msgctxt "@item:inmenu"
+msgid "Copy Scripts"
+msgstr "Copier les Scripts"
+
+#: CalibrationShapes.py:221
+msgctxt "@item:inmenu"
+msgid "Define default size"
+msgstr "Définir la taille paa défaut"
+
+#: CalibrationShapes.py:223
 msgctxt "@item:inmenu"
 msgid "Help"
 msgstr "Aide"
 
-#: NameIt.py:212
-msgctxt "@info:title"
-msgid "Name It!"
-msgstr "Name It!"
+#: CalibrationShapes.py:354 qml_qt6/CalibrationShapes.qml:20
+#: qml_qt5/CalibrationShapes.qml:20
+msgctxt "@title"
+msgid "Calibration Shapes"
+msgstr "Pièces de Calibration"
 
-#: NameIt.py:226
-msgctxt "@info:status"
-msgid "Please select a single model first"
-msgstr "Sélectionnez tout d'abord une pièce"
-
-#: NameIt.py:231 NameIt.py:651
+#: CalibrationShapes.py:430
 msgctxt "@info:status"
 msgid "Please select one or more models first"
 msgstr "Sélectionnez tout d'abord des pièces"
 
-#: NameIt.py:738 NameIt.py:745
+#: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
+#: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
+#: CalibrationShapes.py:736 CalibrationShapes.py:738 CalibrationShapes.py:747
+#: CalibrationShapes.py:749
 msgctxt "@info:title"
-msgid "Warning ! Name It"
-msgstr "Attention ! Name It"
+msgid "Warning ! Calibration Shapes"
+msgstr "Attention ! Pièces de Calibration"
 
-#: NameIt.py:740 NameIt.py:742 NameIt.py:747 NameIt.py:749
+#: CalibrationShapes.py:687 CalibrationShapes.py:689 CalibrationShapes.py:711
+#: CalibrationShapes.py:713
 msgctxt "@info:title"
-msgid "Info ! Name It"
-msgstr "Info ! Name It"
+msgid "Information ! Calibration Shapes"
+msgstr "Information ! Pièces de Calibration"
 
-#: qml_qt6/RenameDialog.qml:26 qml_qt5/RenameDialog.qml:25
-msgctxt "@title:window"
-msgid "Rename"
-msgstr "Renommer"
+#: scripts/GCodeDocumentation.py:153
+msgctxt "@info:title"
+msgid "Post Processing"
+msgstr "Post Processing"
 
-#: qml_qt6/RenameDialog.qml:27 qml_qt5/RenameDialog.qml:26
-msgctxt "@info"
-msgid "Please provide a new name."
-msgstr "Définir un nouveau Nom."
-
-#: qml_qt6/RenameDialog.qml:67 qml_qt5/RenameDialog.qml:75
-msgctxt "@action:button"
-msgid "Cancel"
-msgstr "Annuler"
-
-#: qml_qt6/RenameDialog.qml:73 qml_qt5/RenameDialog.qml:80
-msgctxt "@action:button"
-msgid "OK"
-msgstr "OK"
-
-#: qml_qt6/NameIt.qml:79 qml_qt5/NameIt.qml:77
-msgctxt "@tooltip"
-msgid "Close this dialog box"
-msgstr "Fermer cette boîte de dialogue"
-
-#: qml_qt6/NameIt.qml:115 qml_qt5/NameIt.qml:120
+#: qml_qt6/CalibrationShapes.qml:113 qml_qt5/CalibrationShapes.qml:90
 msgctxt "@label"
-msgid "Size :"
-msgstr "Taille :"
+msgid "Size:"
+msgstr "Taille:"
 
-#: qml_qt6/NameIt.qml:162 qml_qt5/NameIt.qml:180
-msgctxt "@label"
-msgid "Height :"
-msgstr "Hauteur : "
+#~ msgctxt "@item:inmenu"
+#~ msgid "Name It !"
+#~ msgstr "Name It !"
 
-#: qml_qt6/NameIt.qml:209 qml_qt5/NameIt.qml:240
-msgctxt "@label"
-msgid "Distance :"
-msgstr "Distance :"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Add Number"
+#~ msgstr "Ajouter Nombre"
 
-#: qml_qt6/NameIt.qml:255 qml_qt5/NameIt.qml:300
-msgctxt "@label"
-msgid "Kerning :"
-msgstr "Kerning :"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Add Number From Part"
+#~ msgstr "Ajouter Nombre Selon Pièce"
 
-#: qml_qt6/NameIt.qml:301 qml_qt5/NameIt.qml:360
-msgctxt "@label"
-msgid "Number Prefix :"
-msgstr "Préfix Nombre :"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Add Name"
+#~ msgstr "Ajouter Nom"
 
-#: qml_qt6/NameIt.qml:345 qml_qt5/NameIt.qml:403
-msgctxt "@label"
-msgid "Number Suffix :"
-msgstr "Suffix Nombre :"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Remove Identifier"
+#~ msgstr "Supprimer Identificateur"
 
-#: qml_qt6/NameIt.qml:389 qml_qt5/NameIt.qml:446
-msgctxt "@label"
-msgid "Initial Layer Speed :"
-msgstr "Vitesse Initiale :"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Rename models"
+#~ msgstr "Renommer modèles"
 
-#: qml_qt6/NameIt.qml:433 qml_qt5/NameIt.qml:506
-msgctxt "@label"
-msgid "Font :"
-msgstr "Police :"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Define Text Parameters"
+#~ msgstr "Définir Paramètres de Texte"
 
-#: qml_qt6/NameIt.qml:477
-msgctxt "@label"
-msgid "Location :"
-msgstr "Localisation :"
+#~ msgctxt "@info:title"
+#~ msgid "Name It!"
+#~ msgstr "Name It!"
+
+#~ msgctxt "@info:status"
+#~ msgid "Please select a single model first"
+#~ msgstr "Sélectionnez tout d'abord une pièce"
+
+#~ msgctxt "@info:title"
+#~ msgid "Warning ! Name It"
+#~ msgstr "Attention ! Name It"
+
+#~ msgctxt "@info:title"
+#~ msgid "Info ! Name It"
+#~ msgstr "Info ! Name It"
+
+#~ msgctxt "@title:window"
+#~ msgid "Rename"
+#~ msgstr "Renommer"
+
+#~ msgctxt "@info"
+#~ msgid "Please provide a new name."
+#~ msgstr "Définir un nouveau Nom."
+
+#~ msgctxt "@action:button"
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
+
+#~ msgctxt "@action:button"
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgctxt "@tooltip"
+#~ msgid "Close this dialog box"
+#~ msgstr "Fermer cette boîte de dialogue"
+
+#~ msgctxt "@label"
+#~ msgid "Size :"
+#~ msgstr "Taille :"
+
+#~ msgctxt "@label"
+#~ msgid "Height :"
+#~ msgstr "Hauteur : "
+
+#~ msgctxt "@label"
+#~ msgid "Distance :"
+#~ msgstr "Distance :"
+
+#~ msgctxt "@label"
+#~ msgid "Kerning :"
+#~ msgstr "Kerning :"
+
+#~ msgctxt "@label"
+#~ msgid "Number Prefix :"
+#~ msgstr "Préfix Nombre :"
+
+#~ msgctxt "@label"
+#~ msgid "Number Suffix :"
+#~ msgstr "Suffix Nombre :"
+
+#~ msgctxt "@label"
+#~ msgid "Initial Layer Speed :"
+#~ msgstr "Vitesse Initiale :"
+
+#~ msgctxt "@label"
+#~ msgid "Font :"
+#~ msgstr "Police :"
+
+#~ msgctxt "@label"
+#~ msgid "Location :"
+#~ msgstr "Localisation :"
