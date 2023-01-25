@@ -242,17 +242,6 @@ msgid "! Modification ! in the current profile of : "
 msgstr "! Modification ! du profil actuel pour :"
 
 #: CalibrationShapes.py:636 CalibrationShapes.py:638 CalibrationShapes.py:660
-#: CalibrationShapes.py:662
-#, python-format
-msgctxt "@info:label"
-msgid ""
-"\n"
-"New value : %s"
-msgstr ""
-"\n"
-"Nouvelle valeur :"
-
-#: CalibrationShapes.py:636 CalibrationShapes.py:638 CalibrationShapes.py:660
 #: CalibrationShapes.py:662 CalibrationShapes.py:736 CalibrationShapes.py:738
 #: CalibrationShapes.py:747 CalibrationShapes.py:749
 msgctxt "@info:title"
@@ -306,12 +295,6 @@ msgctxt "@info:label"
 msgid "! Modification ! for the extruder definition of : "
 msgstr "! Modification ! pour l'extrudeuse :"
 
-#: CalibrationShapes.py:621 CalibrationShapes.py:619
-msgctxt "@info:label"
-msgid ""
-"\n"
-"New value :) + "
-msgstr ""
 
 #: scripts/GCodeDocumentation.py:153
 msgctxt "@info:title"
@@ -323,106 +306,3 @@ msgctxt "@label"
 msgid "Size:"
 msgstr "Taille:"
 
-#~ msgctxt "@info:label"
-#~ msgid "\"Individual definition for the calibration part of : "
-#~ msgstr "Définition individuelle pour la partie calibration de :"
-
-#~ msgctxt "@item:inmenu"
-#~ msgid "Name It !"
-#~ msgstr "Name It !"
-
-#~ msgctxt "@item:inmenu"
-#~ msgid "Add Number"
-#~ msgstr "Ajouter Nombre"
-
-#~ msgctxt "@item:inmenu"
-#~ msgid "Add Number From Part"
-#~ msgstr "Ajouter Nombre Selon Pièce"
-
-#~ msgctxt "@item:inmenu"
-#~ msgid "Add Name"
-#~ msgstr "Ajouter Nom"
-
-#~ msgctxt "@item:inmenu"
-#~ msgid "Remove Identifier"
-#~ msgstr "Supprimer Identificateur"
-
-#~ msgctxt "@item:inmenu"
-#~ msgid "Rename models"
-#~ msgstr "Renommer modèles"
-
-#~ msgctxt "@item:inmenu"
-#~ msgid "Define Text Parameters"
-#~ msgstr "Définir Paramètres de Texte"
-
-#~ msgctxt "@info:title"
-#~ msgid "Name It!"
-#~ msgstr "Name It!"
-
-#~ msgctxt "@info:status"
-#~ msgid "Please select a single model first"
-#~ msgstr "Sélectionnez tout d'abord une pièce"
-
-#~ msgctxt "@info:title"
-#~ msgid "Warning ! Name It"
-#~ msgstr "Attention ! Name It"
-
-#~ msgctxt "@info:title"
-#~ msgid "Info ! Name It"
-#~ msgstr "Info ! Name It"
-
-#~ msgctxt "@title:window"
-#~ msgid "Rename"
-#~ msgstr "Renommer"
-
-#~ msgctxt "@info"
-#~ msgid "Please provide a new name."
-#~ msgstr "Définir un nouveau Nom."
-
-#~ msgctxt "@action:button"
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
-
-#~ msgctxt "@action:button"
-#~ msgid "OK"
-#~ msgstr "OK"
-
-#~ msgctxt "@tooltip"
-#~ msgid "Close this dialog box"
-#~ msgstr "Fermer cette boîte de dialogue"
-
-#~ msgctxt "@label"
-#~ msgid "Size :"
-#~ msgstr "Taille :"
-
-#~ msgctxt "@label"
-#~ msgid "Height :"
-#~ msgstr "Hauteur : "
-
-#~ msgctxt "@label"
-#~ msgid "Distance :"
-#~ msgstr "Distance :"
-
-#~ msgctxt "@label"
-#~ msgid "Kerning :"
-#~ msgstr "Kerning :"
-
-#~ msgctxt "@label"
-#~ msgid "Number Prefix :"
-#~ msgstr "Préfix Nombre :"
-
-#~ msgctxt "@label"
-#~ msgid "Number Suffix :"
-#~ msgstr "Suffix Nombre :"
-
-#~ msgctxt "@label"
-#~ msgid "Initial Layer Speed :"
-#~ msgstr "Vitesse Initiale :"
-
-#~ msgctxt "@label"
-#~ msgid "Font :"
-#~ msgstr "Police :"
-
-#~ msgctxt "@label"
-#~ msgid "Location :"
-#~ msgstr "Localisation :"
