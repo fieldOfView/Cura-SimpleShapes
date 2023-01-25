@@ -5,7 +5,7 @@ __pycache__/
 *.qmlc
 
 # Translations
-*.mo
-*.pot
+
+# Models
 models/Calibration-Extruder-Offset-6parts-export.stl
 resources/~$CalibrationCalcul.xlsx
