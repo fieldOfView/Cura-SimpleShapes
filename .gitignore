@@ -9,3 +9,4 @@ __pycache__/
 # Models
 models/Calibration-Extruder-Offset-6parts-export.stl
 resources/~$CalibrationCalcul.xlsx
+*.xlsx
