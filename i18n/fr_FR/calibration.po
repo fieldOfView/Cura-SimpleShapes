@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Name It\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-25 13:41+0000\n"
-"PO-Revision-Date: 2023-01-25 14:58+0200\n"
+"POT-Creation-Date: 2023-01-25 14:00+0000\n"
+"PO-Revision-Date: 2023-01-25 15:02+0200\n"
 "Last-Translator: 5axes <5axes@free.fr>\n"
 "Language-Team: 5axes\n"
 "Language: fr\n"
@@ -241,8 +241,8 @@ msgctxt "@info:label"
 msgid "! Modification ! in the current profile of : "
 msgstr "! Modification ! du profil actuel pour :"
 
-#: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
-#: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
+#: CalibrationShapes.py:636 CalibrationShapes.py:638 CalibrationShapes.py:660
+#: CalibrationShapes.py:662
 #, python-format
 msgctxt "@info:label"
 msgid ""
@@ -252,13 +252,18 @@ msgstr ""
 "\n"
 "Nouvelle valeur :"
 
-#: CalibrationShapes.py:619 CalibrationShapes.py:621 CalibrationShapes.py:636
-#: CalibrationShapes.py:638 CalibrationShapes.py:660 CalibrationShapes.py:662
-#: CalibrationShapes.py:736 CalibrationShapes.py:738 CalibrationShapes.py:747
-#: CalibrationShapes.py:749
+#: CalibrationShapes.py:636 CalibrationShapes.py:638 CalibrationShapes.py:660
+#: CalibrationShapes.py:662 CalibrationShapes.py:736 CalibrationShapes.py:738
+#: CalibrationShapes.py:747 CalibrationShapes.py:749
 msgctxt "@info:title"
 msgid "Warning ! Calibration Shapes"
 msgstr "Attention ! Pièces de Calibration"
+
+#: CalibrationShapes.py:687 CalibrationShapes.py:689 CalibrationShapes.py:711
+#: CalibrationShapes.py:713
+msgctxt "@info:label"
+msgid "Individual definition for the calibration part of : "
+msgstr "Définition individuelle pour la pièce de calibration : "
 
 #: CalibrationShapes.py:687 CalibrationShapes.py:689
 msgctxt "@info:label"
@@ -276,11 +281,6 @@ msgstr ""
 msgctxt "@info:title"
 msgid "Information ! Calibration Shapes"
 msgstr "Information ! Pièces de Calibration"
-
-#: CalibrationShapes.py:711 CalibrationShapes.py:713
-msgctxt "@info:label"
-msgid "\"Individual definition for the calibration part of : "
-msgstr "Définition individuelle pour la partie calibration de :"
 
 #: CalibrationShapes.py:711 CalibrationShapes.py:713
 msgctxt "@info:label"
@@ -306,6 +306,13 @@ msgctxt "@info:label"
 msgid "! Modification ! for the extruder definition of : "
 msgstr "! Modification ! pour l'extrudeuse :"
 
+#: CalibrationShapes.py:621 CalibrationShapes.py:619
+msgctxt "@info:label"
+msgid ""
+"\n"
+"New value :) + "
+msgstr ""
+
 #: scripts/GCodeDocumentation.py:153
 msgctxt "@info:title"
 msgid "Post Processing"
@@ -315,6 +322,10 @@ msgstr "Post Processing"
 msgctxt "@label"
 msgid "Size:"
 msgstr "Taille:"
+
+#~ msgctxt "@info:label"
+#~ msgid "\"Individual definition for the calibration part of : "
+#~ msgstr "Définition individuelle pour la partie calibration de :"
 
 #~ msgctxt "@item:inmenu"
 #~ msgid "Name It !"
