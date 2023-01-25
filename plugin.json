@@ -1,9 +1,9 @@
 {
     "name": "Calibration Shapes",
     "author": "5axes",
-    "version": "2.1.6",
+    "version": "2.2.0",
     "description": "Adds test parts and simple shapes to the build plate",
     "api": 7,
-    "supported_sdk_versions": ["7.0.0", "7.1.0", "7.2.0", "7.3.0", "7.4.0", "7.5.0", "7.6.0", "7.7.0", "7.8.0", "7.9.0", "8.0.0", "8.1.0"],
+    "supported_sdk_versions": ["7.0.0", "7.1.0", "7.2.0", "7.3.0", "7.4.0", "7.5.0", "7.6.0", "7.7.0", "7.8.0", "7.9.0", "8.0.0", "8.1.0", "8.1.0"],
 	"i18n-catalog": "cura"
 }

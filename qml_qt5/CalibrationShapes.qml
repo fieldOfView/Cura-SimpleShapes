@@ -15,7 +15,9 @@ Window
 {
     id: base
 
-    title: "Calibration Shapes"
+    property variant catalog: UM.I18nCatalog { name: "calibration" }
+	
+    title: catalog.i18nc("@title", "Calibration Shapes")
 
     color: "#fafafa" //Background color of cura: #fafafa
 
@@ -85,7 +87,7 @@ Window
     Text
     {
         id: text_size
-        text: "Size:"
+        text: catalog.i18nc("@label", "Size:")
         font.family: "Arial"
         font.pointSize: 12
         color: "#131151"

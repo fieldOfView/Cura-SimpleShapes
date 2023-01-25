@@ -57,6 +57,7 @@
 # V2.1.4   : Change for compatibility on Message Text
 # V2.1.5   : RetractTower Script to 1.9
 # V2.1.6   : RetractTower Script to 1.10 https://github.com/5axes/Calibration-Shapes/issues/120
+# V2.2.0   : French Translation
 #-------------------------------------------------------------------------------------------
 
 VERSION_QT5 = False
@@ -104,11 +105,22 @@ from UM.Logger import Logger
 from UM.Message import Message
 
 from UM.i18n import i18nCatalog
-catalog = i18nCatalog("cura")
+
 i18n_cura_catalog = i18nCatalog("cura")
 i18n_catalog = i18nCatalog("fdmprinter.def.json")
 i18n_extrud_catalog = i18nCatalog("fdmextruder.def.json")
 
+# Suggested solution from fieldOfView . in this discussion solved in Cura 4.9
+# https://github.com/5axes/Calibration-Shapes/issues/1
+# Cura are able to find the scripts from inside the plugin folder if the scripts are into a folder named resources
+Resources.addSearchPath(
+    os.path.join(os.path.abspath(os.path.dirname(__file__)))
+)  # Plugin translation file import
+
+catalog = i18nCatalog("nameit")
+
+if catalog.hasTranslationLoaded():
+    Logger.log("i", "Calibration Shape Plugin translation loaded!")
 
 #This class is the extension and doubles as QObject to manage the qml    
 class CalibrationShapes(QObject, Extension):
@@ -130,12 +142,7 @@ class CalibrationShapes(QObject, Extension):
         self._preferences.addPreference("calibrationshapes/size", 20)
         
         # convert as float to avoid further issue
-        self._size = float(self._preferences.getValue("calibrationshapes/size"))
-        
-        # Suggested solution from fieldOfView . in this discussion solved in Cura 4.9
-        # https://github.com/5axes/Calibration-Shapes/issues/1
-        # Cura are able to find the scripts from inside the plugin folder if the scripts are into a folder named resources
-        Resources.addSearchPath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources"))
+        self._size = float(self._preferences.getValue("calibrationshapes/size"))       
  
         self.Major=1
         self.Minor=0

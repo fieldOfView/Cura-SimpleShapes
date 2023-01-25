@@ -14,8 +14,10 @@ import Cura 1.7 as Cura
 Window
 {
     id: base
+	
+	property variant catalog: UM.I18nCatalog { name: "calibration" }
 
-    title: "Calibration Shapes"
+    title: catalog.i18nc("@title", "Calibration Shapes")
 
     color: "#fafafa" //Background color of cura: #fafafa
 
@@ -108,7 +110,7 @@ Window
     Label
     {
         id: label_size
-        text: "Size:"
+        text: catalog.i18nc("@label", "Size:")
         font.family: "Arial"
         font.pointSize: 12
         color: "#131151"
