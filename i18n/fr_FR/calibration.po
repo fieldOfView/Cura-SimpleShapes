@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Name It\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-25 14:18+0000\n"
-"PO-Revision-Date: 2023-01-25 15:20+0200\n"
+"PO-Revision-Date: 2023-01-25 15:25+0200\n"
 "Last-Translator: 5axes <5axes@free.fr>\n"
 "Language-Team: 5axes\n"
 "Language: fr\n"
@@ -45,7 +45,7 @@ msgstr "Ajouter un Tube"
 #: CalibrationShapes.py:182
 msgctxt "@item:inmenu"
 msgid "Add a Calibration Cube"
-msgstr "Cube de calibration"
+msgstr "Cube de Calibration"
 
 #: CalibrationShapes.py:183
 msgctxt "@item:inmenu"
@@ -80,12 +80,12 @@ msgstr "Tour de Température PC"
 #: CalibrationShapes.py:189
 msgctxt "@item:inmenu"
 msgid "Add a Retract Tower"
-msgstr "Tour Test Rétraction"
+msgstr "Tour de Rétraction"
 
 #: CalibrationShapes.py:190
 msgctxt "@item:inmenu"
 msgid "Add an Acceleration Tower"
-msgstr "Tour Test Accélération"
+msgstr "Tour d'Accélération"
 
 #: CalibrationShapes.py:192
 msgctxt "@item:inmenu"
@@ -110,7 +110,7 @@ msgstr "Test de Tolérance"
 #: CalibrationShapes.py:196
 msgctxt "@item:inmenu"
 msgid "Add a Hole Test"
-msgstr "Test pour les Trous"
+msgstr "Test Tailles des Trous"
 
 #: CalibrationShapes.py:199
 msgctxt "@item:inmenu"
@@ -175,7 +175,7 @@ msgstr "Cube de Calibration Bi-Couleur"
 #: CalibrationShapes.py:217
 msgctxt "@item:inmenu"
 msgid "Add an Extruder Offset Calibration Part"
-msgstr "Calibration du décalage de l'extrudeuse"
+msgstr "Calibration de l'Offset de l'extrudeuse"
 
 #: CalibrationShapes.py:220
 msgctxt "@item:inmenu"
